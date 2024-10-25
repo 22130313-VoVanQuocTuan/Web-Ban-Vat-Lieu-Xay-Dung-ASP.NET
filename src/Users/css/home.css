@@ -1,0 +1,487 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    box-sizing: border-box;
+}
+
+.container {
+    width: auto;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+/* ---------------section-header1--------------- */
+#section-header1 {
+    height: 60px;
+    background: linear-gradient(to right, #82a0c2, #15283e);
+}
+
+#section-header1 .top-left {
+    float: left;
+    margin: 18px 12px 0 200px;
+}
+
+#section-header1 .top-left p {
+    color: white;
+    font-weight: bold;
+}
+
+#section-header1 .top-right {
+    float: right;
+    margin-top: 18px;
+    margin-right: 200px;
+}
+
+#section-header1 .top-right a {
+    font-weight: bolder;
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s;
+    /* Thêm hiệu ứng khi hover */
+}
+
+#section-header1 .top-right a:hover {
+    color: #d1d1d1
+}
+
+/* ---------------section-header2------------------ */
+#section-header2 {
+    height: 105px;
+    background-color: white;
+}
+
+#section-header2 .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 215px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ccc;
+}
+
+#section-header2 .menu .logo {
+    display: flex;
+    align-items: center;
+
+}
+
+#section-header2 .logo img {
+    height: 90px;
+    width: 150px;
+    cursor: pointer;
+}
+
+#section-header2 .search-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin-left: 70px;
+    margin-right: 20px;
+}
+
+#section-header2 .search-bar input {
+    padding: 10px;
+    font-size: 14px;
+    width: 500px;
+    height: 25px;
+    border-radius: 5px 0 0 5px;
+    border: 1px solid #ccc;
+}
+
+#section-header2 .search-bar button {
+    padding: 10px 20px;
+    font-size: 14px;
+    background: linear-gradient(to right, #82a0c2, #15283e);
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+}
+
+#section-header2 .search-bar button:hover {
+    background: linear-gradient(to right, #82a0c2, #06080a);
+}
+
+#section-header2 .info .hotline {
+    display: flex;
+    flex-direction: column;
+    color: #003366;
+    font-weight: bold;
+    line-height: 1.1;
+}
+
+#section-header2 .info .hotline .hotline-text {
+    font-size: 19px;
+    margin-left: 7px;
+}
+
+#section-header2 .info .hotline a {
+    margin-left: 10px;
+    padding: 5px 0;
+    text-decoration: none;
+    color: red;
+    font-weight: bolder;
+    font-size: 22px;
+}
+
+#section-header2 .cart {
+    display: flex;
+    align-items: center;
+    margin-left: 55px;
+}
+
+#section-header2 .cart a {
+    font-size: 40px;
+    color: #003366;
+    margin-left: 2%;
+    cursor: pointer;
+}
+
+#section-header2 .cart a:hover {
+    font-size: 45px;
+}
+
+/* --------------------section-nav------------------ */
+#section-nav {
+    height: 75PX;
+    background: linear-gradient(to right, #82a0c2, #15283e);
+}
+
+#section-nav ul.navbar-center {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 180px;
+
+}
+
+#section-nav ul.navbar-centeru li i {
+    margin-right: 10px;
+    /* Khoảng cách mong muốn giữa thẻ <i> và văn bản */
+}
+
+
+/* Menu chung */
+#section-nav ul.navbar-center>li {
+    padding: 25px 15px;
+    color: #f2f2f2;
+    cursor: pointer;
+    float: left;
+    margin-left: 15px;
+}
+
+/* mục chứa thẻ <a> */
+#section-nav ul.navbar-center li a {
+    color: #f2f2f2;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+}
+
+#section-nav ul.navbar-center li a:hover {
+    background: linear-gradient(to right, #82a0c2, #15283e);
+}
+
+
+/* mục k chứa thẻ a */
+#section-nav ul.navbar-center li span.none-a {
+    font-weight: bold;
+    color: #f2f2f2;
+    display: inline-flex;
+    align-items: center;
+}
+
+#section-nav ul.navbar-center li span.none-a:hover {
+    background: linear-gradient(to right, #82a0c2, #15283e);
+}
+
+
+/*Thư mục con */
+#section-nav ul.navbar-center li ul.items {
+    display: none;
+    position: absolute;
+    background-color: #f2f2f2;
+    list-style: none;
+    margin-left: -5px;
+    margin-top: 15px;
+    padding: 0;
+}
+
+#section-nav ul.navbar-center li:hover ul.items {
+    display: block;
+    padding: 0;
+    border-radius: 5px;
+    z-index: 10;
+    /* Đảm bảo list nhỏ ở trên slider */
+}
+
+#section-nav ul.navbar-center li ul.items li  {
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+    float: none;
+    width: 250px;
+    height: 30px;
+    border-bottom: solid 1px gray;
+    padding-top: 19px;
+}
+#section-nav ul.navbar-center li ul.items li a{
+    color: black;
+}
+
+#section-nav ul.navbar-center li ul.items li:hover {
+    background: linear-gradient(to right, #82a0c2, #15283e);
+}
+
+/* -------------------section-slider-------------------------- */
+#section-slider {
+    height: 760px;
+    background-color: #f2f2f2;
+    z-index: 1;
+    position: relative;
+    padding-top: 1px;
+}
+
+
+#section-slider .mySlides {
+    display: none;
+}
+
+#section-slider img {
+    filter: brightness(80%);
+}
+
+.slideshow-container {
+    max-width: 100%;
+    height: auto;
+    position: relative;
+    margin: auto;
+}
+
+/* Next & previous buttons */
+#section-slider .prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 38px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+/* Position the "next button" to the right */
+#section-slider .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+    
+}
+
+#section-slider .prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Caption text */
+#section-slider .text {
+    color: #f2f2f2;
+    font-size: 15px;
+    padding: 8px 12px;
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Number text (1/3 etc) */
+#section-slider .numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+/* The dots/bullets/indicators */
+#section-slider .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+#section-slider .active,
+.dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+#section-slider .fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+
+    .prev,
+    .next,
+    .text {
+        font-size: 11px
+    }
+}
+
+#section-slider .text {
+    width: 1150px;
+    font-size: 70px;
+    font-weight: bolder;
+    text-align: center;
+    position: absolute;
+    top: 60%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+#section-slider .rq {
+    width: 1150px;
+    font-size: 70px;
+    font-weight: bolder;
+    text-align: center;
+    position: absolute;
+    top: 90%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+/*---------------section-content------------------- */
+#section-content {
+    padding-top: 15px;
+    height: 1900px;
+    background-color:#ffffff;
+}
+
+/* -------------------section footer---------------------- */
+#section-footer {
+    height: 150px;
+    padding: 40px 0;
+    background: linear-gradient(to right, #82a0c2, #15283e);
+    color: #d1d1d1;
+    font-family: 'Roboto', sans-serif;
+}
+
+#section-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#section-footer p,
+#section-footer a,
+#section-footer h3 {
+    margin: 0;
+    padding: 0;
+    color: #d1d1d1;
+}
+
+#section-footer h3 {
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+
+#section-footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+#section-footer ul li {
+    margin-bottom: 10px;
+}
+
+#section-footer ul li a {
+    text-decoration: none;
+    color: #d1d1d1;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+#section-footer ul li a:hover {
+    color: #ffffff;
+    border-bottom: 2px solid #ffffff;
+    /* Hiệu ứng underline khi hover */
+}
+
+#section-footer .social-media ul {
+    display: flex;
+}
+
+#section-footer .social-media ul li {
+    margin-right: 15px;
+    font-size: 22px;
+}
+
+#section-footer .social-media ul li a {
+    display: block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#section-footer .social-media ul li a:hover {
+    transform: scale(1.2);
+    /* Phóng to biểu tượng khi hover */
+    color: #ffffff;
+}
+
+#section-footer .copyright {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 14px;
+    border-top: 1px solid #d1d1d1;
+    padding-top: 20px;
+    color: #cccccc;
+    letter-spacing: 1px;
+}
+
+/* Thêm hiệu ứng cho các biểu tượng social media */
+#section-footer .social-media ul li a i {
+    color: #d1d1d1;
+    transition: color 0.3s ease;
+}
+
+#section-footer .social-media ul li a i:hover {
+    color: #ffffff;
+}
