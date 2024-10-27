@@ -6,7 +6,7 @@ let selectedProducts = new Set(); // Tập hợp chứa các sản phẩm đư�
 
 // Hàm cập nhật tổng giỏ hàng
 function updateCart() {
-  const cartContainer = document.querySelector(".cart-items-container");
+  const cartContainer = document.getElementById("cart-items-container");
   cartContainer.innerHTML = ""; // Xóa nội dung cũ
 
   let subtotal = 0;
@@ -19,31 +19,28 @@ function updateCart() {
       subtotal += itemTotal;
     }
 
-    // Tạo phần tử HTML cho từng sản phẩm
-    const cartItem = document.createElement("div");
-    cartItem.classList.add("cart-item");
-    cartItem.innerHTML = `
-            <input type="checkbox" class="select-product" 
-                   onchange="toggleProductSelection(${index})" 
-                   ${selectedProducts.has(index) ? "checked" : ""}>
-            <img src="image-placeholder.png" alt="Product Image" class="product-img">
-            <div class="product-details">
-                <p class="product-name">${item.name}</p>
-                <p class="product-price" data-price="${
-                  item.price
-                }">${formatCurrency(item.price)}</p>
-                <div class="quantity">
-                    <button class="qty-btn minus-btn" onclick="changeQuantity(${index}, -1)">-</button>
-                    <input type="number" value="${
-                      item.quantity
-                    }" class="qty-input" min="1" onchange="updateQuantity(${index}, this.value)">
-                    <button class="qty-btn plus-btn" onclick="changeQuantity(${index}, 1)">+</button>
-                </div>
-            </div>
-            <div class="product-subtotal">${formatCurrency(itemTotal)}</div>
-        `;
+    // Tạo phần tử HTML cho từng sản phẩm dưới dạng hàng bảng
+    const cartRow = document.createElement("tr");
+    cartRow.innerHTML = `
+      <td><input type="checkbox" class="select-product" onchange="toggleProductSelection(${index})" ${
+      selectedProducts.has(index) ? "checked" : ""
+    }></td>
+      <td>${item.name}</td>
+      <td><img src="image-placeholder.png" alt="Product Image" class="product-img"></td>
+      <td>
+        <div class="quantity">
+          <button class="qty-btn minus-btn" onclick="changeQuantity(${index}, -1)">-</button>
+          <input type="text" value="${
+            item.quantity
+          }" class="qty-input" min="1" onchange="updateQuantity(${index}, this.value)">
+          <button class="qty-btn plus-btn" onclick="changeQuantity(${index}, 1)">+</button>
+        </div>
+      </td>
+      <td>${formatCurrency(item.price)}</td>
+      <td class="product-subtotal">${formatCurrency(itemTotal)}</td>
+    `;
 
-    cartContainer.appendChild(cartItem);
+    cartContainer.appendChild(cartRow);
   });
 
   const vat = subtotal * VAT_RATE;
@@ -109,8 +106,22 @@ function formatCurrency(amount) {
   }).format(amount);
 }
 
+// Hàm xóa sản phẩm đã chọn khỏi giỏ hàng
+function removeSelectedProducts() {
+  // Lọc lại các sản phẩm không nằm trong selectedProducts
+  cart = cart.filter((_, index) => !selectedProducts.has(index));
+  selectedProducts.clear(); // Xóa danh sách sản phẩm được chọn
+  updateCart(); // Cập nhật lại giỏ hàng
+}
+
 // Khởi tạo giỏ hàng mẫu
 addToCart({ name: "Gạch Ốp Lát Eurotile An Cư", price: 398700, quantity: 1 });
 addToCart({ name: "Sơn Tường Jotun", price: 250000, quantity: 1 });
+addToCart({ name: "Vật Liệu Chống Thấm Sika", price: 120000, quantity: 1 });
+addToCart({ name: "Xi Măng Hà Tiên", price: 95000, quantity: 1 });
+addToCart({ name: "Cát Xây Dựng", price: 80000, quantity: 1 });
+addToCart({ name: "Sắt Thép Xây Dựng", price: 350000, quantity: 1 });
+addToCart({ name: "Gạch Ốp Lát Viglacera", price: 450000, quantity: 1 });
+addToCart({ name: "Sơn Nước Dulux", price: 300000, quantity: 1 });
 addToCart({ name: "Vật Liệu Chống Thấm Sika", price: 120000, quantity: 1 });
 addToCart({ name: "Xi Măng Hà Tiên", price: 95000, quantity: 1 });
