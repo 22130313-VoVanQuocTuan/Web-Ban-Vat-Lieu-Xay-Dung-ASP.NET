@@ -7,7 +7,7 @@ body {
     box-sizing: border-box;
 }
 
-.container {
+.container{
     width: auto;
     height: auto;
     margin-left: auto;
@@ -21,6 +21,7 @@ p {
 
 /* ---------------section-header1--------------- */
 #section-header1 {
+
     height: 60px;
     background: linear-gradient(to right, #82a0c2, #15283e);
 }
@@ -56,7 +57,9 @@ p {
 
 /* ---------------section-header2------------------ */
 #section-header2 {
-    height: 105px;
+ 
+    height: 75px;
+
     background-color: white;
 }
 
@@ -222,7 +225,7 @@ p {
     display: block;
     padding: 0;
     border-radius: 5px;
-    z-index: 10;
+    z-index: 30;
     /* Đảm bảo list nhỏ ở trên slider */
 }
 
@@ -387,7 +390,6 @@ p {
 /*---------------section-content------------------- */
 #section-content {
     padding-top: 15px;
-    height: 1900px;
     background-color:#ffffff;
 }
 

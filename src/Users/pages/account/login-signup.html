@@ -4,84 +4,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="/src/Users/css/login-signup.css">
-    <title>Đăng nhập-Đăng kí</title>
-  
+    <title>Vật Liệu Xây Dựng Thành Công </title>
 </head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/js/all.min.js"
+    integrity="sha512-6sSYJqDreZRZGkJ3b+YfdhB3MzmuP9R7X1QZ6g5aIXhRvR1Y/N/P47jmnkENm7YL3oqsmI6AK+V6AD99uWDnIw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="/src/Users/css/home.css">
+<link rel="stylesheet" href="/src/Users/css/login-signup.css">
+
 
 <body>
-    <div class="container" id="container">
-          <div class="form-container sign-up  none">
-            <form id="register-form">
-                <h1>Đăng kí tài khoản với</h1>
-                <div class="social-icons">
-                    <a href="" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+    <div id="page" class="page">
+        <div id="section-header1">
+            <div class="container">
+                <div class="top-left">
+                    <p>Chào mừng bạn đến với website của chúng tôi !</p>
                 </div>
-                <span>Hoặc sử dụng tên người dùng của bạn để đăng ký</span>
-                <input type="email" class="register-input" id="register-email" placeholder="Email" required>
-                <span class="error-message">Không được để trống </span>
-                <input type="username" class="register-input" id="register-username" placeholder="UserName" required>
-                <span class="error-message">Không được để trống</span>
-                <input type="password" class="register-input" id="register-password" placeholder="Password" required>
-                <span class="error-message">Không được để trống</span>
-                <button type="submit" class="register-input" id="submit-register">Đăng kí</button>
-                
-            </form>
-        </div>
-        <div class="form-container sign-in none">
-            <form id="login-form">
-                <h1>Đăng nhập</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                </div>
-                <span>Hoặc đăng nhập bằng tên tài khoản và mật khẩu</span>
-                <input type="username" id="login-username" placeholder="UserName" required>
-                <span class="error-message" id="username-error">Tên tài khoản không hợp lệ</span>
-                <input type="password" id="login-password" placeholder="Password" required>
-                <span class="error-message" id="password-error">Mật khẩu không hợp lệ</span>
-                <a href="./reset-password.html">Quên mật khẩu?</a>
-                <button type="submit" id="log">Đăng nhập</button>
-            </form>
-        </div>
-        <div class="toggle-container none">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Chào mừng trở lại!</h1>
-                    <p>Nhập thông tin cá nhân của bạn để sử dụng tất cả các tính năng của trang web</p>
-                    <button class="hidden" id="login">Đăng nhập</button>
-                    <button class="hidden" id="home">Trang chủ</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1>Xin chào, bạn!</h1>
-                    <p>Đăng ký với thông tin cá nhân của bạn để sử dụng tất cả các tính năng của trang web</p>
-                    <button class="hidden" id="register">Đăng kí</button>
-                    <button class="hidden" id="HOME">Trang chủ</button>
+                <div class="top-right">
+                    <a href="/src/Users/pages/account/login-signup.html"><span><i class="fa fa-fw fa-user"></i> Đăng Nhập</span></a>
+                    <a href="/src/Users/pages/account/login-signup.html"><span>Đăng Kí</span></a>
                 </div>
             </div>
         </div>
-        
-        <!-- Form xác thực email -->
-        <div class="overlay" id="overlay"></div>
-        <div class="verify-code-container" id="verify-code-container">
-            <h1>Xác thực email của bạn</h1>
-            <div class="verification-code-inputs">
-                <input type="text" id="verification-code-1" maxlength="1" class="verification-code" required>
-                <input type="text" id="verification-code-2" maxlength="1" class="verification-code" required>
-                <input type="text" id="verification-code-3" maxlength="1" class="verification-code" required>
-                <input type="text" id="verification-code-4" maxlength="1" class="verification-code" required>
-            </div>
-            <button type="button" class="btn-verify" id="verify-button">Xác thực</button>
-            <button type="button" class="close-button" id="close-button">Kết thúc</button>
-        </div>
-    </div>
-    
+        <div id="section-header2">
+            <div class="container">
+                <div class="menu">
+                    <!-- Logo bên trái -->
+                    <div class="logo">
+                        <!-- <img src="../img/logo.png" alt="Logo"> -->
+                    </div>
 
-    <script src="/src/Users/js/login-signup.js"></script>
-   
-    
+                    <!-- Thanh tìm kiếm ở giữa -->
+                    <div class="search-bar">
+                        <input type="text" placeholder="Tìm kiếm sản phẩm...">
+                        <button><i class="fa fa-fw fa-search"></i></button>
+                    </div>
+
+                    <!-- Thông tin bên phải -->
+                    <div class="info">
+                        <div class="hotline">
+                            <span class="hotline-text">HOTLINE LIÊN HỆ </span>
+                            <a href=""> 0905.090.252</a>
+                        </div>
+                    </div>
+                    <div class="cart">
+                        <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="section-nav">
+            <div class="container">
+                <ul class="nav navbar-nav navbar-center">
+                    <li class="propClone">
+                        <span class="none-a"><i class="fa-solid fa-list" style="color: #d0cdcd;"></i> &nbsp;&nbsp; DANH
+                            MỤC SẢN
+                            PHẨM</span>
+                        <ul class="items">
+                            <li> <a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH BLOCK
+                                    XI MĂNG</a></li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH TRANG
+                                    TRÍ</a></li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;NGÓI LỢP
+                                    NHÀ</a> </li>
+                            <li><a href="#"></a>&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;ĐÁ TỰ
+                                NHIÊN </li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH
+                                    MEN</a></li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;VẬT LIỆU
+                                    THÔ</a></li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;CÁC LOẠI
+                                    VLXD KHÁC</a></li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;THIẾT BỊ
+                                    NGÀNH NƯỚC</a></li>
+                        </ul>
+                    </li>
+                    <li class="propClone"><a href="#"><i class="fa-solid fa-house"></i>&nbsp;&nbsp; TRANG CHỦ </a></li>
+                    <li class="propClone"><a href=""><i class="fa-brands fa-product-hunt"></i> &nbsp;&nbsp;SẢN PHẨM</a>
+                    </li>
+                    <li class="propClone"> <a href="cart.html"><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp; GIỎ HÀNG</a>
+                    </li>
+                    <li class="propClone">
+                        <span class="none-a"> <i class="fa-solid fa-book"></i> &nbsp;&nbsp; HƯỚNG DẪN </span>
+                        <ul class="items">
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;HƯỚNG DẪN
+                                    MUA HÀNG</a>
+                            </li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;HƯỚNG DẪN
+                                    THANH TOÁN</a>
+                            </li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;ĐIỀU KHOẢN
+                                    VÀ DỊCH VỤ</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <!-- Content-->
+         <div class="content">
+            <div class="container" id="container">
+                <div class="form-container sign-up  none">
+                    <form id="register-form">
+                        <h1>Create Account</h1>
+                        <div class="social-icons">
+                            <a href="" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                        </div>
+                        <span>or use your username for registration</span>
+                        <input type="email" id="register-email" placeholder="Email" required>
+                        <input type="username" id="register-username" placeholder="UserName" required>
+                        <input type="password" id="register-password" placeholder="Password" required>
+                        <button type="submit" id="submit-register">Sign Up</button>
+                    </form>
+                </div>
+                <div class="form-container sign-in none">
+                    <form id="login-form">
+                        <h1>Sign In</h1>
+                        <div class="social-icons">
+                            <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                            <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                        </div>
+                        <span>or use your username password</span>
+                        <input type="username" id="login-username" placeholder="UserName" required>
+                        <input type="password" id="login-password" placeholder="Password" required>
+                        <a href="./reset-password.html">Forget Your Password?</a>
+                        <button type="submit">Sign In</button>
+                    </form>
+                </div>
+                <div class="toggle-container none">
+                    <div class="toggle">
+                        <div class="toggle-panel toggle-left">
+                            <h1>Welcome Back!</h1>
+                            <p>Enter your personal details to use all of site features</p>
+                            <button class="hidden" id="login">Sign In</button>
+                            <button class="hidden" id="home">Home</button>
+                        </div>
+                        <div class="toggle-panel toggle-right">
+                            <h1>Hello, Friend!</h1>
+                            <p>Register with your personal details to use all of site features</p>
+                            <button class="hidden" id="register">Sign Up</button>
+                            <button class="hidden" id="HOME">Home</button>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Form xác thực email -->
+                <div class="overlay" id="overlay"></div>
+                <div class="verify-code-container" id="verify-code-container" style="display: none;">
+                    <h1>Verify Your Email</h1>
+                    <div class="verification-code-inputs">
+                        <input type="text" id="verification-code-1" maxlength="1" class="verification-code" required>
+                        <input type="text" id="verification-code-2" maxlength="1" class="verification-code" required>
+                        <input type="text" id="verification-code-3" maxlength="1" class="verification-code" required>
+                        <input type="text" id="verification-code-4" maxlength="1" class="verification-code" required>
+                    </div>
+                    <button type="button" class="btn-verify" id="verify-button">Verify</button>
+                    <button type="button" class="close-button" id="close-button">Close</button>
+                </div>
+            </div>
+            
+         </div>
+
+
+      
+            <div id="section-footer">
+                <div class="container">
+                    <div class="contact-info">
+                        <h3>Vật Liệu Xây Dựng Thành Công </h3>
+                        <p>Địa chỉ: Trường ĐH Nông Lâm TP. HCM</p>
+                        <p>Điện thoại: 0314 597 812</p>
+                        <p>Hotline: 0905 090 252</p>
+                        <p>Email: 22130098@st.hcmuaf.edu.vn</p>
+                    </div>
+                    <div class="links">
+                        <h3>Liên kết</h3>
+                        <ul>
+                            <li><a href="/about">Giới thiệu</a></li>
+                            <li><a href="/services">Dịch vụ</a></li>
+                            <li><a href="/contact">Liên hệ</a></li>
+                            <li><a href="/privacy-policy">Chính sách bảo mật</a></li>
+                        </ul>
+                    </div>
+                    <div class="social-media">
+                        <h3>Mạng xã hội</h3>
+                        <ul>
+                            <li> <a href="#"><i class="fa-brands fa-facebook" style="color: #d1d1d1;"></i></a></li>
+                            <li> <a href="#"><i class="fa-brands fa-instagram" style="color: #d1d1d1;"></i></a></li>
+                            <li> <a href=""><i class="fa-brands fa-twitter" style="color: #d1d1d1;"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="copyright">
+                        <p>© 2024: Tất cả quyền được bảo lưu.</p>
+                    </div>
+                </div>
+
+            </div>
+        
+        <script   src="/src/Users/js/login-signup.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,267 @@
+
+
+.content{
+    height: 650px;
+
+}
+
+.index{
+    display: flex;
+}
+
+.infor{
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+
+.box1{
+    float: left;
+    width: 60%;
+    display: flex;
+    margin-top: 50px;
+}
+
+
+
+.form-group1{
+    margin-left: 80px;
+}
+
+
+.back{
+    height: 40px;
+    width: 335px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    padding-left: 15px;
+    border: 1px solid #ccc;
+    color: #999999;
+}
+
+.city{
+    height: 45px;
+    width: 354px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border-color: #cccccc;
+    padding-left: 10px;
+    color: #999999;
+}
+
+.district{
+    height: 45px;
+    width: 354px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border-color: #cccccc;
+    padding-left: 10px;
+    color: #999999;
+}
+
+.ward{
+    height: 45px;
+    width: 354px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border-color: #cccccc;
+    padding-left: 10px;
+    color: #999999;
+}
+
+.note{
+    height: 60px;
+    width: 339px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding-left: 12px;
+    color: #999999;
+}
+
+.form-group2{
+    margin-left: 30px;
+}
+
+.delivery{
+    font-weight: bold;
+}
+
+.input-infor-delivery{
+    padding: 15px 110px 15px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 14px;
+    color: rgba(81, 76, 76, 0.91);
+    font-size: 16px;
+}
+
+.pay{
+    margin: 30px 0 15px 0;
+}
+
+
+
+input[type="radio"] {
+    accent-color: #007bff;
+    width: 16px;
+    height: 14px;
+    cursor: pointer;
+}
+
+label {
+    font-size: 16px;
+    color: rgba(81, 76, 76, 0.91);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px 110px 15px 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+label input[type="radio"] {
+    margin-right: 8px;
+}
+
+input[type="radio"]:focus {
+    outline: 2px solid #0056b3;
+}
+
+.box2{
+    float:right;
+    width: 35%;
+    background-color: #fafafa;
+    height: 650px;
+}
+
+.order{
+    margin: 20px 0 20px 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #999999;
+    width: 350px;
+    font-weight: bold;
+}
+
+.three-items{
+    display: flex;
+    padding: 20px 0 20px 0;
+    border-bottom: 2px dashed #999999;
+}
+
+.immage-product{
+    margin: 0 20px 20px 20px;
+}
+
+.product-name{
+    font-size: 16px;
+    margin: 0 180px 20px 0;
+}
+
+.cost{
+    font-size: 16px;
+}
+
+
+.two-items1{
+    height: 80px;
+    border-bottom: 2px dashed #999999;
+}
+
+.sale{
+    width: 100%;                  /* Chiều rộng toàn bộ phần tử chứa */
+    max-width: 300px;             /* Chiều rộng tối đa */
+    padding: 10px;                /* Khoảng cách bên trong */
+    font-size: 16px;              /* Kích thước chữ */
+    border: 2px solid #999999;   /* Viền nét đứt màu xanh nhạt */
+    border-radius: 8px;           /* Bo tròn góc */
+    outline: none;                /* Xóa viền mặc định khi chọn */
+    transition: border-color 0.3s ease; /* Hiệu ứng khi thay đổi viền */
+    margin: 20px 0 20px 20px;
+}
+
+.apply-button{
+    padding: 14px 20px 12px 20px;
+    border: none;
+    margin-left: 20px ;
+    background-color: #84b0d5;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.apply-button:hover{
+    background-color: #5c9bb0;
+}
+
+.two-items2{
+    padding-bottom: 20px ;
+    border-bottom: 2px dashed #999999;
+}
+
+.nd1{
+    display: flex;
+}
+
+.nd2{
+    display: flex;
+}
+
+.temp{
+    margin: 20px 200px 0 20px;
+    font-size: 16px;
+}
+
+.cost1{
+    font-size: 16px;
+    margin: 20px 0 0 88px;
+}
+
+.cost2{
+    font-size: 16px;
+    margin: 20px 0 0 42px;
+}
+
+.totals{
+    display: flex;
+    border-bottom: 2px dashed #999999;
+}
+
+.total{
+    margin: 20px 266px 20px 20px;
+}
+
+.total-cost{
+    font-size: 16px;
+    margin: 20px 0 20px 0;
+
+}
+
+.sub{
+    display: flex;
+    height: 70px;
+}
+
+.hrep{
+    margin: 35px 190px 0 20px;
+    height: 30px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+
+
+
+.submit-btn {
+    padding: 14px 20px 12px 20px;
+    border: none;
+    margin: 20px 0 0 0;
+    background-color: #84b0d5;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-btn:hover {
+    background-color: #5c9bb0;
+}
