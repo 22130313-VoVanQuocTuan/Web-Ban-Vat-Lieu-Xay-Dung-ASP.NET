@@ -224,7 +224,7 @@ p {
     font-weight: bold;
     float: none;
     width: 257px;
-    height: 40px;
+    height: 30px;
     border-bottom: solid 1px gray;
     padding-top: 25px;
 }
@@ -242,23 +242,23 @@ p {
 #section-slider {
     height: 760px;
     background-color: #f2f2f2;
+    position: relative;
+}
+.slide-show-content-image{
+    position: relative;
+    transition: all 0.3s ease;
 }
 
-.slide-show-container{
-    position: relative;
-    z-index: 1;
-}
-.slide-show-container:hover i{
-    opacity: 1;
-}
-.slider-image-btn{
+.slide-show-content-btn{
     position: absolute;
     top: 50%;
     display: flex;
     justify-content: space-between ;
     width: 100%;
 }
-.slider-image-btn i{
+
+.nut_trai, .nut_phai {
+    pointer-events: auto;
     color: #333;
     font-size: 32px;
     height: 60px;
@@ -267,24 +267,26 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    transform: translateY(-50%);
     border-radius: 5px;
     opacity: 0;
     transition: all 0.3s ease;
     cursor: pointer;
 }
-/* ------------slider js1 */
-.slide-show-container img{
-    position: absolute;
+
+.slide-show-content-container:hover .nut_trai,
+.slide-show-content-container:hover .nut_phai {
+    opacity: 1;
 }
-.slide-show-container a:nth-child(2) img{
+/* ------------slider js1 */
+ .slide-show-content-image img{
+     position: absolute; 
+} 
+.slide-show-content-image a:nth-child(2) img{
     transform: translateX(100%);
 }
-.slide-show-container a:nth-child(3) img{
+.slide-show-content-image a:nth-child(3) img{
     transform: translateX(200%);
-}
-
-
+}  
 
 
 
