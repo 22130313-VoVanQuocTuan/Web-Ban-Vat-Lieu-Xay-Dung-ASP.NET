@@ -1,9 +1,5 @@
 #section-content {
-<<<<<<< HEAD
  
-=======
-  height: 500px;
->>>>>>> 4791a4f65f4469c3a21b155d0b2d2f9f9fab4b96
   padding: 20px 0;
   background-color: #f2f2f2;
 }
@@ -11,11 +7,7 @@
 
 
 #section-content .cart-container {
-<<<<<<< HEAD
   width: 1666px;
-=======
-  width: 1200px;
->>>>>>> 4791a4f65f4469c3a21b155d0b2d2f9f9fab4b96
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -24,7 +16,6 @@
 
 .cart-left {
   width: 100%;
-<<<<<<< HEAD
   max-height: 600px;
   background-color: #f9f9f9;
   border-radius: 5px;
@@ -33,21 +24,10 @@
 }
 
 .cart-table {
-=======
-  height: 440px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-}
-
-.cart-table {
-  height: 300px;
-  margin-top: 15px;
->>>>>>> 4791a4f65f4469c3a21b155d0b2d2f9f9fab4b96
   width: 100%;
   border-collapse: collapse;
 }
 
-<<<<<<< HEAD
 .cart-table th,
 .cart-table td {
   padding: 10px;
@@ -134,83 +114,6 @@
  
 }
 
-=======
-.cart-table th {
-  font-size: 14px;
-  padding: 10px;
-  text-align: center;
-}
-
-.cart-table td {
-  font-size: 14px;
-  padding: 10px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-.cart-table th:first-child,
-.cart-table td:first-child {
-  width: 50px;
-  text-align: center;
-}
-
-.cart-table th:nth-child(6) {
-  text-align: right;
-  width: 140px;
-}
-
-.cart-table th:last-child {
-  text-align: center;
-  width: 8%;
-}
-
-.cart-table tr {
-  display: table; /* Đảm bảo các hàng vẫn hiển thị như bảng */
-  table-layout: fixed; /* Đảm bảo chiều rộng các ô không bị thay đổi */
-  width: 100%; /* Chiều rộng toàn bảng */
-}
-
-.cart-table img {
-  width: 50px;
-  height: 50px;
-}
-
-.cart-body {
-  display: block; /* Chuyển đổi thành block để có thể cuộn */
-  max-height: 300px;
-  overflow-y: auto; /* Cuộn theo chiều dọc */
-}
-
-#cart-items-container::-webkit-scrollbar {
-  width: 8px;
-}
-
-#cart-items-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-#cart-items-container::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-#cart-items-container::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
-.product-img {
-  width: 50px;
-  height: 50px;
-}
-
-.quantity .qty-input {
-  width: 40px; /* Đặt chiều rộng cho ô nhập số lượng */
-  text-align: center; /* Căn giữa văn bản bên trong */
-}
-
-.cart-buttons {
-  margin-top: 20px;
-}
-
->>>>>>> 4791a4f65f4469c3a21b155d0b2d2f9f9fab4b96
 .select-product {
   margin-right: 10px;
   transform: scale(1.5);
@@ -218,11 +121,7 @@
 }
 
 .continue-btn {
-<<<<<<< HEAD
   margin-left: 48%;
-=======
-  margin-left: 38%;
->>>>>>> 4791a4f65f4469c3a21b155d0b2d2f9f9fab4b96
   background-color: white; /* Màu chủ đạo */
   border: 2px solid #ff6767; /* Viền màu đỏ */
   color: #ff6767;
@@ -344,102 +243,6 @@
   transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng khi hover và nhấn */
 }
 
-<<<<<<< HEAD
 .quantity input{
   width: 30px;
 }
-=======
-/* -------------------section footer---------------------- */
-#section-footer {
-  height: 150px;
-  padding: 40px 0;
-  background: linear-gradient(to right, #82a0c2, #15283e);
-  color: #d1d1d1;
-  font-family: "Roboto", sans-serif;
-}
-
-#section-footer .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-#section-footer p,
-#section-footer a,
-#section-footer h3 {
-  margin: 0;
-  padding: 0;
-  color: #d1d1d1;
-}
-
-#section-footer h3 {
-  margin-bottom: 15px;
-  font-weight: bold;
-  font-size: 18px;
-}
-
-#section-footer ul {
-  list-style: none;
-  padding: 0;
-}
-
-#section-footer ul li {
-  margin-bottom: 10px;
-}
-
-#section-footer ul li a {
-  text-decoration: none;
-  color: #d1d1d1;
-  transition: color 0.3s, border-bottom 0.3s;
-  border-bottom: 2px solid transparent;
-}
-
-#section-footer ul li a:hover {
-  color: #ffffff;
-  border-bottom: 2px solid #ffffff;
-  /* Hiệu ứng underline khi hover */
-}
-
-#section-footer .social-media ul {
-  display: flex;
-}
-
-#section-footer .social-media ul li {
-  margin-right: 15px;
-  font-size: 22px;
-}
-
-#section-footer .social-media ul li a {
-  display: block;
-  transition: transform 0.3s ease, color 0.3s ease;
-}
-
-#section-footer .social-media ul li a:hover {
-  transform: scale(1.2);
-  /* Phóng to biểu tượng khi hover */
-  color: #ffffff;
-}
-
-#section-footer .copyright {
-  text-align: center;
-  margin-top: 30px;
-  font-size: 14px;
-  border-top: 1px solid #d1d1d1;
-  padding-top: 20px;
-  color: #cccccc;
-  letter-spacing: 1px;
-}
-
-/* Thêm hiệu ứng cho các biểu tượng social media */
-#section-footer .social-media ul li a i {
-  color: #d1d1d1;
-  transition: color 0.3s ease;
-}
-
-#section-footer .social-media ul li a i:hover {
-  color: #ffffff;
-}
->>>>>>> 4791a4f65f4469c3a21b155d0b2d2f9f9fab4b96
