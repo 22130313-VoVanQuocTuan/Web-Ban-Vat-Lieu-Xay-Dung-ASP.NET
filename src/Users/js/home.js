@@ -1,26 +1,33 @@
-let slideIndex = 1;
-showSlides(slideIndex);
+// Slider image
+const rightbtn = document.querySelector('.nut_phai');
+const leftbtn = document.querySelector('.nut_trai');
+const imgCount = document.querySelectorAll('.slider-product-one-content-items');
+let index = 0;
+console.log(rightbtn);
+console.log(leftbtn);
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
-}
-
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = slides.length}
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
+rightbtn.addEventListener("click", function () {
+  index = index + 1;
+  if (index > productCounttwo1.length - 1) {
+      index = 0; // Quay lại đầu
   }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
+  updateSlider();
+});
+
+leftbtn.addEventListener("click", function () {
+  index = index - 1;
+  if (index < 0) {
+      index = productCounttwo1.length - 1; // Quay lại cuối
   }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " active";
+  updateSlider();
+});
+
+  function updateSlider() {
+  const offset = -index1 * 100; // Tính toán offset dựa trên index
+  document.querySelector(".slide-show-container").style.transform = `translateX(${offset}%)`;
+  console.log("Current Index:", index); // Kiểm tra giá trị index
 }
+
+
+
+
