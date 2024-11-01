@@ -291,22 +291,16 @@ p {
 
 
 /*---------------section-content------------------- */
-#section-content {
-    width: 1200px;
-    height: auto;
-    background-color: #ffffff;
-    margin-left: 150px;
-    padding-top: 10px;
-}
+
 
 /* ---------------------List Product ---------------- */
 .product-one-content {
-    width: 1200px;
+    width: 100%;
     background: linear-gradient(to right, #82a0c2, #15283e);
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 55px;
-    margin-top: 50px;
+    margin-top: 139px;
 }
 
 .product-one-content .title {
@@ -338,20 +332,24 @@ p {
 
 .product-one-content-items {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start; /* Chỉnh sửa để đảm bảo sản phẩm được căn trái */
     gap: 8px;
     margin-bottom: 25px;
     margin-left: 12px;
+    flex-wrap: wrap; /* Cho phép các thẻ con gói lại trong trường hợp không đủ chỗ */
 }
 
 .product-one-content-item {
-    min-width: 218px;
     margin-right: 11px;
     background-color: white;
     padding: 20px 0px 8px;
     border-radius: 5px;
     text-align: center;
     box-sizing: border-box;
+    height: auto;
+    flex: 1 1 calc(33% - 16px); /* Sử dụng calc để tránh tràn ra ngoài */
+    min-width: 250px; /* Đảm bảo kích thước tối thiểu cho mỗi sản phẩm */
+    max-width: calc(33% - 16px); /* Đặt chiều rộng tối đa cho sản phẩm */
 }
 
 .product-one-content-item .img-product img {
