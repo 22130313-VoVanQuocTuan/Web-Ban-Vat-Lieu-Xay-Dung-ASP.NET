@@ -2,9 +2,16 @@ let cart = []; // Khởi tạo biến cart
 let selectedProducts = new Set(); // Khởi tạo biến selectedProducts
 let originalTotal = 0; // Khởi tạo biến tổng ban đầu
 
+<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', () => {
   fetchCartProducts();
 });
+=======
+// Hàm cập nhật tổng giỏ hàng
+function updateCart() {
+  const cartContainer = document.getElementById("cart-items-container");
+  cartContainer.innerHTML = ""; // Xóa nội dung cũ
+>>>>>>> 4791a4f65f4469c3a21b155d0b2d2f9f9fab4b96
 
 async function fetchCartProducts(page = 1, limit = 2) {
   try {
@@ -21,11 +28,45 @@ async function fetchCartProducts(page = 1, limit = 2) {
       throw new Error('Network response was not ok');
     }
 
+<<<<<<< HEAD
     const data = await response.json();
     renderCartProducts(data.results);
   } catch (error) {
     console.error('Có lỗi xảy ra khi lấy dữ liệu giỏ hàng:', error);
   }
+=======
+    // Tạo phần tử HTML cho từng sản phẩm dưới dạng hàng bảng
+    const cartRow = document.createElement("tr");
+    cartRow.innerHTML = `
+      <td><input type="checkbox" class="select-product" onchange="toggleProductSelection(${index})" ${
+      selectedProducts.has(index) ? "checked" : ""
+    }></td>
+      <td>${item.name}</td>
+      <td><img src="image-placeholder.png" alt="Product Image" class="product-img"></td>
+      <td>
+        <div class="quantity">
+          <button class="qty-btn minus-btn" onclick="changeQuantity(${index}, -1)">-</button>
+          <input type="text" value="${
+            item.quantity
+          }" class="qty-input" min="1" onchange="updateQuantity(${index}, this.value)">
+          <button class="qty-btn plus-btn" onclick="changeQuantity(${index}, 1)">+</button>
+        </div>
+      </td>
+      <td>${formatCurrency(item.price)}</td>
+      <td class="product-subtotal">${formatCurrency(itemTotal)}</td>
+    `;
+
+    cartContainer.appendChild(cartRow);
+  });
+
+  const vat = subtotal * VAT_RATE;
+  const total = subtotal + vat - subtotal * discountRate;
+
+  // Cập nhật hiển thị tổng
+  document.getElementById("subtotal").innerText = formatCurrency(subtotal);
+  document.getElementById("vat").innerText = formatCurrency(vat);
+  document.getElementById("total").innerText = formatCurrency(total);
+>>>>>>> 4791a4f65f4469c3a21b155d0b2d2f9f9fab4b96
 }
 
 function renderCartProducts(products) {
@@ -178,5 +219,48 @@ function toggleProductSelection(index) {
   }
 }
 
+<<<<<<< HEAD
 // Nhập hàm customFetch nếu cần
 //import { customFetch } from './apiService.js';
+=======
+// Áp dụng mã giảm giá
+function applyVoucher() {
+  const voucherInput = document.getElementById("voucher").value;
+  if (voucherInput === "DISCOUNT10") {
+    discountRate = 0.1;
+    alert("Mã giảm giá 10% đã được áp dụng!");
+  } else {
+    discountRate = 0;
+    alert("Mã giảm giá không hợp lệ!");
+  }
+  updateCart();
+}
+
+// Định dạng tiền tệ
+function formatCurrency(amount) {
+  return new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  }).format(amount);
+}
+
+// Hàm xóa sản phẩm đã chọn khỏi giỏ hàng
+function removeSelectedProducts() {
+  // Lọc lại các sản phẩm không nằm trong selectedProducts
+  cart = cart.filter((_, index) => !selectedProducts.has(index));
+  selectedProducts.clear(); // Xóa danh sách sản phẩm được chọn
+  updateCart(); // Cập nhật lại giỏ hàng
+}
+
+// Khởi tạo giỏ hàng mẫu
+addToCart({ name: "Gạch Ốp Lát Eurotile An Cư", price: 398700, quantity: 1 });
+addToCart({ name: "Sơn Tường Jotun", price: 250000, quantity: 1 });
+addToCart({ name: "Vật Liệu Chống Thấm Sika", price: 120000, quantity: 1 });
+addToCart({ name: "Xi Măng Hà Tiên", price: 95000, quantity: 1 });
+addToCart({ name: "Cát Xây Dựng", price: 80000, quantity: 1 });
+addToCart({ name: "Sắt Thép Xây Dựng", price: 350000, quantity: 1 });
+addToCart({ name: "Gạch Ốp Lát Viglacera", price: 450000, quantity: 1 });
+addToCart({ name: "Sơn Nước Dulux", price: 300000, quantity: 1 });
+addToCart({ name: "Vật Liệu Chống Thấm Sika", price: 120000, quantity: 1 });
+addToCart({ name: "Xi Măng Hà Tiên", price: 95000, quantity: 1 });
+>>>>>>> 4791a4f65f4469c3a21b155d0b2d2f9f9fab4b96
