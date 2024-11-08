@@ -45,10 +45,6 @@ function addProduct() {
         products.push(product);
     }
 
-
-    // // Tạo đối tượng sản phẩm mới
-    // products.push(product);
-
     // Hiển thị lại danh sách sản phẩm
     displayProducts();
 

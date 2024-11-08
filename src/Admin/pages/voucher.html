@@ -7,118 +7,153 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bảng điều khiển Quản trị viên </title>
     <!------------------ Kiểu dáng ------------------>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/voucher.css">
 </head>
-    <!-- ------------------ Điều hướng -------------------->
-    <div class="container">
-        <div class="navigation">
-            <ul>
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <img src="../imgs/logo.png" alt="">
-                        </span>
-                        <span class="title">Bán Vật Liệu Xây Dựng </span>
-                    </a>
-                </li>
+<!-- ------------------ Điều hướng -------------------->
+<div class="container">
+    <div class="navigation">
+        <ul>
+            <li>
+                <a href="index.html">
+                    <span class="icon">
+                        <img src="../imgs/logo.png" alt="">
+                    </span>
+                    <span class="title">Bán Vật Liệu Xây Dựng </span>
+                </a>
+            </li>
 
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="home-outline"></ion-icon>
-                        </span>
-                        <span class="title">Trang chủ</span>
-                    </a>
-                </li>
+            <li>
+                <a href="index.html">
+                    <span class="icon">
+                        <ion-icon name="home-outline"></ion-icon>
+                    </span>
+                    <span class="title">Trang chủ</span>
+                </a>
+            </li>
 
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="people-outline"></ion-icon>
-                        </span>
-                        <span class="title">Khách Hàng</span>
-                    </a>
-                </li>
+            <li>
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </span>
+                    <span class="title">Khách Hàng</span>
+                </a>
+            </li>
 
-                <li>
-                    <a href="product.html">
-                        <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
-                        </span>
-                        <span class="title">Sản phẩm</span>
-                    </a>
-                </li>
+            <li>
+                <a href="product.html">
+                    <span class="icon">
+                        <ion-icon name="chatbubble-outline"></ion-icon>
+                    </span>
+                    <span class="title">Sản phẩm</span>
+                </a>
+            </li>
 
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
-                        </span>
-                        <span class="title">Khuyến Mãi</span>
-                    </a>
-                </li>
+            <li>
+                <a href="voucher.html">
+                    <span class="icon">
+                        <ion-icon name="help-outline"></ion-icon>
+                    </span>
+                    <span class="title">Khuyến Mãi</span>
+                </a>
+            </li>
 
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
-                        </span>
-                        <span class="title">Danh mục</span>
-                    </a>
-                </li>
+            <li>
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="settings-outline"></ion-icon>
+                    </span>
+                    <span class="title">Danh mục</span>
+                </a>
+            </li>
 
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
-                        </span>
-                        <span class="title">Mật Khẩu</span>
-                    </a>
-                </li>
+            <li>
+                <a href="">
+                    <span class="icon">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                    </span>
+                    <span class="title">Mật Khẩu</span>
+                </a>
+            </li>
 
-                <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="log-out-outline"></ion-icon>
-                        </span>
-                        <span class="title">Đăng Xuất</span>
-                    </a>
-                </li>
-            </ul>
+            <li>
+                <a href="#">
+                    <span class="icon">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </span>
+                    <span class="title">Đăng Xuất</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!------------------- Chính ------------------>
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <ion-icon name="menu-outline"></ion-icon>
+            </div>
+
+            <div class="search">
+                <label>
+                    <input type="text" placeholder="Tìm kiếm ở đây">
+                    <ion-icon name="search-outline"></ion-icon>
+                </label>
+            </div>
+
+            <div class="user">
+                <img src="../imgs/customer01.jpg" alt="">
+            </div>
         </div>
-
-        <!------------------- Chính ------------------>
-        <div class="main">
-            <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
+        <div class="list-vouchers">
+            <div class="list-vouchers-title">
+                <h2>Danh sách voucher</h2>
+            </div>
+            <div class="list-vouchers-content">
+                <div class="list-vouchers-content-button">
+                    <a href="#" class="add-vouchers-btn" onclick="openAddVoucherModal()">Thêm voucher</a>
                 </div>
+                <!-- Table vouchers -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id voucher</th>
+                            <th>Mã voucher</th>
+                            <th>Giảm giá</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="voucherList">
+                        <!-- Các voucher sẽ được thêm vào đây -->
+                    </tbody>
+                </table>
+                <!-- mẫu điền thêm voucher  -->
+                <div id="addVoucherModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close-btn" onclick="closeAddVoucherModal()">&times;</span>
+                        <h3>Thêm voucher </h3>
+                        <form id="addVoucherForm">
+                            <label for="voucherId">Id voucher :</label>
+                            <input type="text" id="voucherId" required>
 
-                <div class="search">
-                    <label>
-                        <input type="text" placeholder="Tìm kiếm ở đây">
-                        <ion-icon name="search-outline"></ion-icon>
-                    </label>
-                </div>
+                            <label for="voucherCode">Mã voucher :</label>
+                            <input type="text" id="voucherCode" required>
 
-                <div class="user">
-                    <img src="../imgs/customer01.jpg" alt="">
+                            <label for="voucherDown">Giảm giá :</label>
+                            <input type="text" id="voucherDown" required>
+
+                            <button type="button" onclick="addVoucher()">Lưu</button>
+                            <button type="button" class="exit-btn" onclick="closeAddVoucherModal()">Thoát</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            
-
-
-
-
-
-
         </div>
-
-
-
-        <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-        <script src="../js/main.js"></script>
     </div>
-    </body>
+    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/voucher.js"></script>
 
+</div>
+</body>
 </html>

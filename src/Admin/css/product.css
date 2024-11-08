@@ -29,7 +29,7 @@ body {
   position: fixed;
   width: 300px;
   height: 100%;
-  background: linear-gradient(to right, #4f3131, #15283e);
+  background: linear-gradient(to right, #82a0c2, #15283e);
   transition: 0.5s;
   overflow: hidden;
 }
@@ -82,7 +82,7 @@ body {
 
 .navigation ul li:hover a,
 .navigation ul li.hovered a {
-  color: #4f3131;
+  color: #15283e;
 }
 
 .navigation ul li a .icon {
@@ -208,7 +208,7 @@ body {
 }
 
 .list-products-title {
-  background: linear-gradient(to right, #4f3131, #15283e);
+  background: linear-gradient(to right, #82a0c2, #15283e);
    height: 50px;
 }
 
@@ -232,7 +232,7 @@ body {
     font-weight: bold;
 }
 .list-products-content-button a:hover{
-  background: linear-gradient(to right, #4f3131, #15283e);
+  background: linear-gradient(to right, #82a0c2, #15283e);
   color: var(--white);
 }
 
@@ -251,7 +251,7 @@ td {
 }
 
 th {
-  background: linear-gradient(to right, #4f3131, #15283e);
+  background: linear-gradient(to right, #82a0c2, #15283e);
   color: var(--white);
 }
 
