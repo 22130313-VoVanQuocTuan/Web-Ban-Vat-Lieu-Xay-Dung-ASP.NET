@@ -1,49 +1,24 @@
 const products = [];
-    
-// Hàm mở modal để thêm sản phẩm mới
-function openAddProductModal() {
-    document.getElementById('addProductModal').style.display = 'flex';
-}
+let currentPage = 1;
+const pageSize = 10;
 
-// Hàm đóng modal Thêm sản phẩm
-function closeAddProductModal() {
-    document.getElementById('addProductModal').style.display = 'none';
-}
-
-let editingProductIndex = null; // Biến lưu chỉ mục sản phẩm đang sửa
-
-// Hàm thêm/sửa sản phẩm
-function addProduct() {
-    const code = document.getElementById('productCode').value;
-    const name = document.getElementById('productName').value;
-    const price = document.getElementById('productPrice').value;
-    const category = document.getElementById('productCategory').value;
-    const stock = document.getElementById('productStock').value;
-    const description = document.getElementById('productDescription').value;
-    const status = document.getElementById('productStatus').value;
-    const image = document.getElementById('productImage').files[0];
-
-    const createdAt = new Date().toLocaleDateString(); // Ngày tạo sản phẩm
-
-    const product = {
-        code,
-        name,
-        price,
-        category,
-        stock,
-        description,
-        status,
-        image,
-        createdAt
-    };
-    if (editingProductIndex !== null) {
-        // Nếu đang trong chế độ chỉnh sửa, cập nhật thông tin sản phẩm
-        products[editingProductIndex] = product;
-        editingProductIndex = null; // Đặt lại chỉ mục sau khi sửa xong
-    } else {
-        // Nếu không, thêm sản phẩm mới
-        products.push(product);
+// Hàm gọi API lấy danh sách sản phẩm theo trang
+async function fetchProducts(page = 1) {
+    try {
+        const response = await fetch(`http://localhost:5241/api/Product?page=${page}&size=${pageSize}`);
+        if (response.ok) {
+            const result = await response.json();
+            products.length = 0; // Xóa sản phẩm cũ trong mảng
+            products.push(...result);
+            displayProducts();
+        } else {
+            alert("Lỗi khi lấy danh sách sản phẩm.");
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Đã xảy ra lỗi khi lấy danh sách sản phẩm.");
     }
+<<<<<<< HEAD
 
     // Hiển thị lại danh sách sản phẩm
     displayProducts();
@@ -53,70 +28,82 @@ function addProduct() {
 
     // Đóng modal
     closeAddProductModal();
+=======
+>>>>>>> a7ea03020f1f2cfb4400be3b53447f22658753a8
 }
 
-// Hàm hiển thị danh sách sản phẩm lên bảng
+// Hàm hiển thị danh sách sản phẩm ra bảng
 function displayProducts() {
     const productList = document.getElementById('productList');
     productList.innerHTML = '';
 
-    // Duyệt qua mảng sản phẩm và hiển thị vào bảng
     products.forEach((product, index) => {
         const productRow = document.createElement('tr');
-        const productImage = product.image ? `<img src="${URL.createObjectURL(product.image)}" width="50">` : 'No image';
+        const productImage = product.UrlImage ? `<img src="${product.UrlImage}" width="50">` : 'No image';
         productRow.innerHTML = `
             <td>${productImage}</td>
-            <td>${product.code}</td>  <!-- Hiển thị mã sản phẩm -->
-            <td>${product.name}</td>
-            <td>${product.price}</td>
-            <td>${product.status === 'active' ? 'Còn hàng' : 'Hết hàng'}</td>  <!-- Hiển thị trạng thái -->
-            <td>${product.createdAt}</td> <!-- Hiển thị ngày tạo -->
+            <td>${product.Code}</td>
+            <td>${product.Name}</td>
+            <td>${product.Price}</td>
+            <td>${product.Status === 'active' ? 'Còn hàng' : 'Hết hàng'}</td>
+            <td>${product.CreatedAt}</td>
             <td class="action-links">
-                <a href="#" class="detail" onclick="viewProductDescription(${index})">Mô tả</a>
-                <a href="#" class="edit" onclick="editProduct(${index})">Sửa</a>
-                <a href="#" class="delete" onclick="deleteProduct(${index})">Xóa</a>
+                <a href="#" class="add-to-cart" onclick="addToCart(${index})">Thêm vào giỏ</a>
             </td>
         `;
         productList.appendChild(productRow);
     });
 }
 
-// Hàm xem mô tả sản phẩm
-function viewProductDescription(index) {
-    const product = products[index];
-    const description = `
-        <p><strong>Mô tả:</strong> ${product.description}</p>
-    `;
-    document.getElementById('productDescriptionDetails').innerHTML = description;
-    document.getElementById('viewDescriptionModal').style.display = 'flex';
+// Hàm gọi API thêm sản phẩm vào giỏ hàng
+async function addProduct() {
+    const formData = new FormData();
+    formData.append("Name", document.getElementById("productName").value);
+    formData.append("Price", parseFloat(document.getElementById("productPrice").value));
+    formData.append("CategoryId", parseInt(document.getElementById("productCategory").value));
+    formData.append("StockQuantity", parseInt(document.getElementById("productStock").value));
+    formData.append("Description", document.getElementById("productDescription").value);
+    formData.append("Status", document.getElementById("productStatus").value);
+
+    // Kiểm tra và thêm hình ảnh nếu người dùng có chọn hình ảnh
+    const productImage = document.getElementById("productImage").files[0];
+    if (productImage) {
+        formData.append("UrlImage", productImage);
+    }
+
+    try {
+        const response = await fetch("http://localhost:5241/api/Product/product", {
+            method: "POST",
+            body: formData
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            alert("Thêm sản phẩm thành công!");
+            closeAddProductModal();
+            fetchProducts(); // Cập nhật danh sách sản phẩm sau khi thêm mới
+        } else {
+            const error = await response.json();
+            alert("Lỗi: " + error.message);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+        alert("Đã xảy ra lỗi khi thêm sản phẩm.");
+    }
+}
+// Chuyển sang trang kế tiếp
+function nextPage() {
+    currentPage++;
+    fetchProducts(currentPage);
 }
 
-// Hàm đóng modal mô tả sản phẩm
-function closeViewDescriptionModal() {
-    document.getElementById('viewDescriptionModal').style.display = 'none';
+// Quay lại trang trước
+function prevPage() {
+    if (currentPage > 1) {
+        currentPage--;
+        fetchProducts(currentPage);
+    }
 }
 
-// Hàm chỉnh sửa sản phẩm
-function editProduct(index) {
-    const product = products[index];
-    document.getElementById('productCode').value = product.code;
-    document.getElementById('productName').value = product.name;
-    document.getElementById('productPrice').value = product.price;
-    document.getElementById('productCategory').value = product.category;
-    document.getElementById('productStock').value = product.stock;
-    document.getElementById('productDescription').value = product.description;
-    document.getElementById('productStatus').value = product.status;
-    editingProductIndex = index; // Ghi nhận chỉ mục sản phẩm đang sửa
-    openAddProductModal();
-}
-
-// Hàm xóa sản phẩm
-function deleteProduct(index) {
-    products.splice(index, 1);
-    displayProducts();
-}
-
-// Hàm làm sạch form nhập liệu
-function clearForm() {
-    document.getElementById('addProductForm').reset();
-}
+// Gọi hàm fetchProducts khi tải trang để hiển thị danh sách sản phẩm
+window.onload = () => fetchProducts(currentPage);
