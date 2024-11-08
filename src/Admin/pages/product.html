@@ -6,26 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bảng điều khiển Quản trị viên </title>
-    <!-- ======= Kiểu dáng ====== -->
-    <link rel="stylesheet" href="css/style.css">
+    <title>Bảng điều khiển Quản trị viên </title>
+    <!------------------ Kiểu dáng ------------------>
+    <link rel="stylesheet" href="../css/product.css">
 </head>
 
 <body>
-    <!-- =============== Điều hướng ================ -->
+    <!-- ------------------ Điều hướng -------------------->
     <div class="container">
         <div class="navigation">
             <ul>
                 <li>
                     <a href="#">
                         <span class="icon">
-                            <ion-icon name="logo-apple"></ion-icon>
+                            <img src="../imgs/logo.png" alt="">
                         </span>
                         <span class="title">Bán Vật Liệu Xây Dựng </span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="index.html">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -43,7 +44,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="product.html">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
@@ -89,7 +90,8 @@
             </ul>
         </div>
 
-        <!-- ========================= Chính ==================== -->
+
+        <!-------------------- Chính --------------------->
         <div class="main">
             <div class="topbar">
                 <div class="toggle">
@@ -104,203 +106,89 @@
                 </div>
 
                 <div class="user">
-                    <img src="assets/imgs/customer01.jpg" alt="">
+                    <img src="../imgs/customer01.jpg" alt="">
                 </div>
             </div>
 
-            <!-- ======================= Thẻ ================== -->
-            <div class="cardBox">
-                <div class="card">
-                    <div>
-                        <div class="numbers">1,504</div>
-                        <div class="cardName">Lượt Xem Hàng Ngày</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="eye-outline"></ion-icon>
-                    </div>
+            <div class="list-products">
+                <div class="list-products-title">
+                    <h2>Danh sách sản phẩm</h2>
                 </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers">80</div>
-                        <div class="cardName">Doanh Số</div>
+                <div class="list-products-content">
+                    <div class="list-products-content-button">
+                        <a href="#" class="add-product-btn" onclick="openAddProductModal()">Thêm sản phẩm</a>
                     </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="cart-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Nhận Xét</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="chatbubbles-outline"></ion-icon>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Doanh Thu</div>
-                    </div>
-
-                    <div class="iconBx">
-                        <ion-icon name="cash-outline"></ion-icon>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ================ Danh Sách Chi Tiết Đơn Hàng ================= -->
-            <div class="details">
-                <div class="recentOrders">
-                    <div class="cardHeader">
-                        <h2>Đơn Hàng Gần Đây</h2>
-                        <a href="#" class="btn">Xem Tất Cả</a>
-                    </div>
-
+                    <!-- Table products -->
                     <table>
                         <thead>
                             <tr>
-                                <td>Tên</td>
-                                <td>Giá</td>
-                                <td>Thanh Toán</td>
-                                <td>Trạng Thái</td>
+                                <th>Hình ảnh</th>
+                                <th>Mã sản phẩm</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Trạng thái</th>
+                                <th>Ngày tạo</th>
+                                <th>Hành động</th>
                             </tr>
                         </thead>
-
-                        <tbody>
-                            <tr>
-                                <td>Tủ Lạnh Star</td>
-                                <td>$1200</td>
-                                <td>Đã Thanh Toán</td>
-                                <td><span class="status delivered">Đã Giao</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Máy Tính Dell</td>
-                                <td>$110</td>
-                                <td>Chưa Thanh Toán</td>
-                                <td><span class="status pending">Đang Chờ</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Đồng Hồ Apple</td>
-                                <td>$1200</td>
-                                <td>Đã Thanh Toán</td>
-                                <td><span class="status return">Trả Hàng</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Giày Addidas</td>
-                                <td>$620</td>
-                                <td>Chưa Thanh Toán</td>
-                                <td><span class="status inProgress">Đang Tiến Hành</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Tủ Lạnh Star</td>
-                                <td>$1200</td>
-                                <td>Đã Thanh Toán</td>
-                                <td><span class="status delivered">Đã Giao</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Máy Tính Dell</td>
-                                <td>$110</td>
-                                <td>Chưa Thanh Toán</td>
-                                <td><span class="status pending">Đang Chờ</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Đồng Hồ Apple</td>
-                                <td>$1200</td>
-                                <td>Đã Thanh Toán</td>
-                                <td><span class="status return">Trả Hàng</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Giày Addidas</td>
-                                <td>$620</td>
-                                <td>Chưa Thanh Toán</td>
-                                <td><span class="status inProgress">Đang Tiến Hành</span></td>
-                            </tr>
+                        <tbody id="productList">
+                            <!-- Các sản phẩm sẽ được thêm vào đây -->
                         </tbody>
                     </table>
-                </div>
+                    <!-- mẫu điền thêm sản phẩm  -->
+                    <div id="addProductModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close-btn" onclick="closeAddProductModal()">&times;</span>
+                            <h3>Thêm sản phẩm mới</h3>
+                            <form id="addProductForm">
+                                <label for="productCode">Mã sản phẩm:</label>
+                                <input type="text" id="productCode" required>
 
-                <!-- ================= Khách Hàng Mới ================ -->
-                <div class="recentCustomers">
-                    <div class="cardHeader">
-                        <h2>Khách Hàng Gần Đây</h2>
+                                <label for="productName">Tên sản phẩm:</label>
+                                <input type="text" id="productName" required>
+
+                                <label for="productPrice">Giá:</label>
+                                <input type="text" id="productPrice" required>
+
+                                <label for="productCategory">Danh mục:</label>
+                                <input type="text" id="productCategory" required>
+
+                                <label for="productStock">Tồn kho:</label>
+                                <input type="number" id="productStock" required>
+
+                                <label for="productDescription">Mô tả:</label>
+                                <textarea id="productDescription" rows="4" required></textarea>
+
+                                <label for="productStatus">Trạng thái:</label>
+                                <select id="productStatus" required>
+                                    <option value="active">Còn hàng</option>
+                                    <option value="inactive">Hết hàng</option>
+                                </select>
+
+                                <label for="productImage">Hình ảnh:</label>
+                                <input type="file" id="productImage">
+
+                                <button type="button" onclick="addProduct()">Lưu sản phẩm</button>
+                                <button type="button" class="exit-btn" onclick="closeAddProductModal()">Thoát</button>
+                            </form>
+                        </div>
                     </div>
-
-                    <table>
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Ý</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>Ấn Độ</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Ý</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>Ấn Độ</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Ý</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>Ấn Độ</span></h4>
-                            </td>
-                        </tr>
-                    </table>
+                    <!--Hiện mô tả sản phẩm -->
+                    <div id="viewDescriptionModal" class="modal">
+                        <div class="modal-content">
+                            <span class="close-btn" onclick="closeViewDescriptionModal()">&times;</span>
+                            <h3>Mô tả sản phẩm</h3>
+                            <div id="productDescriptionDetails"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../js/product.js"></script>
+    <script src="../js/main.js"></script>
 </body>
 
 </html>
