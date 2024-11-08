@@ -28,18 +28,6 @@ async function fetchProducts(page = 1) {
         console.error("Error:", error);
         alert("An error occurred while fetching products.");
     }
-<<<<<<< HEAD
-
-    // Hiển thị lại danh sách sản phẩm
-    displayProducts();
-
-    // Làm sạch form
-    clearForm();
-
-    // Đóng modal
-    closeAddProductModal();
-=======
->>>>>>> a7ea03020f1f2cfb4400be3b53447f22658753a8
 }
 
 // Hiển thị danh sách sản phẩm trong bảng
