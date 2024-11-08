@@ -340,28 +340,7 @@
 
         </div>
     </div>
-    <script>
-        function orderSuccess() {
-            alert("Đặt hàng thành công!");
-        }
-
-        function updateDeliveryInfo() {
-            const citySelect = document.getElementById('city');
-            const deliveryInfo = document.getElementById('delivery-info');
-            const price = document.getElementById('cost2');
-            const selectedCity = citySelect.value;
-
-            if (selectedCity) {
-                deliveryInfo.textContent = "Giao hàng tận nơi: 120.000đ";
-                price.textContent = "120.000"
-            } else {
-                deliveryInfo.textContent = "Giao hàng tận nơi: 0đ";
-            }
-        }
-
-        function showCODMessage() {
-            alert("Bạn chỉ thanh toán khi nhận được hàng.");
-        }
+    
     </script>
 </body>
 

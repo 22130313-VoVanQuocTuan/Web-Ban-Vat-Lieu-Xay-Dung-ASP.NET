@@ -77,7 +77,14 @@ registerForm.addEventListener('submit', async (event) => {
 });
 
     
+// Hàm để giải mã JWT
+function parseJwt(token) {
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    const jsonPayload = decodeURIComponent(escape(atob(base64)));
 
+    return JSON.parse(jsonPayload);
+}
 
 // Xử lý đăng nhập
 loginForm.addEventListener('submit', async (event) => {
@@ -103,11 +110,14 @@ loginForm.addEventListener('submit', async (event) => {
         const data = await response.json();
         
         if (response.ok) {
-            localStorage.setItem('token', data.result.token); // Đảm bảo token được truy xuất đúng// Giả định token được trả về từ server
-            localStorage.setItem('refreshToken', data.result.refreshToken)
-            // Xử lý thành công, ví dụ chuyển hướng đến trang chính
-             window.location.href ='../home.html';
-            // Bạn có thể thêm logic chuyển hướng ở đây
+            // Lưu token và refresh token
+            localStorage.setItem('token', data.result.token);
+            localStorage.setItem('refreshToken', data.result.refreshToken);
+         
+
+    
+                window.location.href = '../home.html'; // Chuyển hướng đến trang chính
+         
         } else {
             // Xử lý lỗi
             alert(data.message || 'Đăng nhập thất bại!');

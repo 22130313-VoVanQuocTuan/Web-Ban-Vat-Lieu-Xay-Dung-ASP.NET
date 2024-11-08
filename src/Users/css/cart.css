@@ -7,7 +7,7 @@
 
 
 #section-content .cart-container {
-  width: 1395px;
+  width: 1691px;
 
   margin: 0 auto;
   display: flex;
@@ -44,7 +44,7 @@
 
 .cart-table img {
   width: 200px; /* Đặt kích thước nhất quán cho hình ảnh */
-  height: auto;
+  height: 150px;
   object-fit: contain; /* Đảm bảo ảnh không bị méo */
   border-radius: 10px;
 }
