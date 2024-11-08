@@ -110,14 +110,17 @@ loginForm.addEventListener('submit', async (event) => {
         const data = await response.json();
         
         if (response.ok) {
+            
             // Lưu token và refresh token
             localStorage.setItem('token', data.result.token);
             localStorage.setItem('refreshToken', data.result.refreshToken);
-         
-
+            if(data.result.role === "ADMIN"){
+                window.location.href = '/src/Admin/pages/index.html';
+            }else{
+            
     
                 window.location.href = '../home.html'; // Chuyển hướng đến trang chính
-         
+            }
         } else {
             // Xử lý lỗi
             alert(data.message || 'Đăng nhập thất bại!');

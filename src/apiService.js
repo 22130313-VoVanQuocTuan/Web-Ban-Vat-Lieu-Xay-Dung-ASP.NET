@@ -9,17 +9,23 @@ async function refreshToken() {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({refreshToken})
+        body: JSON.stringify({ refreshToken })
     });
 
     if (!response.ok) {
         throw new Error('Refresh token thất bại, mã lỗi: ' + response.status);
+    }else{
+       
+        const data = await response.json();
+        // Cập nhật token và refresh token mới
+        localStorage.setItem('token', data.message.token);
+        localStorage.setItem('refreshToken', data.message.refreshToken);
+    
+        console.log('Token mới:', data.message.token);
+        console.log('Refresh Token mới:', data.message.refreshToken);
+          
     }
-
-    const data = await response.json();
-    localStorage.setItem('token', data.token); // Cập nhật token mới
-    console.log(data)
-    return data.token;
+    return data.message.token;  // Trả về token mới để sử dụng
 }
 
 export async function customFetch(url, options = {}) {
@@ -38,14 +44,14 @@ export async function customFetch(url, options = {}) {
     if (response.status === 401) {
         try {
             // Làm mới token
-            const newToken = await refreshToken();
-
+           let newToken = await  refreshToken(); // Lấy token mới từ hàm refreshToken
+            
             // Gọi lại API với token mới
             response = await fetch(url, {
                 ...options,
                 headers: {
                     ...options.headers,
-                    Authorization: `Bearer ${newToken}`
+                    Authorization: `Bearer ${newToken}`  // Sử dụng token mới
                 }
             });
         } catch (error) {

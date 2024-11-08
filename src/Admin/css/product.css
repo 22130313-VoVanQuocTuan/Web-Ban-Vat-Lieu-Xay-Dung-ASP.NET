@@ -274,33 +274,61 @@ td a:hover {
 }
 
 /* Modal Styling */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
+.modalUpdate, .modalAdd {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
 }
 
 .modal-content {
-    background-color: #fff;
-    padding: 25px;
-    /* Giảm padding để modal không bị quá dài */
-    width: 450px;
-    /* Giảm chiều rộng của modal */
-    max-height: 80vh;
-    /* Giới hạn chiều cao của modal */
-    overflow-y: auto;
-    /* Thêm thanh cuộn dọc nếu nội dung quá dài */
-    border-radius: 8px;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 90%;
+  background-color: #fff;
+  padding: 25px;
+  width: 500px;
+  margin-top: 5%;
+  overflow-y: auto;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  display: block; /* Đảm bảo modal có thể hiển thị */
+  margin-left: 40%;
 }
+
+.modal {
+  display: none; /* Ẩn modal khi chưa được kích hoạt */
+  position: fixed;
+  z-index: 1; /* Chắc chắn modal được hiển thị trên cùng */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Màu nền tối khi hiển thị modal */
+}
+
+.close-btn {
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Button close */
+
 
 
 h3 {
@@ -353,4 +381,14 @@ button {
 }
 .modal-content .close-btn{
   font-size: 40px;
+}
+.bt{
+  display: flex;
+  justify-content: center;
+  height: 100px;
+}
+.bt button{
+  margin: 2px;
+  width: 100px;
+  height: 50px;
 }

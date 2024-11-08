@@ -80,7 +80,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="javascript:void(0);" id="logoutButton">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -122,12 +122,15 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Hình ảnh</th>
+
                                 <th>Mã sản phẩm</th>
+                                <th>Hình ảnh</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Giá</th>
-                                <th>Trạng thái</th>
+                                <th>Số lượng</th>
                                 <th>Ngày tạo</th>
+                                <th>Trạng thái</th>
+                                <th>Danh mục</th>
                                 <th>Hành động</th>
                             </tr>
                         </thead>
@@ -135,14 +138,13 @@
                             <!-- Các sản phẩm sẽ được thêm vào đây -->
                         </tbody>
                     </table>
-                    <!-- mẫu điền thêm sản phẩm  -->
-                    <div id="addProductModal" class="modal">
+                    <!-- Mẫu điền thêm sản phẩm -->
+                    <div id="addProductModal" class="modalAdd">
                         <div class="modal-content">
                             <span class="close-btn" onclick="closeAddProductModal()">&times;</span>
                             <h3>Thêm sản phẩm mới</h3>
                             <form id="addProductForm">
-                                
-
+                                <!-- Các trường nhập liệu cho sản phẩm -->
                                 <label for="productName">Tên sản phẩm:</label>
                                 <input type="text" id="productName" required>
 
@@ -167,17 +169,59 @@
                                 <label for="productImage">Hình ảnh:</label>
                                 <input type="file" id="productImage">
 
-                                <button type="button" onclick="addProduct()">Lưu sản phẩm</button>
+                                <button type="button" id="" onclick="addProduct()">Lưu sản phẩm</button>
                                 <button type="button" class="exit-btn" onclick="closeAddProductModal()">Thoát</button>
                             </form>
                         </div>
                     </div>
+
+                    <!-- Mẫu điền cập nhật sản phẩm -->
+                    <div id="updateProductModal" class="modalUpdate">
+                        <div class="modal-content">
+                            <span class="close-btn" onclick="closeUpdateProductModal()">&times;</span>
+                            <h3>Cập nhật sản phẩm</h3>
+                            <form id="updateProductForm"> <!-- Đổi ID form này -->
+                                <!-- Các trường nhập liệu cho sản phẩm -->
+                                <label for="updateProductName">Tên sản phẩm:</label>
+                                <input type="text" id="updateProductName" required>
+
+                                <label for="updateProductPrice">Giá:</label>
+                                <input type="text" id="updateProductPrice" required>
+
+                                <label for="updateProductCategory">Danh mục:</label>
+                                <input type="text" id="updateProductCategory" required>
+
+                                <label for="updateProductStock">Tồn kho:</label>
+                                <input type="number" id="updateProductStock" required>
+
+                                <label for="updateProductDescription">Mô tả:</label>
+                                <textarea id="updateProductDescription" rows="4" required></textarea>
+
+                                <label for="updateProductStatus">Trạng thái:</label>
+                                <select id="updateProductStatus" required>
+                                    <option value="active">Còn hàng</option>
+                                    <option value="inactive">Hết hàng</option>
+                                </select>
+
+                                <label for="updateProductImage">Hình ảnh:</label>
+                                <input type="file" id="updateProductImage">
+                               
+
+                                <button type="button" id="saveChangesButton">Lưu thay đổi</button>
+                                <button type="button" class="exit-btn"
+                                    onclick="closeUpdateProductModal()">Thoát</button>
+                            </form>
+                        </div>
+                    </div>
                     <!--Hiện mô tả sản phẩm -->
+                    <!-- Modal hiển thị mô tả sản phẩm -->
                     <div id="viewDescriptionModal" class="modal">
                         <div class="modal-content">
                             <span class="close-btn" onclick="closeViewDescriptionModal()">&times;</span>
                             <h3>Mô tả sản phẩm</h3>
-                            <div id="productDescriptionDetails"></div>
+                            <div id="productDescriptionDetails">
+                                <!-- Nội dung mô tả sản phẩm sẽ được hiển thị ở đây -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -186,8 +230,8 @@
     </div>
 
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-    <script src="../js/product.js"></script>
-    <script src="../js/main.js"></script>
+    <script type="module" src="../js/product.js" defer></script>
+    <script type="module" src="../js/main.js"></script>
 </body>
 
 </html>

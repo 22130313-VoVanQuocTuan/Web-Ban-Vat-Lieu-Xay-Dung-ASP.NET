@@ -6,7 +6,7 @@ let voucherDiscount = 0; // Biến lưu trữ tỷ lệ giảm giá từ mã gi�
 
 
 
-import  { customFetch } from './apiService.js'; // Đảm bảo đường dẫn đúng
+import  { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
 
 document.addEventListener('DOMContentLoaded', () => {
   fetchCartProducts();

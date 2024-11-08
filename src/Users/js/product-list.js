@@ -1,5 +1,5 @@
 
-import  { customFetch } from './apiService.js'; // Đảm bảo đường dẫn đúng
+import  { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
 const sidebarItems = document.querySelectorAll('.conten .left-sidebar .item');
 let currentProducts = [];
 let currentCategoryId = 1; // ID danh mục mặc định để tải ban đầu
