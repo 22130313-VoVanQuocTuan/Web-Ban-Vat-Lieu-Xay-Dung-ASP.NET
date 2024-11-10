@@ -111,7 +111,7 @@
             </div>
             <div class="list-vouchers-content">
                 <div class="list-vouchers-content-button">
-                    <a href="#" class="add-vouchers-btn" onclick="openAddVoucherModal()">Thêm voucher</a>
+                    <a href="#" id="addopenvoucher" class="add-vouchers-btn">Thêm voucher</a>
                 </div>
                 <!-- Table vouchers -->
                 <table>
@@ -130,20 +130,17 @@
                 <!-- mẫu điền thêm voucher  -->
                 <div id="addVoucherModal" class="modal">
                     <div class="modal-content">
-                        <span class="close-btn" onclick="closeAddVoucherModal()">&times;</span>
+                        
                         <h3>Thêm voucher </h3>
                         <form id="addVoucherForm">
-                            <label for="voucherId">Id voucher :</label>
-                            <input type="text" id="voucherId" required>
-
                             <label for="voucherCode">Mã voucher :</label>
                             <input type="text" id="voucherCode" required>
 
                             <label for="voucherDown">Giảm giá :</label>
-                            <input type="text" id="voucherDown" required>
+                            <input type="number" id="voucherDown" required>
 
-                            <button type="button" onclick="addVoucher()">Lưu</button>
-                            <button type="button" class="exit-btn" onclick="closeAddVoucherModal()">Thoát</button>
+                            <button id="addVoucher">Lưu</button>
+                            <button type="button" class="exit-btn" >Thoát</button>
                         </form>
                     </div>
                 </div>
@@ -151,8 +148,8 @@
         </div>
     </div>
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-    <script src="../js/main.js"></script>
-    <script src="../js/voucher.js"></script>
+    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/voucher.js"></script>
 
 </div>
 </body>

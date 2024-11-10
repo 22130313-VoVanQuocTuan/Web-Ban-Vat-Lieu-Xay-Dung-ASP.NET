@@ -1,84 +1,143 @@
-const vouchers = [];
+import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn chính xác
 
-// Hàm mở modal để thêm sản phẩm mới
-function openAddVoucherModal() {
-    document.getElementById('addVoucherModal').style.display = 'flex';
-}
+async function getDiscount() {
+    try {
+        const response = await customFetch('http://localhost:5241/api/Discount', {
+            method: 'GET',
+            headers: {
+               
+                "Content-Type": "application/json"
+            }
+        });
 
-// Hàm đóng modal Thêm sản phẩm
-function closeAddVoucherModal() {
-    document.getElementById('addVoucherModal').style.display = 'none';
-}
-
-let editingVoucherIndex = null; // Biến lưu chỉ mục sản phẩm đang sửa
-
-// Hàm thêm/sửa sản phẩm
-function addVoucher() {
-    const id = document.getElementById('voucherId').value;
-    const code = document.getElementById('voucherCode').value;
-    const down = document.getElementById('voucherDown').value;
-
-    const voucher = {
-        id,
-        code,
-        down
-    };
-    if (editingVoucherIndex !== null) {
-        // Nếu đang trong chế độ chỉnh sửa, cập nhật thông tin sản phẩm
-        vouchers[editingVoucherIndex] = voucher;
-        editingVoucherIndex = null; // Đặt lại chỉ mục sau khi sửa xong
-    } else {
-        // Nếu không, thêm sản phẩm mới
-        vouchers.push(voucher);
+        if (response.ok) {
+            const vouchers = await response.json();  // Phân tích JSON từ response
+            displayVouchers(vouchers.response);  // Gọi hàm để hiển thị dữ liệu vào bảng
+        } else {
+            console.error("Lỗi khi gọi API:", response.status, response.statusText);
+        }
+    } catch (error) {
+        console.error("Lỗi khi gọi API:", error);
     }
-
-    // Hiển thị lại danh sách sản phẩm
-    displayVouchers();
-
-    // Làm sạch form
-    clearForm();
-
-    // Đóng modal
-    closeAddVoucherModal();
 }
-// Hàm hiển thị danh sách sản phẩm lên bảng
-function displayVouchers() {
+
+// Hàm hiển thị voucher lên bảng
+function displayVouchers(vouchers) {
     const voucherList = document.getElementById('voucherList');
     voucherList.innerHTML = '';
 
-    // Duyệt qua mảng sản phẩm và hiển thị vào bảng
-    vouchers.forEach((voucher, index) => {
+    vouchers.forEach(voucher => {
         const voucherRow = document.createElement('tr');
         voucherRow.innerHTML = `
-            <td>${voucher.id}</td> 
-            <td>${voucher.code}</td>  <!-- Hiển thị mã sản phẩm -->
-            <td>${voucher.down}</td>
-            <td class="action-links">
-                <a href="#" class="edit" onclick="editVoucher(${index})">Sửa</a>
-                <a href="#" class="delete" onclick="deleteVoucher(${index})">Xóa</a>
+            <td>${voucher.discountId}</td>  <!-- Hiển thị ID voucher -->
+            <td>${voucher.code}</td>       <!-- Hiển thị mã voucher -->
+            <td>${voucher.percent.toLocaleString()} VNĐ</td>   <!-- Hiển thị tỷ lệ giảm giá -->
+            <td>
+                
+                <a href="#" class="delete" data-id="${voucher.discountId}">Xóa</a>
             </td>
         `;
         voucherList.appendChild(voucherRow);
     });
-}
-// Hàm chỉnh sửa voucher
-function editVoucher(index) {
-    const voucher = vouchers[index];
-    document.getElementById('voucherId').value = voucher.id;
-    document.getElementById('voucherCode').value = voucher.code;
-    document.getElementById('voucherDown').value = voucher.down;
     
-    editingVoucherIndex = index; // Ghi nhận chỉ mục sản phẩm đang sửa
-    openAddVoucherModal();
+// Thêm event listeners cho "Xóa"
+document.querySelectorAll('.delete').forEach(button => {
+    button.addEventListener('click', function(event) {
+        const id = event.target.getAttribute('data-id');
+        deleteVoucher(id);
+    });
+});
+}
+// Hàm xóa voucher
+async function deleteVoucher(id) {
+    try {
+        // Gọi API xóa voucher
+        const response = await customFetch(`http://localhost:5241/api/Discount/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (response.status === 200) {
+            alert("Xóa voucher thành công!");
+            getDiscount(); // Cập nhật lại danh sách voucher
+        } else {
+            const error = await response.json();
+            alert(`Lỗi khi xóa voucher: ${error.message}`);
+        }
+    } catch (err) {
+        console.error("Lỗi:", err);
+        alert("Có lỗi xảy ra khi xóa voucher.");
+    }
 }
 
-// Hàm xóa sản phẩm
-function deleteVoucher(index) {
-    vouchers.splice(index, 1);
-    displayVouchers();
+// Gọi hàm getDiscount sau khi trang tải xong
+document.addEventListener("DOMContentLoaded", function() {
+    getDiscount();
+});
+
+
+
+document.getElementById("addVoucher").addEventListener("click", async function(event) {
+    event.preventDefault(); // Ngừng hành động mặc định của form, tránh reload trang
+
+    // Lấy dữ liệu từ các trường input
+    const voucherCode = document.getElementById('voucherCode').value;
+    const voucherDown = parseFloat(document.getElementById('voucherDown').value);
+
+    // Kiểm tra xem các trường có trống không
+    if (!voucherCode || !voucherDown) {
+        alert("Vui lòng điền đầy đủ thông tin.");
+        return;
+    }
+
+    // Tạo đối tượng dữ liệu voucher
+    const voucherData = {
+        code: voucherCode,
+        percent: voucherDown  // Đảm bảo rằng giá trị giảm giá là số
+    };
+
+    try {
+        // Gửi yêu cầu POST tới API để thêm voucher mới
+        const response = await customFetch('http://localhost:5241/api/Discount', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(voucherData)
+        });
+
+        // Kiểm tra phản hồi từ server
+        if (response.status === 200) {
+            alert("Thêm voucher thành công!");
+            closeAddVoucherModal();  // Đóng modal sau khi thêm thành công
+            getDiscount();  // Cập nhật lại danh sách voucher
+        } else {
+            const error = await response.json();
+            alert(`${error.message}`);
+        }
+    } catch (error) {
+        console.error("Lỗi khi gọi API:", error);
+        alert("Đã có lỗi xảy ra khi thêm voucher.");
+    }
+});
+
+// Lắng nghe sự kiện click để mở modal
+const openAddVoucherButton = document.getElementById("addopenvoucher");
+
+if (openAddVoucherButton) {
+    openAddVoucherButton.addEventListener("click", function() {
+        document.getElementById('addVoucherModal').style.display = 'block';  // Mở modal
+    });
 }
 
-// Hàm làm sạch form nhập liệu
-function clearForm() {
-    document.getElementById('addVoucherForm').reset();
+// Hàm để đóng modal
+function closeAddVoucherModal() {
+    document.getElementById('addVoucherModal').style.display = 'none';
 }
+
+// Đóng modal khi nhấn nút thoát
+document.querySelector('.exit-btn').addEventListener("click", function() {
+    closeAddVoucherModal();
+});

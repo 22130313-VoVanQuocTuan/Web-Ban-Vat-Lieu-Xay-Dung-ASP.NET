@@ -14,18 +14,17 @@ async function refreshToken() {
 
     if (!response.ok) {
         throw new Error('Refresh token thất bại, mã lỗi: ' + response.status);
-    }else{
-       
-        const data = await response.json();
+    } else {
+        const data = await response.json();  // Đảm bảo rằng bạn nhận được dữ liệu từ API
         // Cập nhật token và refresh token mới
         localStorage.setItem('token', data.message.token);
         localStorage.setItem('refreshToken', data.message.refreshToken);
-    
+
         console.log('Token mới:', data.message.token);
         console.log('Refresh Token mới:', data.message.refreshToken);
-          
+
+        return data.message.token;  // Trả về token mới để sử dụng
     }
-    return data.message.token;  // Trả về token mới để sử dụng
 }
 
 export async function customFetch(url, options = {}) {
