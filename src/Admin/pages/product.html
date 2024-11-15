@@ -9,6 +9,9 @@
     <title>Bảng điều khiển Quản trị viên </title>
     <!------------------ Kiểu dáng ------------------>
     <link rel="stylesheet" href="../css/product.css">
+    <script src="/src/assets/ckeditor/ckeditor.js"></script>
+    <script src="../css/style.css"></script>
+
    -
 </head>
 
@@ -234,6 +237,9 @@
     <script type="module" src="../js/product.js" defer></script>
     <script type="module" src="../js/main.js"></script>
      <!-- Đặt tệp ckeditor.js trước khi gọi CKEDITOR.replace -->
+     <script>
+        CKEDITOR.replace('productDescription');
+    </script>
 
 
   

@@ -161,9 +161,10 @@ async function addProduct() {
     if (productImage) formData.append("UrlImage", productImage);
 
     try {
-        const response = await fetch("http://localhost:5241/api/Product/product", {
+        const response = await customFetch("http://localhost:5241/api/Product/product", {
             method: "POST",
-            body: formData
+            body: formData,
+          
         });
 
         if (response.ok) {
@@ -274,7 +275,7 @@ async function handleEditProduct(event) {
     }
 
     // Gửi yêu cầu PUT với productId ở cuối URL
-    const response = await fetch(`http://localhost:5241/api/Product/${productId}`, {
+    const response = await customFetch (`http://localhost:5241/api/Product/${productId}`, {
         method: 'PUT',
         body: formData
     });

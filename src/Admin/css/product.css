@@ -295,9 +295,10 @@ td a:hover {
   border-radius: 8px;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 90%;
+  height: 500px;
   display: block; /* Đảm bảo modal có thể hiển thị */
   margin-left: 40%;
+
 }
 
 .modal {

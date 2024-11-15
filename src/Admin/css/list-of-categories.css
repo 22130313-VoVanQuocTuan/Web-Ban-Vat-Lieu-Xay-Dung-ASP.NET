@@ -1,0 +1,405 @@
+/* ------------------Globals ------------------ */
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  :root {
+    --blue: #2a2185;
+    --white: #fff;
+    --gray: #f5f5f5;
+    --black1: #222;
+    --black2: #999;
+  }
+  
+  body {
+    height: auto;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    position: relative;
+    width: 100%;
+  }
+  
+  /* -------------------Navigation ------------------- */
+  .navigation {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: linear-gradient(to right, #4f3131, #15283e);
+    transition: 0.5s;
+    overflow: hidden;
+  }
+  
+  .navigation ul li a span img {
+    width: 75%;
+    height: auto;
+    border-radius: 8px;
+    filter: brightness(0.8) contrast(1.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .navigation ul li a span.title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .navigation ul {
+    position: absolute;
+    top: 5px;
+    right: 2px;
+    width: 100%;
+  }
+  
+  .navigation ul li {
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-radius: 30px;
+  }
+  
+  .navigation ul li:hover,
+  .navigation ul li.hovered {
+    background-color: var(--white);
+  }
+  
+  .navigation ul li:nth-child(1) {
+    margin-bottom: 40px;
+    pointer-events: none;
+  }
+  
+  .navigation ul li a {
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--white);
+  }
+  
+  .navigation ul li:hover a,
+  .navigation ul li.hovered a {
+    color: #4f3131;
+  }
+  
+  .navigation ul li a .icon {
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 75px;
+    text-align: center;
+  }
+  
+  .navigation ul li a .icon ion-icon {
+    font-size: 1.75rem;
+  }
+  
+  .navigation ul li a .title {
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+  }
+  .navigation.active {
+    width: 100px;
+  }
+  
+  .main.active {
+    width: calc(100% - 55px);
+    left: 55px;
+  }
+  
+  
+  /* ------------------ Main ------------------ */
+  .main {
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;  
+    min-height: 100px;
+    background: var(--white);
+    transition: 0.5s;
+  }
+  
+  .topbar {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    margin-top: 10px;
+  }
+  
+  .toggle {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+  
+  .search {
+    position: relative;
+    width: 600px;
+    margin: 0 10px;
+  }
+  
+  .search label {
+    position: relative;
+    width: 100%;
+  }
+  
+  .search label input {
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    margin-top: 15px;
+    padding: 5px 20px;
+    padding-left: 35px;
+    font-size: 18px;
+    outline: none;
+    border: 1px solid var(--black2);
+  }
+  
+  .search label ion-icon {
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .user {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    margin-right: 50px;
+  }
+  
+  .user img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  
+  /* ------------------------List product----------------- */
+  .list-products {
+      border-radius: 10px 10px 0 0;
+      margin-left: 1px;
+      min-height: 120px;
+      margin-top: 15px;
+  }
+  
+  .list-products-title {
+    background: linear-gradient(to right, #4f3131, #15283e);
+     height: 50px;
+  }
+  
+  .list-products-title h2 {
+      padding-top: 15px;
+      padding-left: 15px;
+      color: var(--white);
+  }
+  .list-products-content-button {
+    background-color: #ccc;
+  }
+  .list-products-content-button a {
+      padding: 10px;
+      font-size: 15px;
+      float: right;
+      margin: 15px;
+      border-radius: 5px;
+      background-color: #999;
+      text-decoration: none;
+      color:var(--gray);
+      font-weight: bold;
+  }
+  .list-products-content-button a:hover{
+    background: linear-gradient(to right, #4f3131, #15283e);
+    color: var(--white);
+  }
+  
+  /* table products */
+  .two-item table {
+      width: 100%;
+      border-collapse: collapse;
+  }
+  
+  .two-item table,
+  th,
+  td {
+      border: 1px solid #ccc;
+      text-align: center;
+      padding: 15px;
+  }
+  
+  .two-item th {
+    background: linear-gradient(to right, #4f3131, #15283e);
+    color: var(--white);
+  }
+  
+  .two-item td a {
+      text-decoration: none;
+      color: #222;
+  }
+  
+  .two-item td a:hover {
+      color: #2a2185;
+      font-weight: bold;
+      transition: 0.3s all ease;
+  }
+  
+  /* Action Links */
+  .action-links a {
+      margin: 0 5px;
+      text-decoration: none;
+      color: #007bff;
+  }
+  
+  /* Modal Styling */
+  .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+  }
+  
+  .modal-content {
+      background-color: #fff;
+      padding: 25px;
+      /* Giảm padding để modal không bị quá dài */
+      width: 450px;
+      /* Giảm chiều rộng của modal */
+      max-height: 80vh;
+      /* Giới hạn chiều cao của modal */
+      overflow-y: auto;
+      /* Thêm thanh cuộn dọc nếu nội dung quá dài */
+      border-radius: 8px;
+      position: relative;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 90%;
+  }
+  
+  
+  h3 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: #333;
+      text-align: center;
+  }
+  
+  label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      display: block;
+      color: #555;
+  }
+  
+  input,
+  textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 12px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      background-color: #f9f9f9;
+  }
+  #productStatus{
+    height: 30px;
+    width: 150px;
+    margin-bottom: 15px;
+    margin-top: 5px;
+  }
+  
+  button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      text-align: center;
+  }
+  
+  .exit-btn {
+      background-color: #dc3545;
+      margin-top: 10px;
+      font-size: 14px;
+  }
+  .modal-content .close-btn{
+    font-size: 40px;
+  }
+
+  .two-item{
+    display: flex;
+  }
+
+  table{
+    float: left;
+    width: 70%;
+  }
+
+  .two-btn{
+    float: right;
+    width: 30%;
+    display: flex;
+  }
+
+  .two-btn button{
+    margin-left: 18px;
+    width: 113px;
+  }
+
+  .btn-view a{
+    color: white;
+  }
+
+  .btn-view , .btn-delete {
+    background: linear-gradient(to right, #82a0c2, #15283e);
+  }
+
+  .btn-view:hover , .btn-delete:hover{
+    background: linear-gradient(to right, #4f3131, #15283e);
+  }
+
+.main-block{
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.block{
+    border-top: 1px solid black;
+    height: 100px;
+    width: 100%;
+
+    
+}
+
+
+
+

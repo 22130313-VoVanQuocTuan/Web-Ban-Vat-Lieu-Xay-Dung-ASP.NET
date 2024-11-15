@@ -1,8 +1,5 @@
 
 let cart = []; // Khởi tạo biến cart
-let selectedProducts = new Set(); // Khởi tạo biến selectedProducts
-let originalTotal =0;
-let voucherDiscount = 0; // Biến lưu trữ tỷ lệ giảm giá từ mã giảm giá
 
 
 
@@ -41,7 +38,7 @@ async function fetchCartProducts(page = 1, limit = 2) {
   const cartContainer = document.getElementById('cart-items-container');
   cartContainer.innerHTML = ''; // Xóa nội dung cũ
 
-  let subtotal = 0; // Khởi tạo subtotal
+  const subtotal = products.priceTotal; // Lấy tổng tiền từ response
 
   products.forEach((product, index) => {
     const imageUrl = product.urlImage.startsWith('http') ? product.urlImage : `http://localhost:5241/${product.urlImage}`;
@@ -70,32 +67,42 @@ async function fetchCartProducts(page = 1, limit = 2) {
         <td><button class="remove-from-cart-button" data-product-id="${product.cartProductId}">Xóa</button></td>
       </tr>`;
    
-
+      fetchAndDisplaySubtotal(product.cartId);
     cartContainer.insertAdjacentHTML('beforeend', productHtml);
 
-     // Cập nhật subtotal bằng tổng giá trị sản phẩm từ API (product.totalPrice)
-     subtotal += product.totalPrice; // Tổng tiền của tất cả sản phẩm trong giỏ hàng
+     
 
      
   });
 
 
-  /// Tính VAT và tổng cộng
-  const vat = subtotal * 0.08; // Tính VAT từ subtotal
-  const total = subtotal + vat; // Tổng cộng sau VAT
-   originalTotal = total; // Lưu tổng giá trị ban đầu
-  
-  // Hiển thị các giá trị trên giao diện
-  document.getElementById('subtotal').textContent = `${subtotal.toLocaleString()} VNĐ`;
-  document.getElementById('vat').textContent = `${vat.toLocaleString()} VNĐ`;
-  document.getElementById('total').textContent = `${originalTotal.toLocaleString()} VNĐ`;
 
-  updateTotalDisplay(total); // Cập nhật hiển thị tổng giá trị
+  
+
+
   attachRemoveFromCartEvent(); // xóa sản phẩm
   
 
 }
+// Hàm gọi API và hiển thị tổng giá trị
+function fetchAndDisplaySubtotal(cartId) {
+  // URL API với cartId
+  const apiUrl = `http://localhost:5241/api/Cart/${cartId}`;
 
+  // Gọi API
+  customFetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json(); // Chuyển đổi response thành JSON
+    })
+    .then(data => {
+      const subtotal = data.results; // Lấy tổng giá từ API (đảm bảo backend trả về đúng thuộc tính này)
+      document.getElementById('subtotal').textContent = `${subtotal.toLocaleString()} VNĐ`; // Gán chuỗi hiển thị    .catch(error => {
+      console.error('Có lỗi khi gọi API:', error); // Log lỗi nếu có
+    });
+}
 
 // Hàm gán sự kiện xóa sản phẩm khỏi giỏ hàng
 function attachRemoveFromCartEvent() {
