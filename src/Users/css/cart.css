@@ -1,14 +1,12 @@
 #section-content {
- 
+  height: auto;
   padding: 20px 0;
   background-color: #f2f2f2;
 }
 
-
-
 #section-content .cart-container {
-  width: 1691px;
-
+  padding-top:15px ;
+  width: 90%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -20,8 +18,13 @@
   max-height: 600px;
   background-color: #f9f9f9;
   border-radius: 5px;
-  margin-right: 70px;
-  overflow-y: auto
+  margin-right: 10px;
+  overflow-y: auto;
+}
+.cart-right {
+  border: 2px solid #15283e;
+  padding: 25px;
+  border-radius: 25px;
 }
 
 .cart-table {
@@ -32,9 +35,9 @@
 .cart-table th,
 .cart-table td {
   padding: 10px;
-  text-align: center; /* Căn giữa nội dung */
+  text-align: center;
   border-bottom: 1px solid #ddd;
-  vertical-align: middle; /* Căn giữa theo chiều dọc */
+  vertical-align: middle;
 }
 
 .cart-table th {
@@ -43,15 +46,14 @@
 }
 
 .cart-table img {
-  width: 200px; /* Đặt kích thước nhất quán cho hình ảnh */
+  width: 200px;
   height: 150px;
-  object-fit: contain; /* Đảm bảo ảnh không bị méo */
+  object-fit: contain;
   border-radius: 10px;
 }
 
 .cart-buttons {
   margin-top: 40px;
-  
 }
 
 .summary-item {
@@ -79,9 +81,8 @@
 }
 
 .cart-body {
- 
   max-height: 300px;
-  overflow-y: auto; /* Cuộn theo chiều dọc */
+  overflow-y: auto;
 }
 
 #cart-items-container::-webkit-scrollbar {
@@ -106,13 +107,13 @@
 }
 
 .quantity .qty-input {
-  width: 40px; /* Đặt chiều rộng cho ô nhập số lượng */
-  text-align: center; /* Căn giữa văn bản bên trong */
+  width: 40px;
+  text-align: center;
 }
 
 .cart-buttons {
   margin-top: 80px;
- 
+
 }
 
 .select-product {
@@ -123,31 +124,29 @@
 
 .continue-btn {
   margin-left: 48%;
-  background-color: white; /* Màu chủ đạo */
-  border: 2px solid #ff6767; /* Viền màu đỏ */
+  background-color: white;
+  border: 2px solid #ff6767;
   color: #ff6767;
   padding: 10px 15px;
   font-size: 14px;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng khi hover và nhấn */
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-/* Hiệu ứng khi di chuột vào button */
 .continue-btn:hover,
 .apply-btn:hover {
   background-color: rgba(255, 0, 0, 0.736);
   color: white;
-  font-weight: 500; /* Màu sáng hơn khi di chuột */
+  font-weight: 500;
 }
 
-/* Hiệu ứng khi nhấn vào button */
 .continue-btn:active,
 .apply-btn:active {
-  transform: scale(0.95); /* Button thu nhỏ khi nhấn vào */
+  transform: scale(0.95);
   background-color: rgba(255, 0, 0, 0.736);
   color: white;
-  font-weight: 5 00; /* Màu sáng hơn khi nhấn */
+  font-weight: 5 00;
 }
 
 .fa-trash-can {
@@ -170,7 +169,7 @@
 .cart-right h2 {
   margin-bottom: 20px;
   width: 400px;
- 
+
 }
 
 .cart-summary {
@@ -197,22 +196,25 @@
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng khi hover và nhấn */
+  transition: background-color 0.3s, transform 0.2s;
 }
 
 /* Hiệu ứng khi di chuột vào button */
 .checkout-btn:hover {
   background-color: #001f7f;
   color: white;
-  font-weight: 600; /* Màu sáng hơn khi di chuột */
+  font-weight: 600;
+  /* Màu sáng hơn khi di chuột */
 }
 
 /* Hiệu ứng khi nhấn vào button */
 .checkout-btn:active {
-  transform: scale(0.95); /* Button thu nhỏ khi nhấn vào */
+  transform: scale(0.95);
+  /* Button thu nhỏ khi nhấn vào */
   background-color: #001f7f;
   color: white;
-  font-weight: 600; /* Màu sáng hơn khi nhấn */
+  font-weight: 600;
+  /* Màu sáng hơn khi nhấn */
 }
 
 .voucher {
@@ -241,9 +243,9 @@
   cursor: pointer;
   border-radius: 5px;
   margin-top: 15px;
-  transition: background-color 0.3s, transform 0.2s; /* Hiệu ứng khi hover và nhấn */
+  transition: background-color 0.3s, transform 0.2s;
 }
 
-.quantity input{
+.quantity input {
   width: 30px;
 }
