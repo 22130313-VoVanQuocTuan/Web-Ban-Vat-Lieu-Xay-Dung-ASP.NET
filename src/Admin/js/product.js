@@ -7,7 +7,7 @@ import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫ
 // Hàm lấy danh sách sản phẩm với phân trang
 async function fetchProducts(page = 1) {
     try {
-        const response = await customFetch(`http://localhost:5241/api/Product?page=${page}&size=${pageSize}`, {
+        const response = await fetch(`http://localhost:5241/api/Product?page=${page}&size=${pageSize}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -35,7 +35,7 @@ function displayProducts() {
     const productList = document.getElementById('productList');
     productList.innerHTML = ''; // Xóa nội dung cũ
 
-    products.forEach((product, index) => {
+    products.forEach((product) => {
         const productRow = document.createElement('tr');
         const imageUrl = product.urlImage.startsWith('http') ? product.urlImage : `http://localhost:5241${product.urlImage}`;
         productRow.innerHTML = `
@@ -144,6 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+CKEDITOR.replace('productDescription');
+// Đăng ký sự kiện cho nút thêm sản phẩm
+document.getElementById("addProductButton").addEventListener("click", addProduct);
 // Hàm thêm sản phẩm mới
 async function addProduct() {
     const productStatusElement = document.getElementById("productStatus");
@@ -154,14 +158,15 @@ async function addProduct() {
     formData.append("Price", parseFloat(document.getElementById("productPrice").value));
     formData.append("CategoryId", parseInt(document.getElementById("productCategory").value));
     formData.append("StockQuantity", parseInt(document.getElementById("productStock").value));
-    formData.append("Description", document.getElementById("productDescription").value);
+   // Lấy mô tả từ CKEditor (bao gồm HTML)
+   formData.append("Description", CKEDITOR.instances.productDescription.getData());
     formData.append("Status", productStatusText);
 
     const productImage = document.getElementById("productImage").files[0];
     if (productImage) formData.append("UrlImage", productImage);
 
     try {
-        const response = await customFetch("http://localhost:5241/api/Product/product", {
+        const response = await fetch("http://localhost:5241/api/Product/product", {
             method: "POST",
             body: formData,
           

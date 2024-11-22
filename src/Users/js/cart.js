@@ -1,24 +1,25 @@
 
 let cart = []; // Khởi tạo biến cart
+let totalAmount = 0; // khởi tạo tổng tiền khi áp mã giảm giá
 
 
-
-import  { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
+import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
 
 document.addEventListener('DOMContentLoaded', () => {
   fetchCartProducts();
+  getCart();
 });
 
 // Hàm lấy sản phẩm từ giỏ hàng
 async function fetchCartProducts(page = 1, limit = 2) {
   try {
-    const token = localStorage.getItem('token');
+  
     const response = await customFetch(`http://localhost:5241/api/Cart?page=${page}&limit=${limit}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' } // Thêm header cho Content-Type
-      
+
     });
-      
+
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
@@ -26,6 +27,7 @@ async function fetchCartProducts(page = 1, limit = 2) {
     const data = await response.json();
     console.log(data);
     renderCartProducts(data.results);
+    getCart();
   } catch (error) {
     console.error('Có lỗi xảy ra khi lấy dữ liệu giỏ hàng:', error);
   }
@@ -33,7 +35,7 @@ async function fetchCartProducts(page = 1, limit = 2) {
 
 
 // Hàm hiển thị sản phẩm trong giỏ hàng
- function renderCartProducts(products) {
+function renderCartProducts(products) {
   cart = products; // Cập nhật dữ liệu giỏ hàng
   const cartContainer = document.getElementById('cart-items-container');
   cartContainer.innerHTML = ''; // Xóa nội dung cũ
@@ -42,10 +44,10 @@ async function fetchCartProducts(page = 1, limit = 2) {
 
   products.forEach((product, index) => {
     const imageUrl = product.urlImage.startsWith('http') ? product.urlImage : `http://localhost:5241/${product.urlImage}`;
-    
+
 
     // HTML cho sản phẩm
-     const productHtml = `
+    const productHtml = `
    
       <tr>
         <td>${product.name}</td>
@@ -62,47 +64,18 @@ async function fetchCartProducts(page = 1, limit = 2) {
             <button class="qty-btn plus-btn" onclick="changeQuantity(${index}, 1)">+</button>
           </div>
         </td>
-        <td>${product.price.toLocaleString()} VNĐ</td> <!-- Giá sau giảm -->
-        <td>${product.totalPrice.toLocaleString()} VNĐ</td> <!-- Tổng sau giảm -->
+        <td>${product.price.toLocaleString()} ₫</td> <!-- Giá sau giảm -->
+          <td>${product.discount_amount.toLocaleString()} ₫</td> <!-- Giá sau giảm -->
+        <td>${product.totalPrice.toLocaleString()} ₫</td> <!-- Tổng sau giảm -->
         <td><button class="remove-from-cart-button" data-product-id="${product.cartProductId}">Xóa</button></td>
       </tr>`;
-   
-      fetchAndDisplaySubtotal(product.cartId);
+      
     cartContainer.insertAdjacentHTML('beforeend', productHtml);
-
-     
-
-     
   });
-
-
-
   
-
-
   attachRemoveFromCartEvent(); // xóa sản phẩm
-  
-
 }
-// Hàm gọi API và hiển thị tổng giá trị
-function fetchAndDisplaySubtotal(cartId) {
-  // URL API với cartId
-  const apiUrl = `http://localhost:5241/api/Cart/${cartId}`;
 
-  // Gọi API
-  customFetch(apiUrl)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json(); // Chuyển đổi response thành JSON
-    })
-    .then(data => {
-      const subtotal = data.results; // Lấy tổng giá từ API (đảm bảo backend trả về đúng thuộc tính này)
-      document.getElementById('subtotal').textContent = `${subtotal.toLocaleString()} VNĐ`; // Gán chuỗi hiển thị    .catch(error => {
-      console.error('Có lỗi khi gọi API:', error); // Log lỗi nếu có
-    });
-}
 
 // Hàm gán sự kiện xóa sản phẩm khỏi giỏ hàng
 function attachRemoveFromCartEvent() {
@@ -122,6 +95,7 @@ function attachRemoveFromCartEvent() {
 
         if (response.ok) {
           await fetchCartProducts(); // Lấy lại dữ liệu giỏ hàng
+          getCart();
         } else {
           console.error('Có lỗi khi xóa sản phẩm:', response.statusText);
         }
@@ -133,29 +107,29 @@ function attachRemoveFromCartEvent() {
 }
 
 // Hàm thay đổi số lượng sản phẩm
-
- async  function  changeQuantity(index, amount) { 
+async function changeQuantity(index, amount) {
   if (cart[index].quantity + amount >= 1) {
     cart[index].quantity += amount;
     await updateCartQuantity(cart[index].cartProductId, cart[index].quantity); // Gọi API cập nhật số lượng
     renderCartProducts(cart); // Cập nhật lại giao diện
+    getCart();
   }
 }
 
 // Hàm cập nhật số lượng sản phẩme
- async function updateQuantity(index, newValue) {
+async function updateQuantity(index, newValue) {
   const quantity = parseInt(newValue, 10);
   if (quantity >= 1) {
     cart[index].quantity = quantity;
     await updateCartQuantity(cart[index].cartProductId, cart[index].quantity); // Gọi API cập nhật số lượng
     renderCartProducts(cart); // Cập nhật lại giao diện
+    getCart();
   }
 }
 
 // thêm để cóthể chạy được các hàm khác scop
 window.changeQuantity = changeQuantity;
 window.updateQuantity = updateQuantity;
-
 // Hàm gọi API để cập nhật số lượng trong giỏ hàng
 async function updateCartQuantity(cartProductId, quantity) {
   try {
@@ -176,7 +150,7 @@ async function updateCartQuantity(cartProductId, quantity) {
       throw new Error('Có lỗi xảy ra khi cập nhật số lượng.');
     }
     await fetchCartProducts(); // Lấy lại dữ liệu giỏ hàng
-
+    getCart();
     const data = await response.json();
     console.log('Cập nhật số lượng thành công:', data);
   } catch (error) {
@@ -187,54 +161,105 @@ async function updateCartQuantity(cartProductId, quantity) {
 
 // Gán sự kiện cho nút áp dụng mã voucher
 document.querySelector('.apply-btn').addEventListener('click', applyVoucher);
-
 // Hàm áp dụng mã giảm giá
 async function applyVoucher() {
   const voucherCode = document.getElementById('voucher').value.trim(); // Lấy mã voucher từ input
 
   if (!voucherCode) {
-      alert('Vui lòng nhập mã ưu đãi.'); // Kiểm tra xem người dùng đã nhập mã chưa
-      return;
+    alert('Vui lòng nhập mã ưu đãi.'); // Kiểm tra xem người dùng đã nhập mã chưa
+    return;
   }
-
   try {
-      const response = await customFetch(`http://localhost:5241/api/Discount/${voucherCode}`, {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' },
-      });
-
-      if (!response.ok) {
-          alert('Mã ưu đãi không hợp lệ hoặc có lỗi xảy ra.'); // Kiểm tra phản hồi từ API
-          return;
-      }
-
-      const data = await response.json();
-
-      // Kiểm tra dữ liệu trả về
-      if (data.status === 200 && data.response && data.response.percent) {
-          const voucherDiscount = data.response.percent; // Lấy tỷ lệ giảm giá từ API
-          applyDiscount(voucherDiscount, originalTotal); // Giả định bạn đã định nghĩa hàm applyDiscount
-      } else {
-          alert('Mã ưu đãi không hợp lệ.'); // Thông báo nếu mã không hợp lệ
-      }
+    const response = await customFetch(`http://localhost:5241/api/Discount/${voucherCode}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    if (!response.ok) {
+      alert('Mã ưu đãi không hợp lệ hoặc có lỗi xảy ra.'); // Kiểm tra phản hồi từ API
+      return;
+    }
+    const data = await response.json();
+    // Kiểm tra dữ liệu trả về
+    if (data.status === 200 && data.response && data.response.percent) {
+      const voucherDiscount = data.response.percent; // Lấy tỷ lệ giảm giá từ API
+      
+      applyDiscount(voucherDiscount, totalAmount); // Giả định bạn đã định nghĩa hàm applyDiscount
+    } else {
+      alert('Mã ưu đãi không hợp lệ.'); // Thông báo nếu mã không hợp lệ
+    }
   } catch (error) {
-      console.error('Có lỗi xảy ra khi kiểm tra mã ưu đãi:', error); // Ghi log lỗi nếu có
-      alert('Đã xảy ra lỗi, vui lòng thử lại sau.'); // Thông báo cho người dùng
+    console.error('Có lỗi xảy ra khi kiểm tra mã ưu đãi:', error); // Ghi log lỗi nếu có
+    alert('Đã xảy ra lỗi, vui lòng thử lại sau.'); // Thông báo cho người dùng
   }
 }
-
 
 // Hàm áp dụng giảm giá và cập nhật tổng giá trị
-function applyDiscount(discountAmount, originalTotal) {
-  const discountValue = Math.min(discountAmount, originalTotal); // Giảm giá không vượt quá tổng
-  const discountedTotal = originalTotal - discountValue; // Áp dụng giảm giá trực tiếp
+function applyDiscount(discountAmount, totalAmount) {
+  const discountValue = Math.min(discountAmount, totalAmount); // Giảm giá không vượt quá tổng
+  const discountedTotal = totalAmount - discountValue; // Áp dụng giảm giá trực tiếp
   updateTotalDisplay(discountedTotal); // Cập nhật hiển thị tổng mới
-  alert(`Áp dụng mã giảm giá thành công! Bạn đã được giảm ${discountValue.toLocaleString()} VNĐ.`);
+  alert(`Áp dụng mã giảm giá thành công! Bạn đã được giảm ${discountValue.toLocaleString()} ₫.`);
 }
-
-
 // Cập nhật tổng giá trị hiển thị
 function updateTotalDisplay(total) {
-  document.getElementById('total').textContent = `${total.toLocaleString()} VNĐ`;
+  document.getElementById('total').textContent = `${total.toLocaleString()} ₫`;
 }
 
+
+async function getCart() {
+  try {
+    // Lấy token từ Local Storage
+    const token = localStorage.getItem("token");
+    if (!token) {
+      console.error("Token không tồn tại. Vui lòng đăng nhập.");
+      return;
+    }
+
+    // Lấy userId từ token
+    function getUserIdFromToken() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No token found');
+      }
+
+      // Gỉa mã JWT để lấy UserId từ token
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.UserId; // Đảm bảo tên thuộc tính đúng với cấu trúc của token
+    }
+    const userId = getUserIdFromToken();
+    if (!userId) {
+      console.error("Không tìm thấy userId trong token.");
+      return;
+    }
+
+    // Gọi API lấy dữ liệu giỏ hàng
+    const apiUrl = `http://localhost:5241/api/Cart/${userId}`;
+    const response = await fetch(apiUrl, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`API trả về lỗi: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    // Kiểm tra dữ liệu trả về từ API
+    if (data.status === 200) {
+      const { totalPrice, DiscountAmount, shippingFee } = data.results;
+      totalAmount = totalPrice;   //gọi để áp mã giảm giá
+      // Cập nhật giao diện
+      document.getElementById("subtotal").innerText = `${totalPrice.toLocaleString()}₫`;
+      document.getElementById("vat").innerText = `${shippingFee.toLocaleString()}₫`;
+      document.getElementById("total").innerText = `${(totalPrice + shippingFee).toLocaleString()}₫`;
+    } else {
+      console.error("Lỗi từ API: ", data.message);
+    }
+  } catch (error) {
+    console.error("Lỗi khi tải dữ liệu giỏ hàng: ", error.message);
+  }
+}

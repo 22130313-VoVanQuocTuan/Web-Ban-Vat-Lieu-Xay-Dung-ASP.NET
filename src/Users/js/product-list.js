@@ -1,32 +1,40 @@
+// Cấu hình mặc định
 
 import  { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
-const sidebarItems = document.querySelectorAll('.conten .left-sidebar .item');
-let currentProducts = [];
-let currentCategoryId = 1; // ID danh mục mặc định để tải ban đầu
-const itemsPerPage = 12; // Số lượng sản phẩm trên trang
-let currentPage = 1; // Số trang hiện tại
-let totalItems = 3; // Tổng số mục để phân trang
+let currentCategoryId = 0; // 0 nghĩa là lấy toàn bộ
+let currentPage = 1;
+const itemsPerPage = 9; // Số sản phẩm trên mỗi trang
+let totalPages = 1; // Khai báo biến totalPages
 
-// Lấy sản phẩm theo danh mục từ API
-async function fetchProductsByCategory(categoryId, page) {
-    const response = await fetch(`http://localhost:5241/api/Product/category/${categoryId}?page=${page}&size=${itemsPerPage}`);
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
+// Lấy sản phẩm từ API
+async function fetchProducts(page, categoryId = 0) {
+    const apiUrl = categoryId === 0
+        ? `http://localhost:5241/api/Product?page=${page}&size=${itemsPerPage}` // API lấy toàn bộ sản phẩm
+        : `http://localhost:5241/api/Product/category/${categoryId}?page=${page}&size=${itemsPerPage}`; // API theo danh mục
+
+    try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return {
+            products: data.results.products || [], // Danh sách sản phẩm
+            totalItems: data.results.totalCount || 0 // Tổng số mục
+        };
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        throw error;
     }
-    const data = await response.json();
-    return {
-        products: data.results || [], // Truy cập thuộc tính 'results'
-        // Thay thế tổng số mục bằng độ dài của data.results
-        totalItems: data.results.length || 0 // Giả sử tổng số mục là số lượng sản phẩm nhận được
-    };
 }
+
+// Hiển thị sản phẩm
 function displayProducts(products) {
     const productList = document.getElementById("product-list");
-    productList.innerHTML = ""; // Clear current content
+    productList.innerHTML = ""; // Xóa sản phẩm cũ
 
-    // Check if products array is empty
-    if (!Array.isArray(products) || products.length === 0) {
-        productList.innerHTML = "<p>No products available</p>"; // Handle empty product list
+    if (!products || products.length === 0) {
+        productList.innerHTML = "<p>No products available</p>";
         return;
     }
 
@@ -45,70 +53,81 @@ function displayProducts(products) {
         productList.appendChild(productDiv);
     });
 }
+/// Cập nhật thông tin phân trang
+function updatePagination(totalItems) {
+    if (totalItems === 0) {
+        document.getElementById("page-info").innerText = "Không có sản phẩm";
+        document.getElementById("prev").disabled = true;
+        document.getElementById("next").disabled = true;
+        return;
+    }
 
-async function loadProducts() {
+    totalPages = Math.ceil(totalItems / itemsPerPage); // Tính tổng số trang lại mỗi khi cập nhật
+    document.getElementById("page-info").innerText = `Trang ${currentPage} / ${totalPages}`;
+    document.getElementById("prev").disabled = currentPage <= 1;
+    document.getElementById("next").disabled = currentPage >= totalPages;
+}
+
+// Gọi API và hiển thị sản phẩm cho trang hiện tại
+async function loadPage(page) {
     try {
-        const { products, totalItems: fetchedTotalItems } = await fetchProductsByCategory(currentCategoryId, currentPage);
-        currentProducts = products; // Sản phẩm được lấy từ API
-      
-        displayProducts(currentProducts);
-        updatePagination();
+        const { products, totalItems } = await fetchProducts(page, currentCategoryId);
+        displayProducts(products);
+        updatePagination(totalItems); // Cập nhật phân trang với tổng số sản phẩm
     } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error("Error loading page:", error);
     }
 }
 
-function updatePagination() {
-    const totalPages = Math.ceil(totalItems / itemsPerPage); // Tính số trang dựa trên totalItems hiện có
-    const prevButton = document.getElementById("prev");
-    const nextButton = document.getElementById("next");
-    const pageInfo = document.getElementById("page-info");
-
-    // Cập nhật trạng thái của các nút
-    prevButton.disabled = currentPage === 1;
-    nextButton.disabled = currentPage >= totalPages;
-
-    // Cập nhật thông tin trang
-    pageInfo.textContent = `Trang ${currentPage} / ${totalPages}`;
-
-    // Thêm sự kiện cho nút Quay lại
-    prevButton.onclick = () => {
-        if (currentPage > 1) {
-            currentPage--;
-            loadProducts(); // Tải lại sản phẩm cho trang hiện tại
-        }
-    };
-    
-    nextButton.onclick = () => {
-        if (currentPage < totalPages) {
-            currentPage++;
-            loadProducts(); // Tải lại sản phẩm cho trang hiện tại
-        }
-    };
-}
-// Xử lý sự kiện click cho từng mục 
-sidebarItems.forEach(sideItem => {
-    sideItem.addEventListener('click', async () => {
-        if (sideItem.classList.contains('active')) {
-            return; // Không làm gì nếu mục này đã hoạt động
-        }
-
-      // Xóa lớp 'active' khỏi tất cả các mục
-        sidebarItems.forEach(item => item.classList.remove('active'));
-        sideItem.classList.add('active');
-
-       // Đặt ID danh mục hiện tại dựa trên mục được nhấp
-        currentCategoryId = parseInt(sideItem.getAttribute('data-category-id')); // Đảm bảo thuộc tính này được đặt
-        currentPage = 1; // Đặt lại về trang đầu tiên
-        await loadProducts();// Tải sản phẩm cho danh mục đã chọn
-    });
+// Điều khiển nút phân trang
+document.getElementById("prev").addEventListener("click", () => {
+    if (currentPage > 1) {
+        currentPage--;
+        loadPage(currentPage);
+    }
 });
 
-// Initialize by displaying products from the default category
-(async function initializeProducts() {
-    await loadProducts(); // Load products for the initial category ID
-})();
+document.getElementById("next").addEventListener("click", () => {
+    if (currentPage < totalPages) {
+        currentPage++;
+        loadPage(currentPage);
+    }
+});
 
+// Lấy dữ liệu cho trang đầu tiên
+async function loadProducts() {
+    try {
+        const { products, totalItems } = await fetchProducts(currentPage, currentCategoryId);
+        displayProducts(products);
+        updatePagination(totalItems); // Cập nhật phân trang sau khi tải sản phẩm
+    } catch (error) {
+        console.error('Error loading products:', error);
+    }
+}
+
+// Sự kiện khi nhấn vào danh mục
+function attachCategoryClickHandlers() {
+    const sidebarItems = document.querySelectorAll('.conten .left-sidebar .item');
+    sidebarItems.forEach(sideItem => {
+        sideItem.addEventListener('click', async () => {
+            if (sideItem.classList.contains('active')) return;
+
+            sidebarItems.forEach(item => item.classList.remove('active'));
+            sideItem.classList.add('active');
+
+            // Cập nhật danh mục hiện tại
+            currentCategoryId = parseInt(sideItem.getAttribute('data-category-id')) || 0;
+            currentPage = 1; // Reset về trang đầu
+            await loadProducts(); // Gọi API mới
+        });
+    });
+}
+
+// Khởi tạo trang
+(async function initializeProducts() {
+    attachCategoryClickHandlers(); // Gắn sự kiện cho danh mục
+    await loadProducts(); // Tải sản phẩm mặc định (toàn bộ sản phẩm)
+})();
 
 
 // Lấy userId từ token
@@ -122,7 +141,6 @@ function getUserIdFromToken() {
     const payload = JSON.parse(atob(token.split('.')[1]));
     return payload.UserId; // Đảm bảo tên thuộc tính đúng với cấu trúc của token
 }
-
 // Xử lý gọi API cho nút thêm sản phẩm
 document.addEventListener('click', async (event) => {
     if (event.target.classList.contains('add-cart')) {
@@ -149,7 +167,7 @@ document.addEventListener('click', async (event) => {
             } else {
                 const error = await response.json();
                 console.error(error)
-                alert(`Error: ${error.message || 'Lỗi: Không thêm được vào giỏ hàng.'}`);
+                
             }
         } catch (error) {
             console.error('Lỗi: Không thêm được vào giỏ hàng.', error);
