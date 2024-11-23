@@ -27,7 +27,7 @@ body {
 /* -------------------Navigation ------------------- */
 .navigation {
   position: fixed;
-  width: 300px;
+  width: 20%;
   height: 100%;
   background: linear-gradient(to right, #82a0c2, #15283e);
   transition: 0.5s;
@@ -49,7 +49,7 @@ body {
 
 .navigation ul {
   position: absolute;
-  top: 5px;
+  top: 2px;
   right: 2px;
   width: 100%;
 }
@@ -67,7 +67,8 @@ body {
 }
 
 .navigation ul li:nth-child(1) {
-  margin-bottom: 40px;
+  margin-bottom: 2vh;
+  /* Sử dụng chiều cao màn hình làm tham chiếu */
   pointer-events: none;
 }
 
@@ -88,9 +89,9 @@ body {
 .navigation ul li a .icon {
   position: relative;
   display: block;
-  min-width: 60px;
-  height: 60px;
-  line-height: 75px;
+  min-width: 3.5rem;
+  height: auto;
+  line-height: 70px;
   text-align: center;
 }
 
@@ -107,29 +108,31 @@ body {
   text-align: start;
   white-space: nowrap;
 }
+
 .navigation.active {
-  width: 100px;
+  width: 10%;
+  /* Hoặc bất cứ kích thước nào bạn muốn */
 }
 
 .main.active {
   width: calc(100% - 55px);
-  left: 55px;
+  left: 4%;
 }
 
 
-/* ------------------ Main ------------------ */
+ /* ------------------ Main ------------------ */
 .main {
   position: absolute;
   width: calc(100% - 300px);
-  left: 300px;  
-  min-height: 100px;
+  left: 20%;
+  min-height: 100vh;
   background: var(--white);
   transition: 0.5s;
 }
 
 .topbar {
   width: 100%;
-  height: 60px;
+  height: 40%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -139,8 +142,8 @@ body {
 
 .toggle {
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 5%;
+  height: 5%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -150,7 +153,7 @@ body {
 
 .search {
   position: relative;
-  width: 600px;
+  width: 60%;
   margin: 0 10px;
 }
 
@@ -161,9 +164,8 @@ body {
 
 .search label input {
   width: 100%;
-  height: 40px;
+  height: 40%;
   border-radius: 40px;
-  margin-top: 15px;
   padding: 5px 20px;
   padding-left: 35px;
   font-size: 18px;
@@ -173,8 +175,8 @@ body {
 
 .search label ion-icon {
   position: absolute;
-  top: 25px;
-  left: 10px;
+  top: 10%;
+  left: 1.5%;
   font-size: 1.2rem;
 }
 
@@ -196,7 +198,6 @@ body {
   height: 100%;
   object-fit: cover;
 }
-
 
 /* ------------------------List product----------------- */
 .list-products {

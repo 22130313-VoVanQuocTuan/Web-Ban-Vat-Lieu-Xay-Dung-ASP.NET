@@ -191,7 +191,7 @@ p {
 
 /* --------------------section-nav------------------ */
 #section-nav {
-  height: 64px;
+  /* height: 64px; */
   background: linear-gradient(to right, #82a0c2, #15283e);
   display: flex;
   align-items: center;
