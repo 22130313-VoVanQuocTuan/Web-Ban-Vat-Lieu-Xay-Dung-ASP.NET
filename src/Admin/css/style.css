@@ -5,6 +5,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  height: auto;
+  overflow-x: hidden;
+}
 
 :root {
   --blue: #2a2185;
@@ -14,10 +18,7 @@
   --black2: #999;
 }
 
-body {
-  height: auto;
-  overflow-x: hidden;
-}
+
 
 .container {
   position: relative;

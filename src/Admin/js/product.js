@@ -10,15 +10,14 @@ async function fetchProducts(page = 1) {
         const response = await fetch(`http://localhost:5241/api/Product?page=${page}&size=${pageSize}`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                "Content-Type": "application/json"
+                   "Content-Type": "application/json"
             }
         });
 
         if (response.ok) {
             const data = await response.json();
             products.length = 0; // Xóa dữ liệu cũ
-            products.push(...data.results); // Thêm dữ liệu mới
+            products.push(...data.results.products); // Thêm dữ liệu mới
             displayProducts(); // Hiển thị danh sách sản phẩm
         } else {
             console.error("Error: ", response.statusText);
@@ -42,7 +41,7 @@ function displayProducts() {
             <td>${product.productId}</td>
             <td><img src="${imageUrl}" alt="Product Image" width="50" height="50"></td>
             <td>${product.name}</td>
-            <td>${product.price}</td>
+            <td>${product.price.toLocaleString() } VNĐ</td>
             <td>${product.stockQuantity}</td>
             <td>${new Date(product.createdAt).toLocaleDateString()}</td>
             <td>${product.status}</td>
