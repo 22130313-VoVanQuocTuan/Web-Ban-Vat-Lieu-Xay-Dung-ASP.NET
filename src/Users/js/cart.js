@@ -250,12 +250,12 @@ async function getCart() {
 
     // Kiểm tra dữ liệu trả về từ API
     if (data.status === 200) {
-      const { totalPrice, DiscountAmount, shippingFee } = data.results;
-      totalAmount = totalPrice;   //gọi để áp mã giảm giá
+      const {price, totalPrice, DiscountAmount, shippingFee } = data.results;
+      
       // Cập nhật giao diện
-      document.getElementById("subtotal").innerText = `${totalPrice.toLocaleString()}₫`;
+      document.getElementById("subtotal").innerText = `${price.toLocaleString()}₫`;
       document.getElementById("vat").innerText = `${shippingFee.toLocaleString()}₫`;
-      document.getElementById("total").innerText = `${(totalPrice + shippingFee).toLocaleString()}₫`;
+      document.getElementById("total").innerText = `${totalPrice.toLocaleString()}₫`;
     } else {
       console.error("Lỗi từ API: ", data.message);
     }
