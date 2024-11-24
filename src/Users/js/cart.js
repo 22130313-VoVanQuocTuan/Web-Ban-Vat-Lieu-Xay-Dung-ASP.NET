@@ -158,19 +158,29 @@ async function updateCartQuantity(cartProductId, quantity) {
   }
 }
 
+    // Lấy userId từ token
+    function getUserIdFromToken() {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No token found');
+      }
 
+      // Gỉa mã JWT để lấy UserId từ token
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.UserId; // Đảm bảo tên thuộc tính đúng với cấu trúc của token
+    }
 // Gán sự kiện cho nút áp dụng mã voucher
 document.querySelector('.apply-btn').addEventListener('click', applyVoucher);
 // Hàm áp dụng mã giảm giá
 async function applyVoucher() {
   const voucherCode = document.getElementById('voucher').value.trim(); // Lấy mã voucher từ input
-
+  const UserId = getUserIdFromToken();
   if (!voucherCode) {
     alert('Vui lòng nhập mã ưu đãi.'); // Kiểm tra xem người dùng đã nhập mã chưa
     return;
   }
   try {
-    const response = await customFetch(`http://localhost:5241/api/Discount/${voucherCode}`, {
+    const response = await customFetch(`http://localhost:5241/api/Discount/${voucherCode}/${UserId}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
@@ -180,11 +190,11 @@ async function applyVoucher() {
     }
     const data = await response.json();
     // Kiểm tra dữ liệu trả về
-    if (data.status === 200 && data.response && data.response.percent) {
-      const voucherDiscount = data.response.percent; // Lấy tỷ lệ giảm giá từ API
-      
-      applyDiscount(voucherDiscount, totalAmount); // Giả định bạn đã định nghĩa hàm applyDiscount
-    } else {
+    if (data.status === 200) {
+      alert('bạn được giảm:' + data.response.percent.toLocaleString() +'VNĐ')
+      await fetchCartProducts(); // Lấy lại dữ liệu giỏ hàng
+          getCart();
+     } else {
       alert('Mã ưu đãi không hợp lệ.'); // Thông báo nếu mã không hợp lệ
     }
   } catch (error) {
@@ -215,17 +225,7 @@ async function getCart() {
       return;
     }
 
-    // Lấy userId từ token
-    function getUserIdFromToken() {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('No token found');
-      }
 
-      // Gỉa mã JWT để lấy UserId từ token
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.UserId; // Đảm bảo tên thuộc tính đúng với cấu trúc của token
-    }
     const userId = getUserIdFromToken();
     if (!userId) {
       console.error("Không tìm thấy userId trong token.");
@@ -250,12 +250,12 @@ async function getCart() {
 
     // Kiểm tra dữ liệu trả về từ API
     if (data.status === 200) {
-      const { totalPrice, DiscountAmount, shippingFee } = data.results;
-      totalAmount = totalPrice;   //gọi để áp mã giảm giá
+      const {price, totalPrice, DiscountAmount, shippingFee } = data.results;
+      
       // Cập nhật giao diện
-      document.getElementById("subtotal").innerText = `${totalPrice.toLocaleString()}₫`;
+      document.getElementById("subtotal").innerText = `${price.toLocaleString()}₫`;
       document.getElementById("vat").innerText = `${shippingFee.toLocaleString()}₫`;
-      document.getElementById("total").innerText = `${(totalPrice + shippingFee).toLocaleString()}₫`;
+      document.getElementById("total").innerText = `${totalPrice.toLocaleString()}₫`;
     } else {
       console.error("Lỗi từ API: ", data.message);
     }

@@ -12,7 +12,16 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="../css/home.css">
 
-
+<style>
+     table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    td {
+        padding: 10px;
+        text-align: center;
+    }
+</style>
 <body>
 
     <div id="page" class="page">
@@ -133,10 +142,7 @@
                         </div>
         
                         <div class="form-group2">
-                            <div>
-                                <div class="delivery">Vận chuyển</div>
-                                <div class="input-infor-delivery" id="delivery-info">Vui lòng chọn tỉnh thành</div>
-                            </div>
+                        
                             <div>
                                 <div class="pay">Thanh toán</div>
                                 <label for="cod-payment">
@@ -150,16 +156,16 @@
                     </div>
         
                     <div class="box2">
-                        <div class="order">Đơn hàng</div>
-                        <div class="three-items">
-                            <div class="immage-product"><img src="#" alt="Ảnh"></div>
-                            <div class="product-name">Tên sản phẩm</div>
-                            <div class="cost">Giá tiền</div>
-                        </div>
-        
-                        <div class="totals">
-                            <div class="total">Tổng cộng</div>
-                            <div class="total-cost">Giá tiền</div>
+                  
+                       <div class="order">Đơn hàng của bạn</div>
+                            <div class="orders" >
+                            <P>Số lượng:</P>
+                            <p class="total-cost">Giá tiền:</p>
+                            <p class="shipping-fee">Phí vận chuyển:</p>
+                            <p class="discount">Giảm giá:</p>
+                            <p class="totals">Tổng cộng:</p>
+                            
+                            
                         </div>
         
                         <div class="sub">
