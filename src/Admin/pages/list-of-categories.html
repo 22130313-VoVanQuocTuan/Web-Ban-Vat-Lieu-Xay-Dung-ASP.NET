@@ -8,9 +8,72 @@
     <title>Bảng điều khiển Quản trị viên </title>
     <title>Bảng điều khiển Quản trị viên </title>
     <!------------------ Kiểu dáng ------------------>
-    <link rel="stylesheet" href="../css/list-of-categories.css">
+    <link rel="stylesheet" href="../css/product.css">
+    <script src="/src/assets/ckeditor/ckeditor.js"></script>
+    <script src="../css/style.css"></script>
+<style>
 
-    <style></style>
+.two-item{
+    display: flex;
+  }
+
+  table{
+    float: left;
+    width: 85%;
+  }
+
+  .two-btn{
+    float: right;
+    width: 15%;
+    display: flex;
+  }
+
+  .two-btn button{
+    margin-left: 18px;
+    width: 113px;
+  }
+
+  .btn-view a{
+    padding: 10px;
+    color: white;
+  }
+
+  .btn-view , .btn-delete {
+    background: #999
+  }
+
+  .btn-view{
+border-radius: 5px;
+  }
+
+
+  .btn-view:hover , .btn-delete:hover{
+    background: linear-gradient(to right, #82a0c2, #15283e);
+  }
+
+.main-block{
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.block{
+    border-top: 1px solid black;
+    height: 100px;
+    width: 100%;
+
+    
+}
+
+.list-products-content-button{
+    background-color: white;
+}
+</style>
+   
+
+       
+ 
+
 </head>
 
 <body>
@@ -19,7 +82,7 @@
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
+                    <a href="index.html">
                         <span class="icon">
                             <img src="../imgs/logo.png" alt="">
                         </span>
@@ -37,7 +100,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/src/Admin/pages/user.html">
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
                         </span>
@@ -55,7 +118,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="voucher.html">
                         <span class="icon">
                             <ion-icon name="help-outline"></ion-icon>
                         </span>
@@ -64,7 +127,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/src/Admin/pages/list-of-categories.html">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -82,7 +145,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="javascript:void(0);" id="logoutButton">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
@@ -112,25 +175,20 @@
                 </div>
             </div>
 
-
-
             <div class="list-products">
                 <div class="list-products-title">
-                    <h2>Danh sách danh mục</h2>
+                    <h2>Danh sách sản phẩm</h2>
                 </div>
                 <div class="list-products-content">
-                    <div id="list-products-content-button" class="list-products-content-button">
-                        <a href="#" class="add-product-btn" onclick="openAddProductModal()">Thêm danh mục</a>
+                    <div class="list-products-content-button" style="height: 68px; ">
+                        <a href="#" class="add-product-btn" onclick="openAddProductModal()">Thêm sản phẩm</a>
                     </div>
-                </div>
-            </div>
 
 
 
 
-
-            <div class="two-item">  
-                <!-- Table products -->
+                     <div class="two-item">  
+              
                 <table>
                     <thead>
                         <tr>
@@ -141,34 +199,33 @@
                         </tr>
                     </thead>
                     <tbody id="productList">
-                        <!-- Các sản phẩm sẽ được thêm vào đây -->
+                     
                     </tbody>
                 </table>
 
 
 
 
-                <!-- mẫu điền thêm sản phẩm  -->
+               
                 <div id="addProductModal" class="modal">
                     <div class="modal-content">
                         <span class="close-btn" onclick="closeAddProductModal()">&times;</span>
-                        <h3>Thêm sản phẩm mới</h3>
+                        <h3>Thêm danh mục</h3>
                         <form id="addProductForm">
-                            <label for="productCode">Mã sản phẩm:</label>
-                            <input type="text" id="productCode" required>
-
+                           
                             <label for="productName">Tên danh mục:</label>
                             <input type="text" id="productName" required>
 
                             <label for="productPrice">Mô tả danh mục:</label>
                             <input type="text" id="productPrice" required>        
 
-                            <button type="button" onclick="addProduct()">Lưu</button>
+                            <button type="button" onclick="addProduct()">Thêm</button>
                             <button type="button" class="exit-btn" onclick="closeAddProductModal()">Thoát</button>
                         </form>
                     </div>
                 </div>
-                <!--Hiện mô tả sản phẩm -->
+           
+
                 <div id="viewDescriptionModal" class="modal">
                     <div class="modal-content">
                         <span class="close-btn" onclick="closeViewDescriptionModal()">&times;</span>
@@ -181,10 +238,10 @@
 
 
                 <div class="two-btn">
-                    <button class="btn-view"> 
-                        <a href="/src/Admin/pages/view-list-of-categories.html" style="text-decoration: none;">Xem</a>
-                    </button>
-                    <button class="btn-delete">Xóa</button>
+                    
+                        <a href="/src/Admin/pages/view-list-of-categories.html" style="border-radius: 5px; text-decoration: none;  color: white ;  background-color: #999 ; padding: 15px; margin-left: 20px;"  ;  class="btn-view">Xem</a>
+                    
+                    <button class="btn-delete" style=" background-color: #999; padding: 10px; width: 55px;">Xóa</button>
                 </div>
             </div> 
             
@@ -193,24 +250,22 @@
                 <div class="block2 block">Hiển thị ở đây</div>
                 <div class="block3 block">Hiển thị ở đây</div>
             </div>
-
-
-
-
-
-
-
-
-
-
-
+                
+        
+        </div>
+            </div>
         </div>
     </div>
 
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-    <script src="../js/product.js"></script>
-    <script src="../js/main.js"></script>
+    <script type="module" src="../js/product.js" defer></script>
+    <script type="module" src="../js/main.js"></script>
+   
 
+
+  
 </body>
 
 </html>
+
+

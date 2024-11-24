@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bảng điều khiển Quản trị viên </title>
+    <title>Bảng điều khiển Quản trị viên </title>
     <!------------------ Kiểu dáng ------------------>
     <link rel="stylesheet" href="../css/product.css">
 </head>
@@ -34,7 +35,7 @@
                 </li>
 
                 <li>
-                    <a href="/src/Admin/pages/user.html">
+                    <a href="#">
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
                         </span>
@@ -61,7 +62,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="/src/Admin/pages/list-of-categories.html">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
@@ -111,33 +112,46 @@
 
             <div class="list-products">
                 <div class="list-products-title">
-                    <h2>Danh sách sản phẩm của danh mục</h2>
+                    <h2>Danh sách khách hàng</h2>
                 </div>
                 <div class="list-products-content">
-                   
+                    <div class="list-products-content-button">
+                        <a href="#" class="add-product-btn" onclick="confirmDelete()">Xóa</a>
+                    </div>
                     <!-- Table products -->
                     <table>
                         <thead>
                             <tr>
-                                <th>Hình ảnh</th>
-                                <th>Mã sản phẩm</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Giá</th>
-                                <th>Trạng thái</th>
-                                <th>Ngày tạo</th>
-                              
+                                <th>Họ tên</th>
+                                <th>Tên tài khoản</th>
+                                <th>Email</th>
+                                <th>Địa chỉ</th>
+                                <th>Số điện thoại</th>
+                             
                             </tr>
                         </thead>
                         <tbody id="productList">
                             <!-- Các sản phẩm sẽ được thêm vào đây -->
                         </tbody>
                     </table>
+                 
                    
                 </div>
             </div>
         </div>
     </div>
 
+    <script>function confirmDelete() {
+        const userConfirmed = confirm("Bạn có chắc chắn muốn xóa không?");
+        if (userConfirmed) {
+            // Thực hiện hành động xóa tại đây
+            console.log("Đã xóa!");
+        } else {
+            console.log("Hủy xóa!");
+        }
+    }
+    </script>
+          
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
     <script src="../js/product.js"></script>
     <script src="../js/main.js"></script>
