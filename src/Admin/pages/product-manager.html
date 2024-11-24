@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quản Lý Sản Phẩm Giảm Giá</title>
+  <link rel="stylesheet" href="../css/product-manager.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Quản Lý Sản Phẩm Giảm Giá</h1>
+      <button id="btn-add" class="btn btn-success" onclick="showAddForm()">Thêm Sản Phẩm</button>
+    </header>
+    
+    <table id="discount-table" class="table">
+      <thead>
+        <tr>
+          <th>Mã Sản Phẩm</th>
+          <th>Giá Trị</th>
+          <th>Ngày Bắt Đầu</th>
+          <th>Ngày Kết Thúc</th>
+          <th>Tên Sản Phẩm</th>
+          <th>Hành Động</th>
+        </tr>
+      </thead>
+      <tbody id="discount-list">
+        <!-- Sản phẩm sẽ được hiển thị tại đây -->
+      </tbody>
+    </table>
+
+    <!-- Form thêm sản phẩm -->
+    <div id="add-form" class="form-container" style="display: none;">
+      <div class="form-content">
+        <h3>Thêm Sản Phẩm Giảm Giá</h3>
+        <form id="add-discount-form">
+          <label for="product-id">ID Sản Phẩm:</label>
+          <input type="text" id="product-id" name="product-id" required><br>
+
+          <label for="discount-value">Giá Trị:</label>
+          <input type="number" id="discount-value" name="discount-value" required><br>
+
+          <label for="start-date">Ngày Bắt Đầu:</label>
+          <input type="date" id="start-date" name="start-date" required><br>
+
+          <label for="end-date">Ngày Kết Thúc:</label>
+          <input type="date" id="end-date" name="end-date" required><br>
+
+          <label for="product-name">Tên Sản Phẩm:</label>
+          <input type="text" id="product-name" name="product-name" required><br>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+            <button type="button" class="btn btn-danger" onclick="closeForm()">Thoát</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Form cập nhật sản phẩm -->
+    <div id="update-form" class="form-container" style="display: none;">
+      <div class="form-content">
+        <h3>Cập Nhật Sản Phẩm Giảm Giá</h3>
+        <form id="update-discount-form">
+          <label for="update-product-id">ID Sản Phẩm:</label>
+          <input type="text" id="update-product-id" name="update-product-id" required><br>
+
+          <label for="update-discount-value">Giá Trị:</label>
+          <input type="number" id="update-discount-value" name="update-discount-value" required><br>
+
+          <label for="update-start-date">Ngày Bắt Đầu:</label>
+          <input type="date" id="update-start-date" name="update-start-date" required><br>
+
+          <label for="update-end-date">Ngày Kết Thúc:</label>
+          <input type="date" id="update-end-date" name="update-end-date" required><br>
+
+          <label for="update-product-name">Tên Sản Phẩm:</label>
+          <input type="text" id="update-product-name" name="update-product-name" required><br>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Lưu</button>
+            <button type="button" class="btn btn-danger" onclick="closeUpdateForm()">Thoát</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/product-manager.js"></script>
+</body>
+</html>
