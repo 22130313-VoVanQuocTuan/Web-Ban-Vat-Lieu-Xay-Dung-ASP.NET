@@ -149,8 +149,10 @@
         </div>
 
         <!-- Phần đánh giá khách hàng -->
-        <section class="reviews">
-          <h2>Danh Sách Đánh Giá</h2>
+        <div class="list-reviews">
+          <div class="list-reviews-title">
+            <h2>Danh Sách Đánh Giá</h2>
+          </div>
           <table>
             <thead>
               <tr>
@@ -160,22 +162,14 @@
                 <th>Thao Tác</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="reviewList">
               <!-- Nội dung động sẽ được thêm tại đây -->
             </tbody>
           </table>
-          <!-- Modal xác nhận xóa -->
-          <div id="delete-confirmation" class="modal">
-            <div class="modal-content">
-              <p>Bạn có chắc chắn muốn xóa không?</p>
-              <button class="confirm-btn">Đồng Ý</button>
-              <button class="cancel-btn">Thoát</button>
-            </div>
-          </div>
-        </section>
         </div>
       </div>
     </div>
+
     <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
     <script type="module" src="../js/main.js"></script>
     <script type="module" src="../js/reviews.js"></script>
