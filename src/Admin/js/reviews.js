@@ -1,93 +1,88 @@
 // Mảng chứa dữ liệu đánh giá mẫu
-const reviews = [
-  {
-    name: "Nguyễn Văn A",
-    content: "Sản phẩm rất tốt, tôi rất hài lòng!",
-    date: "2024-11-01",
-  },
-  {
-    name: "Trần Thị B",
-    content: "Giá cả hợp lý, giao hàng nhanh chóng.",
-    date: "2024-11-10",
-  },
-  {
-    name: "Phạm Văn C",
-    content: "Sản phẩm không giống như mô tả, cần cải thiện.",
-    date: "2024-11-15",
-  },
-  {
-    name: "Lê Thị D",
-    content: "Chất lượng sản phẩm ổn, dịch vụ khách hàng rất nhiệt tình.",
-    date: "2024-11-18",
-  },
-  {
-    name: "Võ Văn E",
-    content: "Rất thất vọng vì giao hàng chậm hơn dự kiến.",
-    date: "2024-11-20",
-  },
-];
+const reviews = [];
+let currentReview = 1;
+const pageSize = 10;
 
-// Lấy các phần tử DOM cần thiết
-const reviewsTableBody = document.querySelector("table tbody");
-const deleteModal = document.getElementById("delete-confirmation");
-const confirmBtn = deleteModal.querySelector(".confirm-btn");
-const cancelBtn = deleteModal.querySelector(".cancel-btn");
+import { customFetch } from "/src/apiService.js"; // Đảm bảo đường dẫn chính xác
 
-// Biến tạm để lưu index của đánh giá cần xóa
-let reviewToDeleteIndex = null;
+// Hàm lấy danh sách sản phẩm với phân trang
+async function fetchReviews(page = 1) {
+  try {
+    const response = await fetch(
+      `http://localhost:5241/api/Review?page=${page}&size=${pageSize}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      reviews.length = 0; // Xóa dữ liệu cũ
+      reviews.push(...data.results.reviews); // Thêm dữ liệu mới
+      displayReviews(); // Hiển thị danh sách sản phẩm
+    } else {
+      console.error("Error: ", response.statusText);
+      alert("Failed to fetch reviews.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("An error occurred while fetching reviews.");
+  }
+}
 
 // Hàm hiển thị danh sách đánh giá
-function renderReviews() {
-  // Xóa sạch nội dung cũ trong bảng
-  reviewsTableBody.innerHTML = "";
+function displayReviews() {
+  const reviewList = document.getElementById("reviewList");
+  reviewList.innerHTML = ""; // Xóa dữ liệu cũ
 
   // Lặp qua danh sách đánh giá và thêm vào bảng
-  reviews.forEach((review, index) => {
+  reviews.forEach((review) => {
     const row = document.createElement("tr");
     row.innerHTML = `
         <td>${review.name}</td>
         <td>${review.content}</td>
         <td>${review.date}</td>
-        <td>
-          <button class="delete-btn" data-index="${index}">Xóa</button>
+        <td class="bt">
+          <button class="delete-review-btn" data-review-id="${review.reviewId}">Xóa</button>
         </td>
       `;
-    reviewsTableBody.appendChild(row);
+    reviewList.appendChild(row);
   });
 
-  // Gán sự kiện xóa cho các nút "Xóa"
-  document.querySelectorAll(".delete-btn").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      const index = parseInt(e.target.dataset.index);
-      openDeleteModal(index);
-    });
+  attachEventListeners();
+}
+
+// Gán sự kiện cho nút xóa
+
+function attachEventListeners() {
+  document.querySelectorAll(".delete-review-btn").forEach((button) => {
+    button.addEventListener("click", deleteReview);
   });
 }
 
-// Hàm mở modal xác nhận xóa
-function openDeleteModal(index) {
-  reviewToDeleteIndex = index; // Lưu index của đánh giá cần xóa
-  deleteModal.style.display = "block"; // Hiển thị modal
-}
+// Hàm xóa đánh giá
+async function deleteReview(event) {
+  const reviewId = event.target.getAttribute("data-review-id");
+  try {
+    const response = await customFetch(
+      "http://localhost:5241/api/Review/${reviewId}",
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-// Hàm đóng modal xác nhận xóa
-function closeDeleteModal() {
-  deleteModal.style.display = "none"; // Ẩn modal
-  reviewToDeleteIndex = null; // Xóa dữ liệu tạm
-}
-
-// Hàm xử lý xóa đánh giá
-function deleteReview() {
-  if (reviewToDeleteIndex !== null) {
-    reviews.splice(reviewToDeleteIndex, 1); // Xóa đánh giá khỏi danh sách
-    renderReviews(); // Cập nhật lại bảng
-    closeDeleteModal(); // Đóng modal
+    if (response.ok) {
+      fetchReviews(currentReview);
+    } else {
+      console.error("Error deleting review:", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error:", error);
   }
 }
-
-// Gán sự kiện cho các nút trong modal
-confirmBtn.addEventListener("click", deleteReview); // Đồng ý xóa
-cancelBtn.addEventListener("click", closeDeleteModal); // Thoát modal
-
-// Hiển thị danh sách đánh giá ban đầu
-renderReviews();
