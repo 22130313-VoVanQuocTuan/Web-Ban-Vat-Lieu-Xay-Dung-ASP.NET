@@ -1,21 +1,9 @@
-
-
-.content{
+.content {
     height: 650px;
 
 }
 
-.index{
-    display: flex;
-}
-
-.infor{
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-
-.box1{
+.box1 {
     float: left;
     width: 60%;
     display: flex;
@@ -24,12 +12,12 @@
 
 
 
-.form-group1{
+.form-group1 {
     margin-left: 80px;
 }
 
 
-.back{
+.back {
     height: 40px;
     width: 335px;
     margin-bottom: 15px;
@@ -41,27 +29,11 @@
 
 
 
-.district{
-    height: 45px;
-    width: 354px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border-color: #cccccc;
-    padding-left: 10px;
-    color: #999999;
-}
 
-.ward{
-    height: 45px;
-    width: 354px;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border-color: #cccccc;
-    padding-left: 10px;
-    color: #999999;
-}
 
-.note{
+
+
+.note {
     height: 60px;
     width: 339px;
     border-radius: 5px;
@@ -70,24 +42,17 @@
     color: #999999;
 }
 
-.form-group2{
+.form-group2 {
     margin-left: 30px;
 }
 
-.delivery{
+.delivery {
     font-weight: bold;
 }
 
-.input-infor-delivery{
-    padding: 15px 110px 15px 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 14px;
-    color: rgba(81, 76, 76, 0.91);
-    font-size: 16px;
-}
 
-.pay{
+
+.pay {
     margin: 30px 0 15px 0;
 }
 
@@ -119,14 +84,17 @@ input[type="radio"]:focus {
     outline: 2px solid #0056b3;
 }
 
-.box2{
-    float:right;
+.box2 {
+    margin-top: 50px;
+    float: right;
     width: 35%;
     background-color: #fafafa;
-    height: 650px;
+    height: 529px;
+    border: 1px solid black;
+    border-radius: 20px;
 }
 
-.order{
+.order {
     margin: 20px 0 20px 20px;
     padding-bottom: 20px;
     border-bottom: 2px solid #999999;
@@ -134,92 +102,18 @@ input[type="radio"]:focus {
     font-weight: bold;
 }
 
-.three-items{
-    display: flex;
-    padding: 20px 0 20px 0;
-    border-bottom: 2px dashed #999999;
-}
-
-.immage-product{
-    margin: 0 20px 20px 20px;
-}
-
-.product-name{
-    font-size: 16px;
-    margin: 0 180px 20px 0;
-}
-
-.cost{
-    font-size: 16px;
-}
 
 
-.two-items1{
-    height: 80px;
-    border-bottom: 2px dashed #999999;
-}
-
-.sale{
-    width: 100%;                  /* Chiều rộng toàn bộ phần tử chứa */
-    max-width: 300px;             /* Chiều rộng tối đa */
-    padding: 10px;                /* Khoảng cách bên trong */
-    font-size: 16px;              /* Kích thước chữ */
-    border: 2px solid #999999;   /* Viền nét đứt màu xanh nhạt */
-    border-radius: 8px;           /* Bo tròn góc */
-    outline: none;                /* Xóa viền mặc định khi chọn */
-    transition: border-color 0.3s ease; /* Hiệu ứng khi thay đổi viền */
-    margin: 20px 0 20px 20px;
-}
-
-.apply-button{
-    padding: 14px 20px 12px 20px;
-    border: none;
-    margin-left: 20px ;
-    background-color: #84b0d5;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-.apply-button:hover{
-    background-color: #5c9bb0;
-}
-
-.two-items2{
-    padding-bottom: 20px ;
-    border-bottom: 2px dashed #999999;
-}
-
-.nd1{
-    display: flex;
-}
-
-.nd2{
-    display: flex;
-}
-
-.temp{
-    margin: 20px 200px 0 20px;
-    font-size: 16px;
-}
-
-.cost1{
-    font-size: 16px;
-    margin: 20px 0 0 88px;
-}
-
-.cost2{
-    font-size: 16px;
-    margin: 20px 0 0 42px;
-}
 
 
-.sub{
+
+
+.sub {
     display: flex;
     height: 70px;
 }
 
-.hrep{
+.hrep {
     margin: 35px 190px 0 20px;
     height: 30px;
     text-decoration: none;
@@ -233,7 +127,7 @@ input[type="radio"]:focus {
     padding: 14px 20px 12px 20px;
     border: none;
     margin: 20px 0 0 0;
-    background-color: #84b0d5;
+    background-color: #0b1aa3;
     border-radius: 5px;
     color: white;
     cursor: pointer;
@@ -241,9 +135,66 @@ input[type="radio"]:focus {
 }
 
 .submit-btn:hover {
-    background-color: #5c9bb0;
+    background-color: #6ac627;
 }
+
 .orders {
-line-height: 30px;
-border-bottom: 1px solid #000000;
+    line-height: 30px;
+    border-bottom: 1px solid #000000;
+}
+
+
+dialog {
+    position: relative;
+    width: 500px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 1.2);
+    
+}
+p{
+    line-height: 30px;
+}
+.dialog-overlay table {
+    border-collapse: collapse; /* Loại bỏ khoảng cách giữa các ô */
+    width: 100%; /* Đặt bảng chiếm toàn bộ chiều rộng */
+}
+
+.dialog-overlay th,
+.dialog-overlay td {
+    border: none; /* Loại bỏ đường kẻ */
+    padding: 10px; /* Thêm khoảng cách bên trong ô */
+    text-align: left; /* Căn trái nội dung */
+}
+
+.dialog-overlay th {
+    font-weight: bold; /* Làm nổi bật tiêu đề cột */
+    background-color: #f4f4f4; /* Màu nền nhẹ cho hàng tiêu đề */
+}
+
+.dialog-overlay {
+    background: #ffffff;
+}
+
+
+.dialog-overlay .but {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.dialog-overlay .but button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 16px;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007BFF;
+    transition: background-color 0.3s;
+}
+
+.dialog-overlay .but button:hover {
+    background-color: #0056b3;
 }

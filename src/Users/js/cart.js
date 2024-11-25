@@ -203,17 +203,6 @@ async function applyVoucher() {
   }
 }
 
-// Hàm áp dụng giảm giá và cập nhật tổng giá trị
-function applyDiscount(discountAmount, totalAmount) {
-  const discountValue = Math.min(discountAmount, totalAmount); // Giảm giá không vượt quá tổng
-  const discountedTotal = totalAmount - discountValue; // Áp dụng giảm giá trực tiếp
-  updateTotalDisplay(discountedTotal); // Cập nhật hiển thị tổng mới
-  alert(`Áp dụng mã giảm giá thành công! Bạn đã được giảm ${discountValue.toLocaleString()} ₫.`);
-}
-// Cập nhật tổng giá trị hiển thị
-function updateTotalDisplay(total) {
-  document.getElementById('total').textContent = `${total.toLocaleString()} ₫`;
-}
 
 
 async function getCart() {
