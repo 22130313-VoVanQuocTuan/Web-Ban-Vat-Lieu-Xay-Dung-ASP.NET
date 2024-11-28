@@ -19,9 +19,14 @@
                     <p>Chào mừng bạn đến với website của chúng tôi !</p>
                 </div>
                 <div class="top-right">
-                    <a href="../pages/account/login-signup.html"><span><i class="fa fa-fw fa-user"></i> Đăng
+                    <span id="user-greeting" style="display: none; color: #ffffff;">Xin chào, <span
+                            id="username"></span>!</span>
+                    <a href="account.html" class="account-link" id="signup-link" style="display: none;">
+                        <i class="fas fa-user-circle"></i> Tài khoản
+                    </a>
+                    <a href="/src/Users/pages/account/login-signup.html" id="login-link"><span><i class="fa fa-fw fa-user"></i> Đăng
                             Nhập</span></a>
-                    <a href="../pages/account/login-signup.html"><span>Đăng Kí</span></a>
+                    <a href="/src/Users/pages/account/login-signup.html" id="logout-link" style="display: none;"><span>Đăng Xuất</span></a>
                 </div>
             </div>
         </div>
@@ -47,7 +52,12 @@
                         </div>
                     </div>
                     <div class="cart">
-                        <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+                        <div class="cart-wrapper">
+                            <a id="carts" href="#">
+                                <i class="fas fa-shopping-cart" style="color: #15283e;"></i>
+                            </a>
+                            <span class="cart-count" id="cart-count" style="display: none;">0</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -173,5 +183,6 @@
     <script type="module" src="../js/home.js"></script>
     <script type="module" src="../js/product-list.js"></script>
     <script src="../js/sale.js">  </script>
+    <script type="module" src="../js/script.js" ></script>
 </body>
 </html>

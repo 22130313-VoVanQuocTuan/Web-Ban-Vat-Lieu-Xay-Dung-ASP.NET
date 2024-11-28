@@ -99,8 +99,9 @@ button:hover {
    width: 70%;
    display: flex;
    height: auto;
-   flex-direction: column;
+   flex-wrap: wrap;
    align-items: center;
+   align-content: space-between;
 }
 
 .conten .right .row,
@@ -114,7 +115,7 @@ button:hover {
 }
 
 .conten .right .name-cart {
-   width: 220px;
+   width: 155px;
    padding: 15px;
    transition: box-shadow 0.3s ease;
    background-color: #fafafa;
@@ -133,11 +134,11 @@ button:hover {
 
 .conten .right .row img {
    width: 100%;
-   max-width: 180px;
+   max-width: 160px;
    border-radius: 10px;
-   margin-left: 20px;
+   /* margin-left: 20px; */
    transition: transform 0.3s ease;
-   height: 200px;
+   height: 141px;
 }
 
 .conten .right .name-cart img:hover {
@@ -153,6 +154,7 @@ button:hover {
 .conten .right .name-cart p {
    font-weight: 600;
    margin-bottom: 5px;
+   font-size: 15px;
 }
 
 /* Buttons */
@@ -163,7 +165,7 @@ button:hover {
    color: #010000;
    display: inline-block;
    margin: 5px 10px;
-   margin-left: 39px;
+   margin-left: 5px;
    transition: transform 0.3s ease;
 }
 
@@ -182,6 +184,7 @@ button:hover {
    display: flex;
    justify-content: center;
    padding: 15px;
+   margin-left: 195px;
 }
 
 .conten .right .pagination button {

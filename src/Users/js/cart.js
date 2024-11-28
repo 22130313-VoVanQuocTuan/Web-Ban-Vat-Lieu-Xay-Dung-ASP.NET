@@ -40,7 +40,7 @@ function renderCartProducts(products) {
   const cartContainer = document.getElementById('cart-items-container');
   cartContainer.innerHTML = ''; // Xóa nội dung cũ
 
-  const subtotal = products.priceTotal; // Lấy tổng tiền từ response
+
 
   products.forEach((product, index) => {
     const imageUrl = product.urlImage.startsWith('http') ? product.urlImage : `http://localhost:5241/${product.urlImage}`;

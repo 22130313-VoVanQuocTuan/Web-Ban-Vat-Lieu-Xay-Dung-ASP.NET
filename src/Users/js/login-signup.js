@@ -1,8 +1,14 @@
+import { getUserName } from "./UserId.js";
+
+
 const container = document.getElementById('container');
 const registerBtn = document.getElementById('register');
 const loginBtn = document.getElementById('login');
 const home = document.getElementById('home');
 const HOME = document.getElementById('HOME');
+
+
+
 
 
 registerBtn.addEventListener('click', () => {
@@ -77,14 +83,7 @@ registerForm.addEventListener('submit', async (event) => {
 });
 
     
-// Hàm để giải mã JWT
-function parseJwt(token) {
-    const base64Url = token.split('.')[1];
-    const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    const jsonPayload = decodeURIComponent(escape(atob(base64)));
 
-    return JSON.parse(jsonPayload);
-}
 
 // Xử lý đăng nhập
 loginForm.addEventListener('submit', async (event) => {
@@ -117,7 +116,7 @@ loginForm.addEventListener('submit', async (event) => {
             if(data.result.role === "ADMIN"){
                 window.location.href = '/src/Admin/pages/index.html';
             }else{
-            
+        
     
                 window.location.href = '../home.html'; // Chuyển hướng đến trang chính
             }

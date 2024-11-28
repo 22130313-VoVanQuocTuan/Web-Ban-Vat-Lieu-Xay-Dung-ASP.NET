@@ -28,7 +28,7 @@ p {
 
 #section-header1 .top-left {
   float: left;
-  margin: 18px 12px 0 200px;
+  margin: 18px 12px 0 145px;
 }
 
 #section-header1 .top-left p {
@@ -39,7 +39,7 @@ p {
 #section-header1 .top-right {
   float: right;
   margin-top: 18px;
-  margin-right: 200px;
+  margin-right: 145px;
 }
 
 #section-header1 .top-right a {
@@ -67,7 +67,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 215px;
+  padding: 12px 150px;
   background-color: white;
   border-bottom: 1px solid #ccc;
 }
@@ -191,7 +191,7 @@ p {
 
 /* --------------------section-nav------------------ */
 #section-nav {
-  /* height: 64px; */
+  height: 40px; 
   background: linear-gradient(to right, #82a0c2, #15283e);
   display: flex;
   align-items: center;
@@ -208,7 +208,7 @@ p {
 }
 
 #section-nav ul.navbar-center li.propClone {
-  padding: 22px 20px;
+  padding: 10px 20px;
   color: #f2f2f2;
   cursor: pointer;
   margin: 0 10px;
@@ -246,7 +246,7 @@ p {
   background-color: #f2f2f2;
   list-style: none;
   margin-left: -19px;
-  margin-top: 22px;
+  margin-top: 10px;
   width: auto;
   max-width: 100%;
 }
@@ -260,13 +260,13 @@ p {
 
 #section-nav ul.navbar-center li ul.items li {
   color: black;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: bold;
   float: none;
   width: 257px;
   height: 30px;
   border-bottom: solid 1px gray;
-  padding-top: 25px;
+  padding-top: 10px;
 }
 
 #section-nav ul.navbar-center li ul.items li a {
