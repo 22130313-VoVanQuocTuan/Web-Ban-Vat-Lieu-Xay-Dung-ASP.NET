@@ -134,7 +134,8 @@ function attachCategoryClickHandlers() {
 function getUserIdFromToken() {
     const token = localStorage.getItem('token');
     if (!token) {
-        throw new Error('No token found');
+         alert("Hết phiên làm việc, vui lòng đăng nhập lại!")
+         window.location.href = "/src/Users/pages/account/login-signup.html"
     }
 
     // Gỉa mã JWT để lấy UserId từ token
@@ -159,16 +160,12 @@ document.addEventListener('click', async (event) => {
                  
                 
             });
-            console.log('User ID:', getUserIdFromToken());
-           
-            if (response.ok) {
         
-                window.location.href = '/src/Users/pages/cart.html';
-            } else {
+            if (response.ok) {
+                 window.location.href = '/src/Users/pages/cart.html';
+            }else {
                 window.location.href = "/src/Users/pages/account/login-signup.html"
-                const error = await response.json();
-                console.error(error)
-                
+             
             }
         } catch (error) {
             console.error('Lỗi: Không thêm được vào giỏ hàng.', error);

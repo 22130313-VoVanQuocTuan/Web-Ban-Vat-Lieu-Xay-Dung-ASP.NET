@@ -1,3 +1,4 @@
+import { customFetch } from "/src/apiService.js";
 
 document.querySelector('.submit-btn').addEventListener('click', async (event) => {
     event.preventDefault(); // Ngăn chặn reload form
@@ -54,13 +55,15 @@ function updateFormData(results, paymentMethod) {
 
     if (!dialog) return;
 
-    const { orderId,
+    const { orderId, totalAmount,trackingNumber,
         totalPrice, shipping_fee, discount_amount, 
         shipping_address, email, phoneNumber, fullName, note, orderDetailsRespone 
     } = results;
     
     // Lưu orderId vào thuộc tính data-order-id của dialog
     dialog.setAttribute('data-order-id', orderId);
+    dialog.setAttribute('total-price',totalPrice )
+    dialog.setAttribute('tracking-number',trackingNumber )
     // Điền dữ liệu vào form
     dialog.querySelector('.title').textContent = paymentMethod === 'cod' 
         ? 'Thanh toán khi nhận hàng (COD)' 
@@ -80,7 +83,7 @@ function updateFormData(results, paymentMethod) {
             <tr>
 
                 <td>${product.productName}</td>
-                 <td>${product.quantity}</td>
+                <td>${product.quantity}</td>
                 <td>${product.price}</td>
                 <td>${product.discount}</td>
                 <td>${product.totalPrice.toLocaleString()} ₫</td>
@@ -91,10 +94,10 @@ function updateFormData(results, paymentMethod) {
     
     // Điền thông tin khác
     dialog.innerHTML += `
-        <p>Tổng giá: ${totalPrice.toLocaleString()} ₫</p>
+        <p>Tổng giá: ${totalAmount.toLocaleString()} ₫</p>
         <p>Phí vận chuyển: ${shipping_fee.toLocaleString()} ₫</p>
         <p>Giảm giá: ${discount_amount.toLocaleString()} ₫</p>
-        <p>Tổng cộng: ${(totalPrice).toLocaleString()} ₫</p>
+        <p>Tổng cộng: ${totalPrice.toLocaleString()} ₫</p>
         <p>Địa chỉ giao: ${shipping_address}</p>
         <p>Email: ${email}</p>
         <p>Tên người nhận: ${fullName}</p>
@@ -102,11 +105,12 @@ function updateFormData(results, paymentMethod) {
         <p>Ghi chú: ${note}</p>
         
     `;
-          
+    
     // Hiển thị form
     dialog.showModal();
 }
 
+window.closeForm = closeForm;
 // Đóng form
 async function closeForm(dialogId) {
     const dialog = document.getElementById(dialogId);
@@ -132,6 +136,7 @@ async function closeForm(dialogId) {
             const result = await response.json();
             if (result.status === 200) {
                 alert(result.message);
+                location.reload(); // Refresh trang
             } else {
                 alert(`Lỗi: ${result.message}`);
             }
@@ -145,6 +150,7 @@ async function closeForm(dialogId) {
     }
 }
 
+window.confirmCOD = confirmCOD;
 // Xác nhận thanh toán với COD
 async function confirmCOD(dialogId) {
     const dialog = document.getElementById(dialogId); // Lấy phần tử dialog từ id
@@ -164,7 +170,7 @@ async function confirmCOD(dialogId) {
 
     try {
         // Gửi yêu cầu POST tới API
-        const response = await fetch(`http://localhost:5241/api/OrderControler/${orderId}/${userId}`, {
+        const response = await customFetch(`http://localhost:5241/api/OrderControler/${orderId}/${userId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -177,6 +183,7 @@ async function confirmCOD(dialogId) {
         if (data.status === 200) {
                 
             showDialog("Đặt hàng thành công!", data.message); // Hiển thị dialog thông báo
+            
         } else {
             throw new Error(data.message || "Lỗi xác nhận đơn hàng.");
         }
@@ -204,7 +211,60 @@ function showDialog(title, message) {
     }
 }
 
+window.closeDialog = closeDialog;
 function closeDialog() {
     const dialog = document.getElementById("successDialog");
-    if (dialog) dialog.close(); // Đóng dialog
+    if (dialog) {
+        dialog.close(); // Đóng dialog
+        location.reload();
+    }
+    
 }
+
+//Thanh toán bằng ngân hàng VNPAY
+window.confirmVNPay = confirmVNPay;
+async function confirmVNPay(dialogId) {
+    const dialog = document.getElementById(dialogId); // Lấy phần tử dialog từ id
+    if (!dialog) {
+        alert("Không tìm thấy form thanh toán.");
+        return;
+    }
+
+    const trackingNumber = dialog.getAttribute('tracking-number'); // Lấy orderId từ thuộc tính data-order-id của dialog
+    const totalprice = dialog.getAttribute('total-price') * 100;
+
+  
+    if (!trackingNumber) {
+        alert("Không tìm thấy mã đơn hàng.");
+        return;
+    }
+
+    const userId = getUserIdFromToken(); // Hàm này phải được định nghĩa và trả về đúng userId
+
+    // Tạo URL cho API với các tham số cần thiết
+    const apiUrl = `http://localhost:5241/api/vnpay/payment?amount=${totalprice}&infor=Thanh toán với VNPay&orderinfor=${trackingNumber}`;
+
+    try {
+        // Gửi yêu cầu GET tới API
+        const response = await customFetch(apiUrl, {
+            method: "POST", // Sử dụng GET thay vì POST
+            headers: {
+                "Content-Type": "application/json",
+            }
+        });
+
+        // Xử lý phản hồi từ API
+        const data = await response.json();
+
+        if (response.ok && data.paymentUrl) {
+            // Chuyển hướng tới VNPay
+            window.location.href = data.paymentUrl;
+        } else {
+            throw new Error(data.message || "Lỗi xác nhận đơn hàng.");
+        }
+    } catch (error) {
+        console.error("Lỗi:", error.message);
+        showDialog("Đặt hàng thất bại", error.message); // Hiển thị dialog lỗi
+    }
+}
+
