@@ -14,8 +14,9 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /*đổ bóng*/  
     position: relative;
     overflow: hidden;/*đổ bóng*/
-    width: 1565px;
-    max-width: 100%;
+    max-width: 100%; /* Tự động điều chỉnh theo kích thước màn hình */
+    width: 100%;
+    margin: 0 auto; /* Căn giữa */
     min-height: 650px;
   
     
