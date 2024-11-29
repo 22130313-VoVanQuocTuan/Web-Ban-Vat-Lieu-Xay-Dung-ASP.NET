@@ -1,9 +1,10 @@
 /* Tổng quan */
 #section-content {
   padding: 30px 20px;
-  background-color: #f4f6f9; /* Màu nền sáng hơn, hiện đại hơn */
+  background-color: #f4f6f9;
   font-family: 'Roboto', sans-serif;
   color: #333;
+  font-size: 16px;
 }
 
 /* Container chính */
@@ -18,12 +19,15 @@
 /* Phần bên trái (giỏ hàng) */
 .cart-left {
   flex: 2;
-  max-height: 600px;
+  max-height: 80%;
+  max-width: 100%;
+  margin-left: 5%;
   background-color: #ffffff;
-  border-radius: 15px; /* Góc bo tròn mềm mại */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
   padding: 15px;
+  font-size: 16px;
 }
 
 /* Bảng sản phẩm */
@@ -36,16 +40,17 @@
 .cart-table td {
   padding: 15px;
   text-align: center;
-  border-bottom: 1px solid #e6e6e6; /* Đường kẻ mờ */
+  border-bottom: 1px solid #e6e6e6;
   vertical-align: middle;
+  font-size: 16px;
 }
 
 .cart-table th {
-  background-color: #f0f4f9; /* Màu nhấn nhẹ */
+  background-color: #f0f4f9;
   font-weight: bold;
   color: #555;
   text-transform: uppercase;
-  letter-spacing: 0.5px; /* Chữ cách nhau nhẹ */
+  letter-spacing: 0.5px;
 }
 
 .cart-table td img {
@@ -65,27 +70,49 @@
   background-color: transparent;
   border: 2px solid #ff6767;
   color: #ff6767;
+  margin: 15% auto;
   padding: 10px 20px;
   border-radius: 8px;
   font-weight: bold;
+  font-size: 16px;
   transition: all 0.3s ease;
-  margin: 15% auto;
-  
+  cursor: pointer;
 }
 
 .continue-btn:hover {
   background-color: #ff6767;
   color: #ffffff;
-  transform: scale(1.05); /* Hiệu ứng phóng nhẹ */
+  transform: scale(1.05);
+}
+
+.fa-trash-can {
+  color: #ff4d4d;
+  cursor: pointer;
+  font-size: 18px;
+  transition: color 0.3s ease, transform 0.2s;
+}
+
+.fa-trash-can:hover {
+  color: #cc3d3d;
+  transform: scale(1.2);
+}
+
+.fa-trash-can:active {
+  color: #a83232;
+  transform: scale(1.1);
 }
 
 /* Phần bên phải (thanh toán) */
 .cart-right {
   flex: 1;
+  max-width: 32%;
   background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 25px;
+  font-size: 16px;
+  margin-right: 5%;
+
 }
 
 .cart-right h2 {
@@ -93,7 +120,8 @@
   font-weight: bold;
   color: #444;
   text-align: center;
-  border-bottom: 2px solid #e6e6e6; /* Đường kẻ nhấn */
+  font-size: 18px;
+  border-bottom: 2px solid #e6e6e6;
   padding-bottom: 10px;
 }
 
@@ -115,21 +143,78 @@
   color: #333;
 }
 
+.remove-from-cart-button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.remove-from-cart-button:hover {
+  background-color: #ff1a1a;
+}
+
+.cart-body {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+#cart-items-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+#cart-items-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+#cart-items-container::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+#cart-items-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.product-img {
+  width: 50px;
+  height: 50px;
+}
+
+.quantity .qty-input {
+  width: 40px;
+  text-align: center;
+}
+
+.cart-buttons {
+  margin-top: 80px;
+
+}
+
+.select-product {
+  margin-right: 10px;
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+
 .checkout-btn {
-  display: block;
   width: 100%;
-  background-color: #1a73e8; /* Xanh hiện đại */
+  background-color: #1a73e8;
   color: white;
   padding: 12px;
   border-radius: 8px;
   text-align: center;
   font-weight: bold;
+  font-size: 16px;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .checkout-btn:hover {
-  background-color: #155bb5; /* Xanh đậm hơn khi hover */
-  transform: scale(1.02); /* Phóng nhẹ */
+  background-color: #155bb5;
+  transform: scale(1.02);
 }
 
 /* Phiếu ưu đãi */
@@ -140,7 +225,7 @@
 .voucher label {
   display: block;
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
   color: #444;
 }
@@ -150,31 +235,32 @@
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 15px;
   margin-right: 10px;
   transition: all 0.3s ease;
 }
 
 .voucher input:focus {
-  border-color: #1a73e8; /* Hiệu ứng tập trung */
+  border-color: #1a73e8;
   box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
 }
 
 .apply-btn {
   background-color: #ff6767;
   border: none;
-  margin: 5% auto;
   color: white;
   padding: 10px 15px;
   border-radius: 8px;
   font-weight: bold;
+  font-size: 15px;
   cursor: pointer;
   transition: all 0.3s ease;
+  margin: 5% auto;
 }
 
 .apply-btn:hover {
   background-color: #cc4d4d;
-  transform: scale(1.05); /* Phóng nhẹ */
+  transform: scale(1.05);
 }
 
 /* Responsive */
