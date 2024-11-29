@@ -1,9 +1,9 @@
 #section-information {
   background: white;
   color: #15283e;
-
   font-family: 'Arial', sans-serif;
   border-radius: 10px;
+  margin: 5% auto;
 }
 
 #section-information .container {

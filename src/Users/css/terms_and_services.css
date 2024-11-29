@@ -1,0 +1,100 @@
+
+
+/* Section Styling */
+#section-content-1 {
+    padding: 50px 20px;
+    background-color: #f3f4f6;
+}
+
+.terms-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.terms-container h2 {
+    text-align: center;
+}
+
+/* Title Styling */
+.title {
+    text-align: center;
+    font-size: 2rem;
+    color: #0056b3;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+/* Intro Paragraph */
+.intro {
+    text-align: center;
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+/* Terms Section */
+.terms-section {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.terms-section h3 {
+    font-size: 1.3rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.terms-section h3 span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0056b3;
+}
+
+.terms-section p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.8;
+}
+
+/* Closing Note */
+.closing-note {
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff;
+    margin-top: 30px;
+}
+
+/* Hover and Responsive */
+.terms-section:hover h3 {
+    color: #007bff;
+    transition: color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .terms-container {
+        padding: 20px;
+    }
+
+    .terms-section h3 {
+        font-size: 1.1rem;
+    }
+
+    .terms-section p {
+        font-size: 0.95rem;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+}
