@@ -220,6 +220,7 @@ p {
   background: linear-gradient(to right, #82a0c2, #15283e);
   box-shadow: 0 0 0 1px #c0c0c0 inset;
   border-radius: 5px 5px 0 0;
+  z-index: 40;
 }
 
 /* mục chứa thẻ <a> */

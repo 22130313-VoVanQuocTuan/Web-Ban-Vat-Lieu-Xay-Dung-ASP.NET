@@ -1,56 +1,54 @@
-
-*{
+* {
     font-family: Arial, Helvetica, sans-serif;
 }
-.content{
+
+.content {
     margin-top: 10px;
     margin-bottom: 10px;
-    
-}
-.content .container{
 
+}
+
+.content .container {
     background-color: #fff;
     border-radius: 5px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35); /*đổ bóng*/  
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
-    overflow: hidden;/*đổ bóng*/
-    max-width: 100%; /* Tự động điều chỉnh theo kích thước màn hình */
+    overflow: hidden;
+    max-width: 90%;
     width: 100%;
-    margin: 0 auto; /* Căn giữa */
+    margin: 2% auto;
     min-height: 650px;
-  
-    
 }
-h1{
+
+h1 {
     font-size: 50px;
     font-weight: bold;
 }
 
-.content .container p{
+.content .container p {
     font-size: 14px;
     line-height: 20px;
-    letter-spacing: 0.3px;  /* khoảng cách chữ */
+    letter-spacing: 0.3px;
     margin: 20px 0;
 }
 
-.container span{
+.container span {
     font-size: 15px;
 }
 
-.content .container a{
-    color: #007bff; /* Màu chữ cho liên kết */
+.content .container a {
+    color: #007bff;
     font-size: 15px;
     text-decoration: none;
     margin: 15px 15px;
 }
-.content .container a:hover{
+
+.content .container a:hover {
     text-decoration: underline;
 }
 
-
-.content .container button{
-    
-    background-color:#15283e;
+.content .container button {
+    background-color: #15283e;
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -62,17 +60,18 @@ h1{
     margin-top: 10px;
     cursor: pointer;
 }
-.content .container button:hover{
+
+.content .container button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(20, 210, 223, 0.662);  /* Thêm bóng đổ */
+    box-shadow: 0 4px 8px rgba(20, 210, 223, 0.662);
 }
 
-.content .container button.hidden{
+.content .container button.hidden {
     background-color: transparent;
     border-color: #fff;
 }
 
-.content .container form{
+.content .container form {
     background-color: #fff;
     display: flex;
     align-items: center;
@@ -83,7 +82,7 @@ h1{
     line-height: 35px;
 }
 
-.content .container input{
+.content .container input {
     background-color: #eee;
     border: none;
     margin: 8px 0;
@@ -95,53 +94,57 @@ h1{
     outline: none;
 }
 
-.form-container{
+.form-container {
     position: absolute;
     top: 0;
     height: 100%;
     transition: all 0.6s ease-in-out;
 }
 
-.sign-in{
+.sign-in {
     left: 0;
     width: 50%;
-   
+
 }
 
-.content .container.active .sign-in{
+.content .container.active .sign-in {
     transform: translateX(100%);
 }
 
-.sign-up{
+.sign-up {
     left: 0;
     width: 50%;
     opacity: 0;
- 
+
 }
 
-.content .container.active .sign-up{
+.content .container.active .sign-up {
     transform: translateX(100%);
     opacity: 1;
     z-index: 5;
     animation: move 0.6s;
 }
 
-@keyframes move{
-    0%, 49.99%{
+@keyframes move {
+
+    0%,
+    49.99% {
         opacity: 0;
         z-index: 1;
     }
-    50%, 100%{
+
+    50%,
+    100% {
         opacity: 1;
         z-index: 5;
     }
 }
 
-.social-icons{
+.social-icons {
     margin: 20px 0;
 }
 
-.social-icons a{
+.social-icons a {
     border: 1px solid #ccc;
     border-radius: 20%;
     display: inline-flex;
@@ -152,7 +155,7 @@ h1{
     height: 40px;
 }
 
-.toggle-container{
+.toggle-container {
     position: absolute;
     top: 0;
     left: 50%;
@@ -164,15 +167,15 @@ h1{
     z-index: 20;
 }
 
-.content .container.active .toggle-container{
+.content .container.active .toggle-container {
     transform: translateX(-100%);
     border-radius: 0 150px 100px 0;
 }
 
-.toggle{
-    background-color:#3895ff;
+.toggle {
+    background-color: #3895ff;
     height: 100%;
-    background: linear-gradient(to right, #82a0c2,#15283e);
+    background: linear-gradient(to right, #82a0c2, #15283e);
     color: #fff;
     position: relative;
     left: -100%;
@@ -182,11 +185,11 @@ h1{
     transition: all 0.6s ease-in-out;
 }
 
-.content .container.active .toggle{
+.content .container.active .toggle {
     transform: translateX(50%);
 }
 
-.toggle-panel{
+.toggle-panel {
     position: absolute;
     width: 50%;
     height: 100%;
@@ -201,27 +204,27 @@ h1{
     transition: all 0.6s ease-in-out;
 }
 
-.toggle-left{
+.toggle-left {
     transform: translateX(-200%);
 }
 
-.content .container.active .toggle-left{
+.content .container.active .toggle-left {
     transform: translateX(0);
 }
 
-.toggle-right{
+.toggle-right {
     right: 0;
     transform: translateX(0);
 }
 
-.content .container.active .toggle-right{
+.content .container.active .toggle-right {
     transform: translateX(200%);
 }
 
 /*css của verify-email*/
 /*css của verify-email*/
-.content .verify-code-container{
-   
+.content .verify-code-container {
+
     position: absolute;
     top: 18%;
     left: 50%;
@@ -235,30 +238,36 @@ h1{
     text-align: center;
 }
 
-.content .verify-code-container input{
+.content .verify-code-container input {
     width: 10%;
- }
+}
 
- /*sự kiện khi xác thực*/
+/*sự kiện khi xác thực*/
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Màu nền tối với độ mờ */
-    z-index: 999; /* Đặt phía trên các form khác */
-    display: none; /* Mặc định ẩn */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Màu nền tối với độ mờ */
+    z-index: 999;
+    /* Đặt phía trên các form khác */
+    display: none;
+    /* Mặc định ẩn */
 }
 
 /* Hiển thị form verify và overlay */
 .content .show-verify {
-    display: block; /* Hiển thị overlay và form xác thực */
+    display: block;
+    /* Hiển thị overlay và form xác thực */
 }
+
 .content .error-message {
     color: red;
     font-size: 12px;
-   
-    display: none; /* Ẩn mặc định */
-    
+
+    display: none;
+    /* Ẩn mặc định */
+
 }
