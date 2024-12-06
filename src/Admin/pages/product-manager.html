@@ -1,91 +1,166 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quản Lý Sản Phẩm Giảm Giá</title>
-  <link rel="stylesheet" href="../css/product-manager.css">
+  <title>Bảng điều khiển Quản trị viên </title>
+  <title>Bảng điều khiển Quản trị viên </title>
+  <!------------------ Kiểu dáng ------------------>
+  <link rel="stylesheet" href="../css/product.css">
+
+
+
 </head>
+
 <body>
+  <!-- ------------------ Điều hướng -------------------->
   <div class="container">
-    <header>
-      <h1>Quản Lý Sản Phẩm Giảm Giá</h1>
-      <button id="btn-add" class="btn btn-success" onclick="showAddForm()">Thêm Sản Phẩm</button>
-    </header>
-    
-    <table id="discount-table" class="table">
-      <thead>
-        <tr>
-          <th>Mã Sản Phẩm</th>
-          <th>Giá Trị</th>
-          <th>Ngày Bắt Đầu</th>
-          <th>Ngày Kết Thúc</th>
-          <th>Tên Sản Phẩm</th>
-          <th>Hành Động</th>
-        </tr>
-      </thead>
-      <tbody id="discount-list">
-        <!-- Sản phẩm sẽ được hiển thị tại đây -->
-      </tbody>
-    </table>
+    <div class="navigation">
+      <ul>
+        <li>
+          <a href="index.html">
+            <span class="icon">
+              <img src="../imgs/logo.png" alt="" />
+            </span>
+            <span class="title">Bán Vật Liệu Xây Dựng </span>
+          </a>
+        </li>
 
-    <!-- Form thêm sản phẩm -->
-    <div id="add-form" class="form-container" style="display: none;">
-      <div class="form-content">
-        <h3>Thêm Sản Phẩm Giảm Giá</h3>
-        <form id="add-discount-form">
-          <label for="product-id">ID Sản Phẩm:</label>
-          <input type="text" id="product-id" name="product-id" required><br>
+        <li>
+          <a href="index.html">
+            <span class="icon">
+              <ion-icon name="home-outline"></ion-icon>
+            </span>
+            <span class="title">Trang chủ</span>
+          </a>
+        </li>
 
-          <label for="discount-value">Giá Trị:</label>
-          <input type="number" id="discount-value" name="discount-value" required><br>
+        <li>
+          <a href="user.html">
+            <span class="icon">
+              <ion-icon name="people-outline"></ion-icon>
+            </span>
+            <span class="title">Khách Hàng</span>
+          </a>
+        </li>
 
-          <label for="start-date">Ngày Bắt Đầu:</label>
-          <input type="date" id="start-date" name="start-date" required><br>
+        <li>
+          <a href="product.html">
+            <span class="icon">
+              <ion-icon name="cube-outline"></ion-icon>
+            </span>
+            <span class="title">Sản phẩm</span>
+          </a>
+        </li>
 
-          <label for="end-date">Ngày Kết Thúc:</label>
-          <input type="date" id="end-date" name="end-date" required><br>
+        <li>
+          <a href="voucher.html">
+            <span class="icon">
+              <ion-icon name="pricetag-outline"></ion-icon>
+            </span>
+            <span class="title">Quản lý mã ưu đãi</span>
+          </a>
+        </li>
+        <li>
+          <a href="product-manager.html">
+            <span class="icon">
+              <ion-icon name="help-outline"></ion-icon>
+            </span>
+            <span class="title">Quản lý khuyến mãi</span>
+          </a>
+        </li>
+        <li>
+          <a href="reviews.html">
+            <span class="icon">
+              <ion-icon name="chatbubble-outline"></ion-icon>
+            </span>
+            <span class="title">Quản lý đánh giá</span>
+          </a>
+        </li>
 
-          <label for="product-name">Tên Sản Phẩm:</label>
-          <input type="text" id="product-name" name="product-name" required><br>
+        <li>
+          <a href="list-of-categories.html">
+            <span class="icon">
+              <ion-icon name="list-outline"></ion-icon>
+            </span>
+            <span class="title">Danh mục</span>
+          </a>
+        </li>
 
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Lưu</button>
-            <button type="button" class="btn btn-danger" onclick="closeForm()">Thoát</button>
-          </div>
-        </form>
-      </div>
+        <li>
+          <a href="account.html">
+            <span class="icon">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+            </span>
+            <span class="title">Tài khoản</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="javascript:void(0);" id="logoutButton">
+            <span class="icon">
+              <ion-icon name="log-out-outline"></ion-icon>
+            </span>
+            <span class="title">Đăng Xuất</span>
+          </a>
+        </li>
+      </ul>
     </div>
 
-    <!-- Form cập nhật sản phẩm -->
-    <div id="update-form" class="form-container" style="display: none;">
-      <div class="form-content">
-        <h3>Cập Nhật Sản Phẩm Giảm Giá</h3>
-        <form id="update-discount-form">
-          <label for="update-product-id">ID Sản Phẩm:</label>
-          <input type="text" id="update-product-id" name="update-product-id" required><br>
 
-          <label for="update-discount-value">Giá Trị:</label>
-          <input type="number" id="update-discount-value" name="update-discount-value" required><br>
+    <!-------------------- Chính --------------------->
+    <div class="main">
+      <div class="topbar">
+        <div class="toggle">
+          <ion-icon name="menu-outline"></ion-icon>
+        </div>
 
-          <label for="update-start-date">Ngày Bắt Đầu:</label>
-          <input type="date" id="update-start-date" name="update-start-date" required><br>
+        <div class="user">
+          <img src="../imgs/customer01.jpg" alt="">
+        </div>
+      </div>
 
-          <label for="update-end-date">Ngày Kết Thúc:</label>
-          <input type="date" id="update-end-date" name="update-end-date" required><br>
-
-          <label for="update-product-name">Tên Sản Phẩm:</label>
-          <input type="text" id="update-product-name" name="update-product-name" required><br>
-
-          <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Lưu</button>
-            <button type="button" class="btn btn-danger" onclick="closeUpdateForm()">Thoát</button>
+      <div class="list-products">
+        <div class="list-products-title">
+          <h2>Quản lí sản phẩm</h2>
+        </div>
+        <div class="list-products-content">
+          <div class="list-products-content-button">
+            <a href="#" class="add-product-btn" onclick="openAddProductModal()">Thêm sản phẩm</a>
           </div>
-        </form>
+          <!-- Table products -->
+          <table>
+            <thead>
+              <tr>
+
+                <th>Mã sản phẩm</th>
+                <th>Giá Trị</th>
+                <th>Tên sản phẩm</th>
+                <th>Ngày Bắt Đầu</th>
+                <th>Ngày kết thúc</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="productList">
+
+            </tbody>
+          </table>
+
+
+
+        </div>
       </div>
     </div>
   </div>
 
-  <script src="../js/product-manager.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script type="module" src="../js/main.js"></script>
+  <script type="module" src="../js/promotional.js"></script>
+
+
+
 </body>
+
 </html>

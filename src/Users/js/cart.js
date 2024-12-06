@@ -53,7 +53,7 @@ function renderCartProducts(products) {
         <td>${product.name}</td>
         <td><img src="${imageUrl}" alt="${product.name}"></td>
         <td>
-          <div class="quantity">
+          <div class="quantity" style="display: flex;">
             <button class="qty-btn minus-btn" onclick="changeQuantity(${index}, -1)">-</button>
             <input 
               type="number" 

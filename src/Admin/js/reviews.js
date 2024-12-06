@@ -1,35 +1,28 @@
 // Mảng chứa dữ liệu đánh giá mẫu
 const reviews = [];
-let currentReview = 1;
-const pageSize = 10;
 
-import { customFetch } from "/src/apiService.js"; // Đảm bảo đường dẫn chính xác
-
-// Hàm lấy danh sách sản phẩm với phân trang
-async function fetchReviews(page = 1) {
+// Hàm lấy danh sách đánh giá
+async function fetchReviews() {
   try {
-    const response = await fetch(
-      `http://localhost:5241/api/Review?page=${page}&size=${pageSize}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`http://localhost:5241/api/Review`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     if (response.ok) {
       const data = await response.json();
-      reviews.length = 0; // Xóa dữ liệu cũ
-      reviews.push(...data.results.reviews); // Thêm dữ liệu mới
-      displayReviews(); // Hiển thị danh sách sản phẩm
+      reviews.length = 0; // Xóa mảng cũ
+      reviews.push(...data.response); // Thêm dữ liệu mới
+      displayReviews(); // Hiển thị danh sách đánh giá
     } else {
-      console.error("Error: ", response.statusText);
-      alert("Failed to fetch reviews.");
+      console.error("Error fetching reviews:", response.statusText);
+      alert("Không thể tải danh sách đánh giá.");
     }
   } catch (error) {
     console.error("Error:", error);
-    alert("An error occurred while fetching reviews.");
+    alert("Đã xảy ra lỗi khi tải danh sách đánh giá.");
   }
 }
 
@@ -42,13 +35,13 @@ function displayReviews() {
   reviews.forEach((review) => {
     const row = document.createElement("tr");
     row.innerHTML = `
-        <td>${review.name}</td>
-        <td>${review.content}</td>
-        <td>${review.date}</td>
-        <td class="bt">
-          <button class="delete-review-btn" data-review-id="${review.reviewId}">Xóa</button>
-        </td>
-      `;
+      <td>${review.productId}</td>
+      <td>${review.comment}</td>
+      <td>${new Date(review.createdAt).toLocaleDateString("vi-VN")}</td>
+      <td class="bt">
+        <button class="delete-review-btn" data-review-id="${review.reviewId}">Xóa</button>
+      </td>
+    `;
     reviewList.appendChild(row);
   });
 
@@ -56,7 +49,6 @@ function displayReviews() {
 }
 
 // Gán sự kiện cho nút xóa
-
 function attachEventListeners() {
   document.querySelectorAll(".delete-review-btn").forEach((button) => {
     button.addEventListener("click", deleteReview);
@@ -67,22 +59,25 @@ function attachEventListeners() {
 async function deleteReview(event) {
   const reviewId = event.target.getAttribute("data-review-id");
   try {
-    const response = await customFetch(
-      "http://localhost:5241/api/Review/${reviewId}",
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    const response = await fetch(`http://localhost:5241/api/Review/${reviewId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     if (response.ok) {
-      fetchReviews(currentReview);
+      alert("Xóa đánh giá thành công!");
+      fetchReviews(); // Cập nhật danh sách đánh giá
     } else {
       console.error("Error deleting review:", response.statusText);
+      alert("Không thể xóa đánh giá.");
     }
   } catch (error) {
     console.error("Error:", error);
+    alert("Đã xảy ra lỗi khi xóa đánh giá.");
   }
 }
+
+// Gọi hàm để lấy danh sách đánh giá khi tải trang
+fetchReviews();

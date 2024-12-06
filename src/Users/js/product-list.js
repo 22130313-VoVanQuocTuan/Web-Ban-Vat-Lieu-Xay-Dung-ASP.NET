@@ -1,6 +1,6 @@
 // Cấu hình mặc định
 
-import  { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
+import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
 let currentCategoryId = 0; // 0 nghĩa là lấy toàn bộ
 let currentPage = 1;
 const itemsPerPage = 9; // Số sản phẩm trên mỗi trang
@@ -43,7 +43,9 @@ function displayProducts(products) {
         const productDiv = document.createElement("div");
         productDiv.classList.add("name-cart");
         productDiv.innerHTML = `
-            <a href=""><img src="${imageUrl}" alt="${product.name}"></a>
+        <a href="#" onclick="redirectToProductDetail(${product.productId})">
+            <img  src="${imageUrl}" class="product-image" alt="${product.name}" data-product-id="${product.productId}">
+            </a>
             <h3>${product.name}</h3>
             <p>Giá: <del>${product.price.toLocaleString()} VNĐ</del></p>
             <p style="color: red;">Giá đã giảm: ${(product.price * (1 - product.discountPercentage)).toLocaleString()} VNĐ</p>
@@ -51,6 +53,25 @@ function displayProducts(products) {
             <a href="" class="add-cart" data-product-id="${product.productId}">Thêm</a>
         `;
         productList.appendChild(productDiv);
+    });
+    attachImageClickEvents();
+}
+
+// Hàm điều hướng đến trang chi tiết sản phẩm
+ function redirectToProductDetail(productId) {
+    window.location.href = `http://127.0.0.1:5500/src/Users/pages/product-detail.html?productId=${productId}`;
+}
+
+// Thêm sự kiện click cho ảnh
+ function attachImageClickEvents() {
+    const productImages = document.querySelectorAll('.product-image');
+    productImages.forEach(image => {
+        image.addEventListener('click', (e) => {
+            const productId = image.getAttribute('data-product-id');
+            // Điều hướng đến trang chi tiết sản phẩm
+            e.preventDefault();  // Ngăn không cho trang reload lại khi click
+            redirectToProductDetail(productId);
+        });
     });
 }
 /// Cập nhật thông tin phân trang
@@ -80,6 +101,7 @@ async function loadPage(page) {
 }
 
 // Điều khiển nút phân trang
+
 document.getElementById("prev").addEventListener("click", () => {
     if (currentPage > 1) {
         currentPage--;
@@ -105,9 +127,10 @@ async function loadProducts() {
     }
 }
 
+
 // Sự kiện khi nhấn vào danh mục
-function attachCategoryClickHandlers() {
-    const sidebarItems = document.querySelectorAll('.conten .left-sidebar .item');
+  function attachCategoryClickHandlers() {
+    const sidebarItems = document.querySelectorAll('.item');
     sidebarItems.forEach(sideItem => {
         sideItem.addEventListener('click', async () => {
             if (sideItem.classList.contains('active')) return;
@@ -134,14 +157,15 @@ function attachCategoryClickHandlers() {
 function getUserIdFromToken() {
     const token = localStorage.getItem('token');
     if (!token) {
-         alert("Hết phiên làm việc, vui lòng đăng nhập lại!")
-         window.location.href = "/src/Users/pages/account/login-signup.html"
+        alert("Hết phiên làm việc, vui lòng đăng nhập lại!")
+        window.location.href = "/src/Users/pages/account/login-signup.html"
     }
 
     // Gỉa mã JWT để lấy UserId từ token
     const payload = JSON.parse(atob(token.split('.')[1]));
     return payload.UserId; // Đảm bảo tên thuộc tính đúng với cấu trúc của token
 }
+
 // Xử lý gọi API cho nút thêm sản phẩm
 document.addEventListener('click', async (event) => {
     if (event.target.classList.contains('add-cart')) {
@@ -156,16 +180,16 @@ document.addEventListener('click', async (event) => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({productId,userId})
-                 
-                
+                body: JSON.stringify({ productId, userId })
+
+
             });
-        
+
             if (response.ok) {
-                 window.location.href = '/src/Users/pages/cart.html';
-            }else {
+                window.location.href = '/src/Users/pages/cart.html';
+            } else {
                 window.location.href = "/src/Users/pages/account/login-signup.html"
-             
+
             }
         } catch (error) {
             console.error('Lỗi: Không thêm được vào giỏ hàng.', error);

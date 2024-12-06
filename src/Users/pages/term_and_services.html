@@ -11,6 +11,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="../css/home.css">
 <link rel="stylesheet" href="../css/terms_and_services.css">
+<link rel="stylesheet" href="../css/script.css">
 
 <body>
     <div id="page" class="page">
@@ -43,8 +44,19 @@
 
                     <!-- Thanh tìm kiếm ở giữa -->
                     <div class="search-bar">
-                        <input type="text" placeholder="Tìm kiếm sản phẩm...">
-                        <button><i class="fa fa-fw fa-search"></i></button>
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+                        <button id="searchButton"><i class="fa fa-fw fa-search"></i></button>
+                    </div>
+
+                    <!-- Modal chứa kết quả tìm kiếm -->
+                    <div id="searchModal" class="modal">
+                        <div class="modal-content">
+                            <span id="closeModal" class="close">&times;</span>
+                            <h2>Kết quả tìm kiếm</h2>
+                            <div id="searchResults">
+                                <!-- Kết quả tìm kiếm sẽ hiển thị tại đây -->
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Thông tin bên phải -->
@@ -206,5 +218,6 @@
         </div>
     </div>
 </body>
+<script src="../js/script.js"></script>
 
 </html>

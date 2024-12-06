@@ -20,7 +20,7 @@ document.querySelector('.submit-btn').addEventListener('click', async (event) =>
 
     try {
         // Gửi request tới API
-        const response = await fetch('http://localhost:5241/api/OrderControler', {
+        const response = await fetch('http://localhost:5241/api/Order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -126,7 +126,7 @@ async function closeForm(dialogId) {
 
         try {
             // Gọi API hủy hóa đơn
-            const response = await fetch(`http://localhost:5241/api/OrderControler/${orderId}`, {
+            const response = await fetch(`http://localhost:5241/api/Order/${orderId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -170,7 +170,7 @@ async function confirmCOD(dialogId) {
 
     try {
         // Gửi yêu cầu POST tới API
-        const response = await customFetch(`http://localhost:5241/api/OrderControler/${orderId}/${userId}`, {
+        const response = await customFetch(`http://localhost:5241/api/Order/${orderId}/${userId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
