@@ -10,7 +10,7 @@
     <!------------------ Kiểu dáng ------------------>
     <link rel="stylesheet" href="../css/product.css">
     <script src="/src/assets/ckeditor/ckeditor.js"></script>
-    <script src="../css/style.css"></script>
+
 
     <style>
         /* Dialog Styling */
@@ -38,7 +38,7 @@
             gap: 10px;
         }
 
-       
+
         button {
             /* width: 70px; */
             padding: 8px 15px;
@@ -93,7 +93,6 @@
             font-size: 18px;
             cursor: pointer;
         }
-
     </style>
 
 
@@ -107,7 +106,7 @@
                 <li>
                     <a href="index.html">
                         <span class="icon">
-                            <img src="../imgs/logo.png" alt="">
+                            <img src="../imgs/logo.png" alt="" />
                         </span>
                         <span class="title">Bán Vật Liệu Xây Dựng </span>
                     </a>
@@ -123,7 +122,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="user.html">
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
                         </span>
@@ -134,7 +133,7 @@
                 <li>
                     <a href="product.html">
                         <span class="icon">
-                            <ion-icon name="chatbubble-outline"></ion-icon>
+                            <ion-icon name="cube-outline"></ion-icon>
                         </span>
                         <span class="title">Sản phẩm</span>
                     </a>
@@ -143,27 +142,43 @@
                 <li>
                     <a href="voucher.html">
                         <span class="icon">
+                            <ion-icon name="pricetag-outline"></ion-icon>
+                        </span>
+                        <span class="title">Quản lý mã ưu đãi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="product-manager.html">
+                        <span class="icon">
                             <ion-icon name="help-outline"></ion-icon>
                         </span>
-                        <span class="title">Khuyến Mãi</span>
+                        <span class="title">Quản lý khuyến mãi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="reviews.html">
+                        <span class="icon">
+                            <ion-icon name="chatbubble-outline"></ion-icon>
+                        </span>
+                        <span class="title">Quản lý đánh giá</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="list-of-categories.html">
                         <span class="icon">
-                            <ion-icon name="settings-outline"></ion-icon>
+                            <ion-icon name="list-outline"></ion-icon>
                         </span>
                         <span class="title">Danh mục</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="account.html">
                         <span class="icon">
                             <ion-icon name="lock-closed-outline"></ion-icon>
                         </span>
-                        <span class="title">Mật Khẩu</span>
+                        <span class="title">Tài khoản</span>
                     </a>
                 </li>
 
@@ -197,115 +212,63 @@
                 </div>
                 <div class="list-products-content">
                     <div class="list-products-content-button">
-                        <a href="#" class="add-product-btn" onclick="openAddProductModal()">Thêm danh mục</a>
+                        <a href="#" id="add-product-btn">Thêm danh mục</a>
                     </div>
                     <!-- Table products -->
                     <table>
                         <thead>
                             <tr>
-
-                                <th style="width: 15%;">Mã sản phẩm</th>
+                                <th style="width: 15%;">Mã danh mục</th>
                                 <th style="width: 30%;">Tên danh mục</th>
-                                <th style="width: 40%;">Mô tả</th>
                                 <th style="width: 15%;">Hành động</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- Sản phẩm 1 -->
-                            <tr>
-                                <td>1</td>
-                                <td>Xi măng</td>
-                                <td>Xi măng cao cấp</td>
-                                <td>
-                                     <!-- Nút Xóa -->
-                                  <button class="delete-btn" onclick="document.getElementById('deleteConfirmDialog').showModal(); return false;">Xóa</button>
-                                </td>
-                            </tr>
+
                             <!-- Thêm các sản phẩm khác tại đây -->
                         </tbody>
                     </table>
 
-                     
-    <!-- Dialog Xác nhận xóa -->
-    <dialog id="deleteConfirmDialog">
-        <h3>Xác nhận xóa</h3>
-        <p>Bạn có chắc chắn muốn xóa danh mục này không?</p>
-        <menu>
-            <!-- Nút Hủy -->
-            <button class="cancel" onclick="document.getElementById('deleteConfirmDialog').close();">Hủy</button>
-            <!-- Nút Xóa -->
-            <form method="post" action="delete-category.html" style="display: inline;">
-                <button class="confirm" type="submit">Xóa</button>
-            </form>
-        </menu>
-    </dialog>
 
-                    <!-- Mẫu điền thêm sản phẩm -->
+                    <!-- Dialog Xác nhận xóa -->
+                    <dialog id="deleteConfirmDialog">
+                        <h3>Xác nhận xóa</h3>
+                        <p>Bạn có chắc chắn muốn xóa danh mục này không?</p>
+                        <menu>
+                            <!-- Nút Hủy -->
+                            <button class="cancel"
+                                onclick="document.getElementById('deleteConfirmDialog').close();">Hủy</button>
+                            <!-- Nút Xóa -->
+                            <form method="post" action="delete-category.html" style="display: inline;">
+                                <button class="confirm" type="submit">Xóa</button>
+                            </form>
+                        </menu>
+                    </dialog>
+
+                    <!-- Mẫu điền thêm danh mục -->
                     <div id="addProductModal" class="modalAdd">
                         <div class="modal-content">
-                            <span class="close-btn" onclick="closeAddProductModal()">&times;</span>
-                            <h3>Thêm sản phẩm mới</h3>
+                            <span class="close-btn" id ="closeModal">&times;</span>
+                            <h3>Thêm danh mục mới mới</h3>
                             <form id="addProductForm">
-                                <!-- Các trường nhập liệu cho sản phẩm -->
+                                <!-- Các trường nhập liệu cho danh mục -->
                                 <label for="productName">Tên danh mục:</label>
                                 <input type="text" id="productName" required>
-
-                                <label for="productDescription">Mô tả danh mục:</label>
-                                <textarea id="productDescription" rows="4" required></textarea>
- 
-                                <button type="button" id="addProductButton">Lưu sản phẩm</button>
-                                <button type="button" class="exit-btn" onclick="closeAddProductModal()">Thoát</button>
+                                <button type="button" id="addProductButton">Lưu</button>
+                                <button type="button" class="exit-btn" id="close2">Thoát</button>
                             </form>
-                        </div>
-                    </div>
-
-
-
-                    <!-- Mẫu điền cập nhật sản phẩm -->
-                    <div id="updateProductModal" class="modalUpdate">
-                        <div class="modal-content">
-                            <span class="close-btn" onclick="closeUpdateProductModal()">&times;</span>
-                            <h3>Cập nhật sản phẩm</h3>
-                            <form id="updateProductForm"> <!-- Đổi ID form này -->
-                                <!-- Các trường nhập liệu cho sản phẩm -->
-                                <label for="updateProductName">Tên danh mục:</label>
-                                <input type="text" id="updateProductName" required>
-
-                                <label for="updateProductDescription">Mô tả danh mục:</label>
-                                <textarea id="updateProductDescription" rows="4" required></textarea>
-
-                                <button type="button" id="saveChangesButton">Lưu thay đổi</button>
-                                <button type="button" class="exit-btn"
-                                    onclick="closeUpdateProductModal()">Thoát</button>
-                            </form>
-                        </div>
-                    </div>
-
-
-                    <!--Hiện mô tả sản phẩm -->
-                    <!-- Modal hiển thị mô tả sản phẩm -->
-                    <div id="viewDescriptionModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close-btn" onclick="closeViewDescriptionModal()">&times;</span>
-                            <h3>Mô tả sản phẩm</h3>
-                            <div id="productDescriptionDetails">
-                                <!-- Nội dung mô tả sản phẩm sẽ được hiển thị ở đây -->
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-    <script type="module" src="../js/product.js" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script type="module" src="../js/main.js"></script>
-   
+    <script type="module" src="../js/category.js"></script>
 
 
-  
+
 </body>
 
 </html>

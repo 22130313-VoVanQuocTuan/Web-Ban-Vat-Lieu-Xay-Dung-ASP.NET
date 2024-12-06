@@ -2,266 +2,269 @@
 <html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bảng điều khiển Quản trị viên </title>
-    <title>Bảng điều khiển Quản trị viên </title>
-    <!------------------ Kiểu dáng ------------------>
-    <link rel="stylesheet" href="../css/product.css">
-    <script src="/src/assets/ckeditor/ckeditor.js"></script>
-    <script src="../css/style.css"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng điều khiển Quản trị viên </title>
+  <title>Bảng điều khiển Quản trị viên </title>
+  <!------------------ Kiểu dáng ------------------>
+  <link rel="stylesheet" href="../css/product.css">
+  <script src="/src/assets/ckeditor/ckeditor.js"></script>
+
 
 </head>
- 
+
 <body>
-    <!-- ------------------ Điều hướng -------------------->
-    <div class="container">
-        <div class="navigation">
-            <ul>
-                <li>
-                  <a href="index.html">
-                    <span class="icon">
-                      <img src="../imgs/logo.png" alt="" />
-                    </span>
-                    <span class="title">Bán Vật Liệu Xây Dựng </span>
-                  </a>
-                </li>
-      
-                <li>
-                  <a href="index.html">
-                    <span class="icon">
-                      <ion-icon name="home-outline"></ion-icon>
-                    </span>
-                    <span class="title">Trang chủ</span>
-                  </a>
-                </li>
-      
-                <li>
-                  <a href="user.html">
-                    <span class="icon">
-                      <ion-icon name="people-outline"></ion-icon>
-                    </span>
-                    <span class="title">Khách Hàng</span>
-                  </a>
-                </li>
-      
-                <li>
-                  <a href="product.html">
-                    <span class="icon">
-                      <ion-icon name="cube-outline"></ion-icon>
-                    </span>
-                    <span class="title">Sản phẩm</span>
-                  </a>
-                </li>
-      
-                <li>
-                  <a href="voucher.html">
-                    <span class="icon">
-                      <ion-icon name="pricetag-outline"></ion-icon>
-                    </span>
-                    <span class="title">Quản lý mã ưu đãi</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="product-manager.html">
-                    <span class="icon">
-                      <ion-icon name="help-outline"></ion-icon>
-                    </span>
-                    <span class="title">Quản lý khuyến mãi</span>
-                  </a>
-                </li>
-                <li>
-                    <a href="reviews.html">
-                      <span class="icon">
-                        <ion-icon name="chatbubble-outline"></ion-icon>
-                      </span>
-                      <span class="title">Quản lý đánh giá</span>
-                    </a>
-                  </li>
-      
-                <li>
-                  <a href="list-of-categories.html">
-                    <span class="icon">
-                      <ion-icon name="list-outline"></ion-icon>
-                    </span>
-                    <span class="title">Danh mục</span>
-                  </a>
-                </li>
-      
-                <li>
-                  <a href="account.html">
-                    <span class="icon">
-                      <ion-icon name="lock-closed-outline"></ion-icon>
-                    </span>
-                    <span class="title">Tài khoản</span>
-                  </a>
-                </li>
-      
-                <li>
-                  <a href="javascript:void(0);" id="logoutButton">
-                    <span class="icon">
-                      <ion-icon name="log-out-outline"></ion-icon>
-                    </span>
-                    <span class="title">Đăng Xuất</span>
-                  </a>
-                </li>
-              </ul>
-        </div>
+  <!-- ------------------ Điều hướng -------------------->
+  <div class="container">
+    <div class="navigation">
+      <ul>
+        <li>
+          <a href="index.html">
+            <span class="icon">
+              <img src="../imgs/logo.png" alt="" />
+            </span>
+            <span class="title">Bán Vật Liệu Xây Dựng </span>
+          </a>
+        </li>
 
+        <li>
+          <a href="index.html">
+            <span class="icon">
+              <ion-icon name="home-outline"></ion-icon>
+            </span>
+            <span class="title">Trang chủ</span>
+          </a>
+        </li>
 
-        <!-------------------- Chính --------------------->
-        <div class="main">
-            <div class="topbar">
-                <div class="toggle">
-                    <ion-icon name="menu-outline"></ion-icon>
-                </div>
+        <li>
+          <a href="user.html">
+            <span class="icon">
+              <ion-icon name="people-outline"></ion-icon>
+            </span>
+            <span class="title">Khách Hàng</span>
+          </a>
+        </li>
 
-                <div class="user">
-                    <img src="../imgs/customer01.jpg" alt="">
-                </div>
-            </div>
+        <li>
+          <a href="product.html">
+            <span class="icon">
+              <ion-icon name="cube-outline"></ion-icon>
+            </span>
+            <span class="title">Sản phẩm</span>
+          </a>
+        </li>
 
-            <div class="list-products">
-                <div class="list-products-title">
-                    <h2>Danh sách sản phẩm</h2>
-                </div>
-                <div class="list-products-content">
-                    <div class="list-products-content-button">
-                        <a href="#" class="add-product-btn" onclick="openAddProductModal()">Thêm sản phẩm</a>
-                    </div>
-                    <!-- Table products -->
-                    <table>
-                        <thead>
-                            <tr>
+        <li>
+          <a href="voucher.html">
+            <span class="icon">
+              <ion-icon name="pricetag-outline"></ion-icon>
+            </span>
+            <span class="title">Quản lý mã ưu đãi</span>
+          </a>
+        </li>
+        <li>
+          <a href="product-manager.html">
+            <span class="icon">
+              <ion-icon name="help-outline"></ion-icon>
+            </span>
+            <span class="title">Quản lý khuyến mãi</span>
+          </a>
+        </li>
+        <li>
+          <a href="reviews.html">
+            <span class="icon">
+              <ion-icon name="chatbubble-outline"></ion-icon>
+            </span>
+            <span class="title">Quản lý đánh giá</span>
+          </a>
+        </li>
 
-                                <th>Mã sản phẩm</th>
-                                <th>Hình ảnh</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Giá</th>
-                                <th>Số lượng</th>
-                                <th>Ngày tạo</th>
-                                <th>Trạng thái</th>
-                                <th>Danh mục</th>
-                                <th>Hành động</th>
-                            </tr>
-                        </thead>
-                        <tbody id="productList">
-                            <!-- Các sản phẩm sẽ được thêm vào đây -->
-                            <td>2</td>
-                            <td><img src="/src/Users/img/logo.png" alt="Product Image" width="50" height="50"></td>
-                            <td>XI măng</td>
-                            <td>200.000 VNĐ</td>
-                            <td>20</td>
-                            <td>2024/11/11</td>
-                            <td>Còn hàng</td>
-                             <td>1</td>
-                            <td class="bt">
-                                 <button class="view-description-button" data-description="${product.description}">Mô tả</button>
-                                 
-                                 <button class="update-product-button" data-product-id="${product.productId}">Cập nhật</button>
-                                <button class="delete-product-button" data-product-id="${product.productId}">Xóa</button>
-                            </td>
-                        </tbody>
-                    </table>
-                    <!-- Mẫu điền thêm sản phẩm -->
-                    <div id="addProductModal" class="modalAdd">
-                        <div class="modal-content">
-                            <span class="close-btn" onclick="closeAddProductModal()">&times;</span>
-                            <h3>Thêm sản phẩm mới</h3>
-                            <form id="addProductForm">
-                                <!-- Các trường nhập liệu cho sản phẩm -->
-                                <label for="productName">Tên sản phẩm:</label>
-                                <input type="text" id="productName" required>
+        <li>
+          <a href="list-of-categories.html">
+            <span class="icon">
+              <ion-icon name="list-outline"></ion-icon>
+            </span>
+            <span class="title">Danh mục</span>
+          </a>
+        </li>
 
-                                <label for="productPrice">Giá:</label>
-                                <input type="text" id="productPrice" required>
+        <li>
+          <a href="account.html">
+            <span class="icon">
+              <ion-icon name="lock-closed-outline"></ion-icon>
+            </span>
+            <span class="title">Tài khoản</span>
+          </a>
+        </li>
 
-                                <label for="productCategory">Danh mục:</label>
-                                <input type="text" id="productCategory" required>
-
-                                <label for="productStock">Tồn kho:</label>
-                                <input type="number" id="productStock" required>
-
-                                <label for="productDescription">Mô tả:</label>
-                                <textarea id="productDescription" rows="4" required></textarea>
-
-                                <label for="productStatus">Trạng thái:</label>
-                                <select id="productStatus" required>
-                                    <option value="active">Còn hàng</option>
-                                    <option value="inactive">Hết hàng</option>
-                                </select>
-
-                                <label for="productImage">Hình ảnh:</label>
-                                <input type="file" id="productImage">
-
-                                <button type="button" id="addProductButton">Lưu sản phẩm</button>
-                                <button type="button" class="exit-btn" onclick="closeAddProductModal()">Thoát</button>
-                            </form>
-                        </div>
-                    </div>
-
-                    <!-- Mẫu điền cập nhật sản phẩm -->
-                    <div id="updateProductModal" class="modalUpdate">
-                        <div class="modal-content">
-                            <span class="close-btn" onclick="closeUpdateProductModal()">&times;</span>
-                            <h3>Cập nhật sản phẩm</h3>
-                            <form id="updateProductForm"> <!-- Đổi ID form này -->
-                                <!-- Các trường nhập liệu cho sản phẩm -->
-                                <label for="updateProductName">Tên sản phẩm:</label>
-                                <input type="text" id="updateProductName" required>
-
-                                <label for="updateProductPrice">Giá:</label>
-                                <input type="text" id="updateProductPrice" required>
-
-                                <label for="updateProductCategory">Danh mục:</label>
-                                <input type="text" id="updateProductCategory" required>
-
-                                <label for="updateProductStock">Tồn kho:</label>
-                                <input type="number" id="updateProductStock" required>
-
-                                <label for="updateProductDescription">Mô tả:</label>
-                                <textarea id="updateProductDescription" rows="4" required></textarea>
-
-                                <label for="updateProductStatus">Trạng thái:</label>
-                                <select id="updateProductStatus" required>
-                                    <option value="active">Còn hàng</option>
-                                    <option value="inactive">Hết hàng</option>
-                                </select>
-
-                                <label for="updateProductImage">Hình ảnh:</label>
-                                <input type="file" id="updateProductImage">
-                               
-
-                                <button type="button" id="saveChangesButton">Lưu thay đổi</button>
-                                <button type="button" class="exit-btn"
-                                    onclick="closeUpdateProductModal()">Thoát</button>
-                            </form>
-                        </div>
-                    </div>
-                    <!--Hiện mô tả sản phẩm -->
-                    <!-- Modal hiển thị mô tả sản phẩm -->
-                    <div id="viewDescriptionModal" class="modal">
-                        <div class="modal-content">
-                            <span class="close-btn" onclick="closeViewDescriptionModal()">&times;</span>
-                            <h3>Mô tả sản phẩm</h3>
-                            <div id="productDescriptionDetails">
-                                <!-- Nội dung mô tả sản phẩm sẽ được hiển thị ở đây -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <li>
+          <a href="javascript:void(0);" id="logoutButton">
+            <span class="icon">
+              <ion-icon name="log-out-outline"></ion-icon>
+            </span>
+            <span class="title">Đăng Xuất</span>
+          </a>
+        </li>
+      </ul>
     </div>
 
-    <script src="https://unpkg.com/ionicons@5.5.2/dist/ionicons.js"></script>
-    <script type="module" src="../js/product.js" defer></script>
-    <script type="module" src="../js/main.js"></script>
-   
+
+    <!-------------------- Chính --------------------->
+    <div class="main">
+      <div class="topbar">
+        <div class="toggle">
+          <ion-icon name="menu-outline"></ion-icon>
+        </div>
+
+        <div class="user">
+          <img src="../imgs/customer01.jpg" alt="">
+        </div>
+      </div>
+
+      <div class="list-products">
+        <div class="list-products-title">
+          <h2>Danh sách sản phẩm</h2>
+        </div>
+        <div class="list-products-content">
+          <div class="list-products-content-button">
+            <a href="#" class="add-product-btn" onclick="openAddProductModal()">Thêm sản phẩm</a>
+          </div>
+          <!-- Table products -->
+          <table>
+            <thead>
+              <tr>
+
+                <th>Mã sản phẩm</th>
+                <th>Hình ảnh</th>
+                <th>Tên sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Ngày tạo</th>
+                <th>Trạng thái</th>
+                <th>Danh mục</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="productList">
+              <!-- Các sản phẩm sẽ được thêm vào đây -->
+              <td>2</td>
+              <td><img src="/src/Users/img/logo.png" alt="Product Image" width="50" height="50"></td>
+              <td>XI măng</td>
+              <td>200.000 VNĐ</td>
+              <td>20</td>
+              <td>2024/11/11</td>
+              <td>Còn hàng</td>
+              <td>1</td>
+              <td class="bt">
+                <button class="view-description-button" data-description="${product.description}">Mô tả</button>
+
+                <button class="update-product-button" data-product-id="${product.productId}">Cập nhật</button>
+                <button class="delete-product-button" data-product-id="${product.productId}">Xóa</button>
+              </td>
+            </tbody>
+          </table>
+          <!-- Mẫu điền thêm sản phẩm -->
+          <div id="addProductModal" class="modalAdd">
+            <div class="modal-content">
+              <span class="close-btn" onclick="closeAddProductModal()">&times;</span>
+              <h3>Thêm sản phẩm mới</h3>
+              <form id="addProductForm">
+                <!-- Các trường nhập liệu cho sản phẩm -->
+                <label for="productName">Tên sản phẩm:</label>
+                <input type="text" id="productName" required>
+
+                <label for="productPrice">Giá:</label>
+                <input type="text" id="productPrice" required>
+
+                <label for="productCategory">Danh mục:</label>
+                <input type="text" id="productCategory" required>
+
+                <label for="productStock">Tồn kho:</label>
+                <input type="number" id="productStock" required>
+
+                <label for="productDescription">Mô tả:</label>
+                <textarea title="Description" id="productDescriptions" rows="4" required></textarea>
+
+                <label for="productStatus">Trạng thái:</label>
+                <select id="productStatus" required>
+                  <option value="active">Còn hàng</option>
+                  <option value="inactive">Hết hàng</option>
+                </select>
+
+                <label for="productImage">Hình ảnh:</label>
+                <input type="file" id="productImage">
+
+                <button type="button" id="addProductButton">Lưu sản phẩm</button>
+                <button type="button" class="exit-btn" onclick="closeAddProductModal()">Thoát</button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Mẫu điền cập nhật sản phẩm -->
+          <div id="updateProductModal" class="modalUpdate">
+            <div class="modal-content">
+              <span class="close-btn" onclick="closeUpdateProductModal()">&times;</span>
+              <h3>Cập nhật sản phẩm</h3>
+              <form id="updateProductForm"> <!-- Đổi ID form này -->
+                <!-- Các trường nhập liệu cho sản phẩm -->
+                <label for="updateProductName">Tên sản phẩm:</label>
+                <input type="text" id="updateProductName" required>
+
+                <label for="updateProductPrice">Giá:</label>
+                <input type="text" id="updateProductPrice" required>
+
+                <label for="updateProductCategory">Danh mục:</label>
+                <input type="text" id="updateProductCategory" required>
+
+                <label for="updateProductStock">Tồn kho:</label>
+                <input type="number" id="updateProductStock" required>
+
+                <label for="updateProductDescription">Mô tả:</label>
+                <textarea id="updateProductDescription" rows="4" required></textarea>
+
+                <label for="updateProductStatus">Trạng thái:</label>
+                <select id="updateProductStatus" required>
+                  <option value="Còn hàng">Còn hàng</option>
+                  <option value="Hết hàng">Hết hàng</option>
+                </select>
+
+                <!-- Hiển thị hình ảnh hiện tại -->
+                <label>Hình ảnh hiện tại:</label><br>
+                <img id="currentProductImage" src="" alt="Hình ảnh sản phẩm" style="width: 200px; height: auto;"><br>
+
+                <label for="updateProductImage">Hình ảnh:</label>
+                <input type="file" id="updateProductImage">
 
 
-  
+                <button type="button" id="saveChangesButton">Lưu thay đổi</button>
+                <button type="button" class="exit-btn" onclick="closeUpdateProductModal()">Thoát</button>
+              </form>
+            </div>
+          </div>
+          <!--Hiện mô tả sản phẩm -->
+          <!-- Modal hiển thị mô tả sản phẩm -->
+          <div id="viewDescriptionModal" class="modal">
+            <div class="modal-content">
+              <span class="close-btn" onclick="closeViewDescriptionModal()">&times;</span>
+              <h3>Mô tả sản phẩm</h3>
+              <div id="productDescriptionDetails">
+                <!-- Nội dung mô tả sản phẩm sẽ được hiển thị ở đây -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script type="module" src="../js/product.js" defer></script>
+  <script type="module" src="../js/main.js"></script>
+
+
+
+
 </body>
 
 </html>

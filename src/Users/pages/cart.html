@@ -10,6 +10,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../css/cart.css" />
   <link rel="stylesheet" href="/src/Users/css/home.css">
+  <link rel="stylesheet" href="../css/script.css">
 </head>
 
 <body>
@@ -42,9 +43,21 @@
 
           <!-- Thanh tìm kiếm ở giữa -->
           <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm sản phẩm..." />
-            <button><i class="fa fa-fw fa-search"></i></button>
+            <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+            <button id="searchButton"><i class="fa fa-fw fa-search"></i></button>
           </div>
+
+          <!-- Modal chứa kết quả tìm kiếm -->
+          <div id="searchModal" class="modal">
+            <div class="modal-content">
+              <span id="closeModal" class="close">&times;</span>
+              <h2>Kết quả tìm kiếm</h2>
+              <div id="searchResults">
+                <!-- Kết quả tìm kiếm sẽ hiển thị tại đây -->
+              </div>
+            </div>
+          </div>
+
 
           <!-- Thông tin bên phải -->
           <div class="info">
@@ -207,7 +220,6 @@
     </div>
   </div>
   <script type="module" src="/src/Users/js/cart.js"></script>
-  <script src="/src/Users/js/app.js"></script>
   <script type="module" src="../js/script.js"></script>
 
 </body>

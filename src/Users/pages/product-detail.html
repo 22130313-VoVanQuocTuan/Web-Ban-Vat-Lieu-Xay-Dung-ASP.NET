@@ -12,6 +12,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link rel="stylesheet" href="../css/home.css">
 <link rel="stylesheet" href="../css/product-detail.css">
+<link rel="stylesheet" href="../css/script.css">
 
 
 <body>
@@ -45,9 +46,21 @@
 
                     <!-- Thanh tìm kiếm ở giữa -->
                     <div class="search-bar">
-                        <input type="text" placeholder="Tìm kiếm sản phẩm...">
-                        <button><i class="fa fa-fw fa-search"></i></button>
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+                        <button id="searchButton"><i class="fa fa-fw fa-search"></i></button>
                     </div>
+
+                    <!-- Modal chứa kết quả tìm kiếm -->
+                    <div id="searchModal" class="modal">
+                        <div class="modal-content">
+                            <span id="closeModal" class="close">&times;</span>
+                            <h2>Kết quả tìm kiếm</h2>
+                            <div id="searchResults">
+                                <!-- Kết quả tìm kiếm sẽ hiển thị tại đây -->
+                            </div>
+                        </div>
+                    </div>
+
 
                     <!-- Thông tin bên phải -->
                     <div class="info">
@@ -69,149 +82,93 @@
         </div>
         <div id="section-nav">
             <div class="container-1">
-              <ul class="nav navbar-nav navbar-center">
-                <li class="propClone">
-                  <span class="none-a"><i class="fa-solid fa-list" style="color: #d0cdcd;"></i> &nbsp;&nbsp; DANH
-                    MỤC SẢN
-                    PHẨM</span>
-                  <ul class="items">
-                    <li> <a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH BLOCK
-                        XI MĂNG</a></li>
-                    <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH TRANG
-                        TRÍ</a></li>
-                    <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;NGÓI LỢP
-                        NHÀ</a> </li>
-                    <li><a href="#"></a>&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;ĐÁ TỰ
-                      NHIÊN </li>
-                    <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH
-                        MEN</a></li>
-                    <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;VẬT LIỆU
-                        THÔ</a></li>
-                    <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;CÁC LOẠI
-                        VLXD KHÁC</a></li>
-                    <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;THIẾT BỊ
-                        NGÀNH NƯỚC</a></li>
-                  </ul>
-                </li>
-                <li class="propClone"><a href="home.html"><i class="fa-solid fa-house"></i>&nbsp;&nbsp; TRANG CHỦ
-                  </a></li>
-                <li class="propClone"><a href="product-list.html"><i class="fa-brands fa-product-hunt"></i>
-                    &nbsp;&nbsp;SẢN PHẨM</a>
-                </li>
-                <li class="propClone"> <a href="cart.html"><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp; GIỎ
-                    HÀNG</a>
-                </li>
-                <li class="propClone">
-                  <span class="none-a"> <i class="fa-solid fa-book"></i> &nbsp;&nbsp; HƯỚNG DẪN </span>
-                  <ul class="items">
-                    <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;HƯỚNG DẪN
-                        MUA HÀNG</a>
+                <ul class="nav navbar-nav navbar-center">
+                    <li class="propClone">
+                        <span class="none-a"><i class="fa-solid fa-list" style="color: #d0cdcd;"></i> &nbsp;&nbsp; DANH
+                            MỤC SẢN
+                            PHẨM</span>
+                        <ul class="items">
+                            <li> <a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH BLOCK
+                                    XI MĂNG</a></li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH TRANG
+                                    TRÍ</a></li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;NGÓI LỢP
+                                    NHÀ</a> </li>
+                            <li><a href="#"></a>&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;ĐÁ TỰ
+                                NHIÊN </li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH
+                                    MEN</a></li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;VẬT LIỆU
+                                    THÔ</a></li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;CÁC LOẠI
+                                    VLXD KHÁC</a></li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;THIẾT BỊ
+                                    NGÀNH NƯỚC</a></li>
+                        </ul>
                     </li>
-                    <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;HƯỚNG DẪN
-                        THANH TOÁN</a>
+                    <li class="propClone"><a href="home.html"><i class="fa-solid fa-house"></i>&nbsp;&nbsp; TRANG CHỦ
+                        </a></li>
+                    <li class="propClone"><a href="product-list.html"><i class="fa-brands fa-product-hunt"></i>
+                            &nbsp;&nbsp;SẢN PHẨM</a>
                     </li>
-                    <li><a href="term_and_services.html">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;ĐIỀU
-                        KHOẢN
-                        VÀ DỊCH VỤ</a>
+                    <li class="propClone"> <a href="cart.html"><i class="fas fa-shopping-cart"></i>&nbsp;&nbsp; GIỎ
+                            HÀNG</a>
                     </li>
-                  </ul>
-                </li>
-              </ul>
+                    <li class="propClone">
+                        <span class="none-a"> <i class="fa-solid fa-book"></i> &nbsp;&nbsp; HƯỚNG DẪN </span>
+                        <ul class="items">
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;HƯỚNG DẪN
+                                    MUA HÀNG</a>
+                            </li>
+                            <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;HƯỚNG DẪN
+                                    THANH TOÁN</a>
+                            </li>
+                            <li><a href="term_and_services.html">&nbsp;&nbsp;<i
+                                        class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;ĐIỀU
+                                    KHOẢN
+                                    VÀ DỊCH VỤ</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-          </div>
+        </div>
         <!--	phần của tôi-->
         <div class="containt">
             <div class="box1">
-                <div class="index" style="display: flex;">
-                    <div class=" option">
-                        <ul class="product-list">
-                            <li><a href="#">GẠCH BLOCK XI MĂNG</a></li>
-                            <li><a href="#">GẠCH TRANG TRÍ</a></li>
-                            <li><a href="#">NGÓI LỢP NHÀ</a></li>
-                            <li><a href="#">ĐÁ TỰ NHIÊN</a></li>
-                            <li><a href="#">GẠCH MEN</a></li>
-                            <li><a href="#">VẬT LIỆU THÔ</a></li>
-                            <li><a href="#">CÁC LOẠI VLXD KHÁC</a></li>
-                            <li><a href="#">THIẾT BỊ NGÀNH NƯỚC</a></li>
-                        </ul>
+                <div class="left">
+                    <div class="product-image">
+                        <div class="image "> <img id="product-image" src="" alt="Ảnh minh họa" style="height: 300px;
+                    width: 300px; margin-right: 62px;"></div>
 
                     </div>
-                    <div class="image "> <img
-                            src="https://bizweb.dktcdn.net/thumb/1024x1024/100/387/417/products/gach-mosaic-da-tu-nhien-mst-205.jpg?v=1621508572790"
-                            alt="Ảnh minh họa" style="height: 400px;
-                    width: 400px;"></div>
+                    <div class="review-product">
+                        <div class="review">
+                            <h2>Đánh giá</h2>
+                            <form id="commentform" class="comment-form">
+                                <textarea id="review-comment" rows="3" placeholder="Ý kiến của bạn..."
+                                    required></textarea>
+                                <button type="submit">Gửi</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="index1">
-                    <div class=title> Gạch mosaic đá tự nhiên MST-205 </div>
+                    <div class="title" id="product-name"> </div>
+                    <p class="cost" id="product-price"></p>
+                    <p class="status" style="color: red;" id="product-status"></p>
+                    <button id="add-cart" class=" submit" type="submit">
 
-                    <div class="two-item1">
-                        <div class="sku">SKU: MSt-205</div>
-                        <div><i class="fa-solid fa-star" style="color: #FFD43B;"></i><i class="fa-solid fa-star"
-                                style="color: #FFD43B;"></i><i class="fa-solid fa-star" style="color: #FFD43B;"></i><i
-                                class="fa-solid fa-star" style="color: #FFD43B;"></i><i class="fa-solid fa-star"
-                                style="color: #FFD43B;"></i></div>
-                        <div class="evaluate"> <a href="#"> Đánh giá </a> </div>
-                    </div>
-
-                    <p class="trademark">Thương hiệu :</p>
-                    <p class="cost">950.000 VND</p>
-
-                    <div class="status">Tình trạng: Còn hàng </div>
-                    <div class="quality">Số lượng:</div>
-
-                    <div class="change">
-                        <button type="button"
-                            style=" background-color: transparent;  border: none; font-size: 16px;  cursor: pointer;"> -
-                        </button>
-                        <div class="number">1</div>
-                        <button type="button"
-                            style=" background-color: transparent;  border: none; font-size: 16px;  cursor: pointer;"> +
-                        </button>
-                    </div>
-
-                    <button class="submit" type="submit">
-                        <p style="font-weight: bold; font-size: 18px;">MUA NGAY VỚI GIÁ 950.000</p>
-                        <p style="font-style: italic; ">Đặt mua và giao hàng tận nơi</p>
                     </button>
-
                     <div class="help">
                         <p style="margin: 18px 0 0 0; font-size: 16px;">Bạn cần hỗ trợ?</p>
                         <p style="font-size: 16px; color: blue;"> Gọi số 0336973590 để được tư vấn ngay.</p>
                     </div>
                 </div>
             </div>
-            <div class="box2">
-                <h2>Gạch mosaic đá tự nhiên MST-205</h2>
-                <p>Hưng Gia Bình - Nhà phân phối gạch mosaic đá tự nhiên, gốm sứ men rạng, gạch mosaic thủy tinh tại Đà
-                    Nẵng, Hội An, Quy Nhơn và các tỉnh Miền Trung, Tây Nguyên.</p>
-                <p> <span class="mosaic">Đá mosaic tự nhiên MST-25 </span>thường được sử dụng để ốp lát trang trí tường
-                    nhà như phòng tắm, ốp lát hồ bơi, bể bơi, bể sục jaccuzzi... được ghép từ những viên đá tự nhiên có
-                    kích thước 5x5 cm dày 1 cm</p>
-                Hãy liên hệ và đặt hàng ngay hôm nay: 0336973590 để được tư vấn thi công và hỗ trợ báo giá tốt nhất.
-                <h3>Thông số kỹ thuật của gạch mosaic MST-205</h3>
-                <ul>
-                    <li>- Tên sản phẩm: Gạch mosaic đá tự nhiên MST-205</li>
-                    <li>- Mã sản phẩm: MST-205</li>
-                    <li>- Kích thước: 300x300 mm</li>
-                    <li>- Số lượng: 11 vỉ/m2</li>
-                    <li>- Chất liệu: đá tự nhiên, kích thước viên đá 25x25 mm và 50x50 mm.</li>
-                    <li>- Quy cách: dạng vỉ kích thước 300x300 mm, đóng thùng carton = 11 vỉ/thùng.</li>
+            <div class="box2" id="product-description">
 
-                </ul>
-
-                <p>CÔNG TY TNHH VẬT LIỆU XÂY DỰNG HƯNG GIA BÌNH</p>
-                <p>Địa chỉ VP: Lô 77-78-79 B2.59 KĐT Đồng Nò, Hòa Quý, Ngũ Hành Sơn, Đà Nẵng</p>
-                <p>Hotline: <span class="dt">0862309507</span> (mr Tuấn)</p>
-                <p>Email: vlxd.hgb@gmail.com</p>
-                <p>Website: https://vatlieuxaydung.vn</p>
-                <p>Hưng Gia Bình - Nhà phân phối các loại gạch đá mosaic ốp lát hồ bơi chuyên nghiệp. Hưng Gia Bình
-                    chúng tôi còn là nhà thầu thi công bể bơi, xây dựng hồ bơi, bể sục Jacuzzi, hồ cá Koi, thi công
-                    phòng xông hơi, phòng Sauna và phòng Steam room... và là nhà phân phối chuyên nghiệp máy xông hơi
-                    nhập khẩu, thiết bị bể bơi tại Hà Nội, Hồ Chí Minh, Đà Nẵng, Hội An, Quy Nhơn, Gia Lai, Kon Tum,
-                    Buôn Ma Thuột và các tỉnh thành Miền Trung, Tây Nguyên. Tư vấn – Thiết kế – Thi công – Lắp đặt và
-                    Bảo hành tận nơi toàn quốc.</p>
-                <p>Trân trọng!</p>
 
             </div>
         </div>
@@ -248,8 +205,8 @@
 
         </div>
     </div>
-
-    <script type="module" src="../js/script.js"></script>
+    <script type="module" src="../js/product-detail.js"></script>
+    <script src="../js/script.js"></script>
 </body>
 
 </html>

@@ -54,3 +54,4 @@ function getOriginalPrice(price) {
         return "N/A"; // Hoặc một giá trị mặc định nào đó
     }
 }
+
