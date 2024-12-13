@@ -10,14 +10,16 @@
     backToLoginLink.addEventListener('click', function() {
         window.location.href = "/src/Users/pages/account/login-signup.html"; // Địa chỉ trang đăng nhập
     });
-
+    const error_email = document.getElementById("error-confirm");
+    error_email.innerText ='';
 
 // Lắng nghe sự kiện gửi form reset mật khẩu
 document.getElementById("reset-password-form").addEventListener("submit", async (event) => {
     event.preventDefault(); // Ngăn chặn reload trang
 
-    const email = document.getElementById("reset-email").value;
-
+    const email = document.getElementById("reset-email").value.trim();
+    error_email.innerText = ''; // Xóa thông báo lỗi mỗi lần gửi yêu cầu mới
+    
     try {
         const response = await fetch("http://localhost:5241/api/SendEmail/forgot-password", {
             method: "POST",
@@ -28,16 +30,19 @@ document.getElementById("reset-password-form").addEventListener("submit", async 
         });
 
         if (response.ok) {
-            alert("Liên kết đặt lại mật khẩu đã được gửi đến email của bạn.");
+            const ok = await response.json();
+            error_email.style.color = "green"
+            error_email.innerText = ok.message || "Đã xảy ra lỗi. Vui lòng thử lại.";
         } else {
             const error = await response.json();
-            alert(`Lỗi: ${error.message || "Không thể gửi liên kết đặt lại mật khẩu."}`);
+            error_email.innerText = error.message || "Đã xảy ra lỗi. Vui lòng thử lại.";
         }
     } catch (error) {
-        console.error("Có lỗi xảy ra:", error);
-        alert("Đã xảy ra lỗi khi gửi yêu cầu đặt lại mật khẩu.");
+        error_email.innerText = "Không thể kết nối đến server. Vui lòng kiểm tra mạng.";
+        console.error("Error:", error);
     }
 });
+
 window.onload = function() {
     // Lấy token từ URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -59,9 +64,10 @@ document.getElementById("new-password-form").addEventListener("submit", async (e
 
     const newPassword = document.getElementById("new-password").value;
     const confirmNewPassword = document.getElementById("confirm-password").value;
-
+    const error_pass = document.getElementById("password-error");
+    error_pass.innerText = '';
     if (newPassword !== confirmNewPassword) {
-        alert("Mật khẩu mới và xác nhận mật khẩu không khớp.");
+        error_pass.innerText = 'Mật khẩu không khớp';
         return;
     }
 

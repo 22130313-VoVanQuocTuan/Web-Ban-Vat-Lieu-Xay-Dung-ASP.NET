@@ -25,7 +25,7 @@ async function loadCategories() {
                 <td>${category.categotyId}</td>
                 <td>${category.name}</td>
                 <td>
-                    <button class="delete-btn" onclick="openDeleteDialog(${category.id})">Xóa</button>
+                    <button class="delete-btn" onclick="openDeleteDialog(${category.categotyId})">Xóa</button>
                 </td>
             `;
             tableBody.appendChild(row);
@@ -57,19 +57,21 @@ document.getElementById('close2').onclick = function(){
 
 
 // Gọi API để thêm danh mục
-window.addCategory = addCategory;
+// Sự kiện lưu thay đổi
+document.getElementById('addProductButton').addEventListener('click', addCategory);
 async function addCategory() {
     // Lấy dữ liệu từ form
-    const categoryName = document.getElementById('categoryName').value;
-
-
+    const categoryName = document.getElementById('productName').value;
+  
     try {
         // Gọi API để thêm danh mục
         const response = await customFetch('http://localhost:5241/api/Category', {
             method: 'POST',
-      
+            headers: {
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify({
-                name: categoryName,
+                name: categoryName
                
             })
         });
@@ -80,8 +82,8 @@ async function addCategory() {
 
         // Nếu thêm thành công, đóng modal và làm mới danh sách danh mục
         alert('Thêm danh mục thành công');
-        closeAddProductModal(); // Đóng modal
-        loadCategories(); // Làm mới danh sách danh mục (giả sử có hàm loadCategories để hiển thị danh sách)
+        document.getElementById('addProductModal').style.display = 'none';
+         loadCategories(); // Làm mới danh sách danh mục (giả sử có hàm loadCategories để hiển thị danh sách)
     } catch (error) {
         console.error('Lỗi khi thêm danh mục:', error);
     }
@@ -90,7 +92,7 @@ async function addCategory() {
 window.openDeleteDialog = openDeleteDialog;
 // Mở hộp thoại xác nhận xóa
 function openDeleteDialog(categoryId) {
-    const deleteButton = document.querySelector('.confirm');
+    const deleteButton = document.getElementById('delete-category');
     deleteButton.onclick = function() {
         deleteCategory(categoryId);
     };
@@ -98,14 +100,13 @@ function openDeleteDialog(categoryId) {
 }
 
 // Xóa danh mục sản phẩm
+// Sự kiện lưu thay đổi
+
 async function deleteCategory(categoryId) {
     try {
-        const response = await fetch(`http://localhost:5241/api/categories/${categoryId}`, {
+        const response = await customFetch(`http://localhost:5241/api/Category/${categoryId}`, {
             method: 'DELETE',
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem('token') // Nếu cần token
-            }
-        });
+         });
 
         if (!response.ok) {
             throw new Error('Không thể xóa danh mục');

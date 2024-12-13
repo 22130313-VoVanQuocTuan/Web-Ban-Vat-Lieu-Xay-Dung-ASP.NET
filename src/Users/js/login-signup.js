@@ -1,4 +1,4 @@
-import { getUserName } from "./UserId.js";
+
 
 
 const container = document.getElementById('container');
