@@ -67,10 +67,6 @@ async function loadPromotions() {
 
 // Hàm xóa sản phẩm
 async function deleteProduct(productId) {
-    if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
-        return;
-    }
-
     try {
         const response = await customFetch(`http://localhost:5241/api/Promotional/${productId}`, {
             method: 'DELETE',
@@ -83,16 +79,30 @@ async function deleteProduct(productId) {
         const data = await response.json();
 
         if (data.status !== 200) {
-            alert('Xóa không thành công: ' + data.message);
+            console.error('Xóa không thành công: ' + data.message);
             return;
         }
 
-        // alert('Xóa thành công!');
+        // Hiển thị thông báo "Xóa thành công"
+        showToast("Xóa thành công!");
         loadPromotions(); // Làm mới danh sách khuyến mãi
     } catch (error) {
         console.error('Error deleting product:', error);
     }
 }
+
+// Hàm để hiển thị thông báo
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.style.display = 'block';
+
+    // Sau 3 giây, ẩn thông báo
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 3000); // Thông báo sẽ ẩn sau 3.5 giây
+}
+
 
 
 

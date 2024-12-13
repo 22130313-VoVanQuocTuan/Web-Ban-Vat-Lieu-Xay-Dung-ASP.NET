@@ -101,6 +101,59 @@
       /* Kết thúc ở vị trí chính giữa và kích thước bình thường */
     }
   }
+
+  /* Toast Notification - Thông báo */
+  .toast {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #4CAF50;
+    padding: 20px 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    z-index: 1001;
+    /* Đảm bảo thông báo luôn trên các phần tử khác */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: showToast 0.5s ease-in-out, hideToast 3s ease-in-out 2.5s;
+    /* Hiệu ứng hiển thị và ẩn */
+    max-width: 90%;
+    word-wrap: break-word;
+    /* Đảm bảo dòng chữ không bị tràn */
+  }
+
+  /* Hiệu ứng hiển thị thông báo */
+  @keyframes showToast {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -55%) scale(0.8);
+      /* Hiệu ứng xuất hiện từ nhỏ */
+    }
+
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+      /* Hiển thị bình thường */
+    }
+  }
+
+  /* Hiệu ứng ẩn thông báo */
+  @keyframes hideToast {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translate(-50%, -45%) scale(0.8);
+      /* Ẩn mờ và thu nhỏ */
+    }
+  }
 </style>
 
 <body>
@@ -233,6 +286,10 @@
           <button id="confirmDeleteNo">Không</button>
         </div>
       </dialog>
+      <!-- Thông báo cho người dùng -->
+      <div id="toast" class="toast">Xóa thành công!</div>
+    </div>
+
   </div>
 
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
