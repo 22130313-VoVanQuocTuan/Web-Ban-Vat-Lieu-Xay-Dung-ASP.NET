@@ -5,6 +5,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  height: auto;
+  overflow-x: hidden;
+}
 
 :root {
   --blue: #2a2185;
@@ -14,10 +18,7 @@
   --black2: #999;
 }
 
-body {
-  height: auto;
-  overflow-x: hidden;
-}
+
 
 .container {
   position: relative;
@@ -67,15 +68,13 @@ body {
 }
 
 .navigation ul li:nth-child(1) {
-  margin-bottom: 2vh;
-  /* Sử dụng chiều cao màn hình làm tham chiếu */
   pointer-events: none;
 }
 
 .navigation ul li a {
   position: relative;
   display: block;
-  width: 100%;
+  width: 85%;
   display: flex;
   text-decoration: none;
   color: var(--white);
@@ -93,6 +92,7 @@ body {
   height: auto;
   line-height: 70px;
   text-align: center;
+  margin-top: 2%;
 }
 
 .navigation ul li a .icon ion-icon {
@@ -108,10 +108,8 @@ body {
   text-align: start;
   white-space: nowrap;
 }
-
 .navigation.active {
-  width: 10%;
-  /* Hoặc bất cứ kích thước nào bạn muốn */
+  width: 10%; /* Hoặc bất cứ kích thước nào bạn muốn */
 }
 
 .main.active {
@@ -120,7 +118,7 @@ body {
 }
 
 
- /* ------------------ Main ------------------ */
+/* ------------------ Main ------------------ */
 .main {
   position: absolute;
   width: calc(100% - 300px);
@@ -175,8 +173,8 @@ body {
 
 .search label ion-icon {
   position: absolute;
-  top: 10%;
-  left: 1.5%;
+  top: 0;
+  left: 10px;
   font-size: 1.2rem;
 }
 
@@ -198,7 +196,6 @@ body {
   height: 100%;
   object-fit: cover;
 }
-
 /* ------------------------List product----------------- */
 .list-products {
     border: 2px gray solid;

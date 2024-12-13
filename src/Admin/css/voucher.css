@@ -5,6 +5,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  height: auto;
+  overflow-x: hidden;
+}
 
 :root {
   --blue: #2a2185;
@@ -14,10 +18,7 @@
   --black2: #999;
 }
 
-body {
-  height: auto;
-  overflow-x: hidden;
-}
+
 
 .container {
   position: relative;
@@ -67,15 +68,13 @@ body {
 }
 
 .navigation ul li:nth-child(1) {
-  margin-bottom: 2vh;
-  /* Sử dụng chiều cao màn hình làm tham chiếu */
   pointer-events: none;
 }
 
 .navigation ul li a {
   position: relative;
   display: block;
-  width: 100%;
+  width: 85%;
   display: flex;
   text-decoration: none;
   color: var(--white);
@@ -93,6 +92,7 @@ body {
   height: auto;
   line-height: 70px;
   text-align: center;
+  margin-top: 2%;
 }
 
 .navigation ul li a .icon ion-icon {
@@ -108,10 +108,8 @@ body {
   text-align: start;
   white-space: nowrap;
 }
-
 .navigation.active {
-  width: 10%;
-  /* Hoặc bất cứ kích thước nào bạn muốn */
+  width: 10%; /* Hoặc bất cứ kích thước nào bạn muốn */
 }
 
 .main.active {
@@ -121,56 +119,6 @@ body {
 
 
 /* ------------------ Main ------------------ */
-.main {
-  position: absolute;
-  width: calc(100% - 300px);
-  left: 20%;
-  min-height: 100vh;
-  background: var(--white);
-  transition: 0.5s;
-}
-
-.topbar {
-  width: 100%;
-  height: 40%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 10px;
-  margin-top: 10px;
-}
-
-.toggle {
-  position: relative;
-  width: 5%;
-  height: 5%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.5rem;
-  cursor: pointer;
-}
-
-.user {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  overflow: hidden;
-  cursor: pointer;
-  margin-right: 50px;
-}
-
-.user img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
- /* ------------------ Main ------------------ */
 .main {
   position: absolute;
   width: calc(100% - 300px);
@@ -225,8 +173,8 @@ body {
 
 .search label ion-icon {
   position: absolute;
-  top: 10%;
-  left: 1.5%;
+  top: 0;
+  left: 10px;
   font-size: 1.2rem;
 }
 
