@@ -1,3 +1,4 @@
+import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn chính xác
 // Hàm gọi API và hiển thị danh sách khuyến mãi
 async function loadPromotions() {
     try {
@@ -31,7 +32,7 @@ async function loadPromotions() {
             row.innerHTML = `
                 <td>${promotion.productId}</td>
                 <td>${promotion.discountPercentage * 100}%</td>
-                <td>${promotion.productName }</td>
+                <td>${promotion.productName}</td>
                 <td>${promotion.startDate}</td>
                 <td>${promotion.endDate}</td>
                 <td class="bt">
@@ -47,7 +48,8 @@ async function loadPromotions() {
         document.querySelectorAll('.delete-product-button').forEach(button => {
             button.addEventListener('click', function () {
                 const productId = this.getAttribute('data-product-id'); // Lấy ID sản phẩm
-                deleteProduct(productId); // Gọi hàm xóa
+                // deleteProduct(productId); // Gọi hàm xóa
+                showDeleteConfirmationDialog(productId);
             });
         });
 
@@ -70,7 +72,7 @@ async function deleteProduct(productId) {
     }
 
     try {
-        const response = await fetch(`http://localhost:5241/api/Promotions/${productId}`, {
+        const response = await customFetch(`http://localhost:5241/api/Promotional/${productId}`, {
             method: 'DELETE',
         });
 
@@ -85,12 +87,36 @@ async function deleteProduct(productId) {
             return;
         }
 
-        alert('Xóa thành công!');
+        // alert('Xóa thành công!');
         loadPromotions(); // Làm mới danh sách khuyến mãi
     } catch (error) {
         console.error('Error deleting product:', error);
     }
 }
+
+
+
+// Hiển thị hộp thoại xác nhận xóa sản phẩm
+function showDeleteConfirmationDialog(productId) {
+    const dialog = document.getElementById('confirmDeleteDialog');
+    const confirmBtn = document.getElementById('confirmDeleteYes');
+    const cancelBtn = document.getElementById('confirmDeleteNo');
+
+    dialog.showModal(); // Mở hộp thoại
+
+    // Xử lý khi người dùng nhấn "Có"
+    confirmBtn.onclick = () => {
+        deleteProduct(productId); // Gọi hàm xóa
+        dialog.close(); // Đóng hộp thoại
+    };
+
+    // Xử lý khi người dùng nhấn "Không"
+    cancelBtn.onclick = () => {
+        dialog.close(); // Đóng hộp thoại khi người dùng chọn "Không"
+    };
+}
+
+
 
 // Hàm cập nhật sản phẩm
 function updateProduct(productId) {
