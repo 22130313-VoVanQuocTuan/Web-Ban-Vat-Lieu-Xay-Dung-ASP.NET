@@ -1,6 +1,7 @@
+import { getUserIdFromToken } from "./UserId.js";
+
 document.addEventListener('DOMContentLoaded', () => {
-   
-    getCart();
+     getCart();
   });
 async function getCart() {
     try {

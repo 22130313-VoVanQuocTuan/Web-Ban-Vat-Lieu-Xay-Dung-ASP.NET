@@ -120,48 +120,48 @@
             <div class="container" id="container">
                 <div class="form-container sign-up  none">
                     <form id="register-form">
-                        <h1>Create Account</h1>
+                        <h1>Tạo tài khoản</h1>
                         <div class="social-icons">
                             <a href="" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                             <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                         </div>
-                        <span>or use your username for registration</span>
+                        <span>Hoặc sử dụng tài khoản để đăng kí</span>
                         <input type="email" id="register-email" placeholder="Email" required>
                         <span id="error-email" class="error-message"></span>
                         <input type="username" id="register-username" placeholder="UserName" required>
                         <span id="error-username" class="error-message"></span>
                         <input type="password" id="register-password" placeholder="Password" required>
                         <span id="error-password" class="error-message"></span>
-                        <button type="submit" id="submit-register">Sign Up</button>
+                        <button type="submit" id="submit-register">Đăng kí</button>
                     </form>
                 </div>
                 <div class="form-container sign-in none">
                     <form id="login-form">
-                        <h1>Sign In</h1>
+                        <h1>Đăng nhập</h1>
                         <div class="social-icons">
                             <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                             <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
                         </div>
-                        <span>or use your username password</span>
+                        <span>Hoặc đăng nhập với tài khoản</span>
                         <input type="username" id="login-username" placeholder="UserName" required>
                         <input type="password" id="login-password" placeholder="Password" required>
-                        <a href="./reset-password.html">Forget Your Password?</a>
-                        <button type="submit">Sign In</button>
+                        <a href="./reset-password.html">Quên mật khẩu?</a>
+                        <button type="submit">Đăng nhập</button>
                     </form>
                 </div>
                 <div class="toggle-container none">
                     <div class="toggle">
                         <div class="toggle-panel toggle-left">
-                            <h1>Welcome Back!</h1>
-                            <p>Enter your personal details to use all of site features</p>
-                            <button class="hidden" id="login">Sign In</button>
-                            <button class="hidden" id="home">Home</button>
+                            <h1>Chào mừng trở lại!</h1>
+                            <p>Đăng nhập để sử dụng các dịch vụ của chúng tôi</p>
+                            <button class="hidden" id="login">Đăng nhập</button>
+                            <button class="hidden" id="home">Trang chủ</button>
                         </div>
                         <div class="toggle-panel toggle-right">
-                            <h1>Hello, Friend!</h1>
-                            <p>Register with your personal details to use all of site features</p>
-                            <button class="hidden" id="register">Sign Up</button>
-                            <button class="hidden" id="HOME">Home</button>
+                            <h1>Chào, bạn!</h1>
+                            <p>Đăng kí để sử dụng các dịch vụ cảu chúng tôi</p>
+                            <button class="hidden" id="register">Đăng kí</button>
+                            <button class="hidden" id="HOME">Trang chủ</button>
                         </div>
                     </div>
                 </div>
@@ -181,7 +181,16 @@
                 </div>
             </div>
 
+
+
         </div>
+   <!-- Dialog thông báo -->
+        <dialog id="successDialog">
+            <h2 class="dialog-title"></h2>
+            <p class="dialog-message"></p>
+            <button onclick="closeDialog()">Đóng</button>
+        </dialog>
+
         <div id="section-footer">
             <div class="container-1">
                 <div class="contact-info">

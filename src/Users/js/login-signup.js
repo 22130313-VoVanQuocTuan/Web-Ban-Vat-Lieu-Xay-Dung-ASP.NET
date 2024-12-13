@@ -1,3 +1,4 @@
+import { showDialog } from "./showDidlog.js";
 
 
 
@@ -74,11 +75,11 @@ registerForm.addEventListener('submit', async (event) => {
             document.getElementById('verify-code-container').style.display = 'block';
         } else {
             // Xử lý lỗi
-            alert(data.message || 'Đăng ký thất bại!');
+            showDialog("Đăng kí thất bại", data.message); // Hiển thị dialog thông báo
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Có lỗi xảy ra trong quá trình đăng ký.');
+        showDialog("Có lỗi xảy ra", error.message); // Hiển thị dialog thông báo
     }
 });
 
@@ -121,16 +122,15 @@ loginForm.addEventListener('submit', async (event) => {
                 window.location.href = '../home.html'; // Chuyển hướng đến trang chính
             }
         } else {
-            // Xử lý lỗi
-            alert(data.message || 'Đăng nhập thất bại!');
+            showDialog("Đăng nhập không thành công", data.message); // Hiển thị dialog thông báo
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Có lỗi xảy ra trong quá trình đăng nhập.');
+        showDialog("Đăng nhập không thành công", data.message); // Hiển thị dialog thông báo
     }
 });
 
-// JavaScript cho form xác thực email
+
 // Xử lý sự kiện xác thực email
 document.getElementById('verify-button').addEventListener('click', async () => {
     const email = document.getElementById('register-email').value; // Lấy email từ form đăng ký
@@ -156,31 +156,43 @@ document.getElementById('verify-button').addEventListener('click', async () => {
         // Kiểm tra xem phản hồi có hợp lệ không
         if (!response.ok) {
             const errorData = await response.json();
-            alert(`Có lỗi xảy ra: ${errorData.message || 'Xác thực không thành công.'}`);
+            showDialog("Xác thực không thành công", errorData.message); // Hiển thị dialog thông báo
             return;
         }
 
         const data = await response.json();
         if (data.status === 200 ) {
             document.getElementById('verify-code-container').style.display = 'none';
-          
-            window.location.href ='/src/Users/pages/account/login-signup.html';
+            showDialog("Tài khoản đã được tạo thành công, vui lòng đăng nhập!")
+     
             // Khôi phục trạng thái ban đầu của các form
             document.querySelector('.form-container.sign-in').classList.remove('disabled');
             document.querySelector('.form-container.sign-up').classList.remove('disabled');
 
         } else {
-            alert('Xác thực không thành công. Vui lòng kiểm tra lại mã xác thực.');
+           alert("Xác thực không thành công", errorData.message); // Hiển thị dialog thông báo
         }
     } catch (error) {
         console.error('Lỗi:', error);
-        alert('Có lỗi xảy ra trong quá trình xác thực: ' + error.message);
+        showDialog("Xác thực không thành công", errorData.message); // Hiển thị dialog thông báo
     }
 });
 
 // Xử lý sự kiện đóng form xác thực
 document.getElementById('close-button').addEventListener('click', () => {
     document.getElementById('verify-code-container').style.display = 'none';
+    document.getElementById('overlay').style.display = 'none';
+  
 });
+
+window.closeDialog = closeDialog;
+export function closeDialog() {
+    const dialog = document.getElementById("successDialog");
+    if (dialog) {
+        dialog.close(); // Đóng dialog
+        location.reload();
+    }
+    
+}
 
 

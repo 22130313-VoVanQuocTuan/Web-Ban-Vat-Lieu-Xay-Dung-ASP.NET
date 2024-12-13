@@ -7,12 +7,12 @@
 }
 
 #section-information .container {
-  max-width: 1200px;
+  max-width: 78%;
   margin: 0 auto;
 
 }
 #section-information h2 {
-  font-size: 32px;
+  font-size: 25px;
   font-weight: 600; 
   margin-bottom: 20px;
   text-transform: uppercase; 
@@ -25,7 +25,7 @@
 }
 
 #section-information p {
-  font-size:20px;
+  font-size: 15px;
   font-style: normal; 
   color: #15283e; 
   line-height: 1.8;
@@ -52,7 +52,7 @@
 
 .left-information h3,
 .right-information h3 {
-  font-size: 1.6rem;
+
   font-weight: bold;
   margin-bottom: 20px;
   background: linear-gradient(to right, #82a0c2, #15283e);
@@ -79,6 +79,7 @@
   background-color: #82a0c2;
   color: white;
   text-transform: uppercase;
+  font-size: 15px;
 }
 
 .information-table tr:nth-child(even) {

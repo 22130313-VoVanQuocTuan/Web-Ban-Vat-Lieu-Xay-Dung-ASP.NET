@@ -1,7 +1,7 @@
 
 /* General content styles */
 .conten {
-   width: 90%;
+   width: 77%;
    height: auto;
    display: flex;
    margin: 50px auto;
@@ -96,7 +96,7 @@ button:hover {
 
 /* Right content */
 .conten .right {
-   width: 70%;
+   width: 67%;
    display: flex;
    height: auto;
    flex-wrap: wrap;

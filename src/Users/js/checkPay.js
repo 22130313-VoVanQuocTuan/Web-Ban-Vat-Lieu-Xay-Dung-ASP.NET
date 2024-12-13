@@ -1,3 +1,4 @@
+import { getUserIdFromToken } from "./UserId.js";
 import { customFetch } from "/src/apiService.js";
 
 document.querySelector('.submit-btn').addEventListener('click', async (event) => {
@@ -7,7 +8,7 @@ document.querySelector('.submit-btn').addEventListener('click', async (event) =>
     const paymentMethod = document.querySelector('input[name="payment"]:checked')?.value;
 
     if (!paymentMethod) {
-        alert('Vui lòng chọn phương thức thanh toán!');
+        showDialog('Vui lòng chọn phương thức thanh toán!');
         return;
     }
 
@@ -120,7 +121,7 @@ async function closeForm(dialogId) {
         const orderId = dialog.getAttribute('data-order-id');
 
         if (!orderId) {
-            alert("Không tìm thấy mã hóa đơn để hủy.");
+            showDialog("Không tìm thấy mã hóa đơn để hủy.");
             return;
         }
 
@@ -135,14 +136,14 @@ async function closeForm(dialogId) {
 
             const result = await response.json();
             if (result.status === 200) {
-                alert(result.message);
+                showDialog(result.message);
                 location.reload(); // Refresh trang
             } else {
-                alert(`Lỗi: ${result.message}`);
+                showDialog(`Lỗi: ${result.message}`);
             }
         } catch (error) {
             console.error("Lỗi khi gọi API hủy hóa đơn:", error.message);
-            alert("Lỗi không mong muốn khi hủy hóa đơn.");
+            showDialog("Lỗi không mong muốn khi hủy hóa đơn.");
         } finally {
             // Đóng form sau khi gọi API
             dialog.close();

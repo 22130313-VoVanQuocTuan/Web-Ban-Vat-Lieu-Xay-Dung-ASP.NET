@@ -14,14 +14,14 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
     position: relative;
     overflow: hidden;
-    max-width: 90%;
+    max-width: 77%;
     width: 100%;
     margin: 2% auto;
-    min-height: 650px;
+    min-height: 525px;
 }
 
 h1 {
-    font-size: 50px;
+    font-size: 40px;
     font-weight: bold;
 }
 
@@ -197,7 +197,6 @@ h1 {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    padding: 0 30px;
     text-align: center;
     top: 0;
     transform: translateX(0);

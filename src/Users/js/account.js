@@ -1,9 +1,10 @@
+import { showDialog } from "./showDidlog.js";
 import { getUserIdFromToken } from "./UserId.js";
 import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
 
 const userId = getUserIdFromToken();
 const apiUrl = "http://localhost:5241/api/User"; // Không cần dấu '/' ở cuối
-const token = localStorage.getItem('token'); // Lấy token từ localStorage
+
 
 async function fetchUserData() {
   try {
@@ -11,12 +12,12 @@ async function fetchUserData() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}` // Đính kèm token
+  
       }
     });
 
     if (!response.ok) {
-      alert("Lỗi khi lấy thông tin người dùng.");
+      saveButton("Lỗi khi lấy thông tin người dùng.");
     }
 
     const data = await response.json();
@@ -31,7 +32,7 @@ async function fetchUserData() {
 
 function displayUserData(user) {
   document.getElementById("username-hello").textContent = user.userName;
-  document.getElementById("username").textContent = user.userName;
+  document.getElementById("username-user").textContent = user.userName;
   document.getElementById("fullname").textContent = user.fullName;
   document.getElementById("email").textContent = user.email;
   document.getElementById("birth-year").textContent = user.phoneNumber;
@@ -53,7 +54,7 @@ function populateForm(userData) {
   addressInput.value = userData.address || "";
 }
 
-//  Cập nhật thoogn tin tài khoản
+//  Cập nhật th tin tài khoản
 const saveButton = document.getElementById("save-button");
 const dialog = document.getElementById("edit-dialog");
 const updateAccount = document.getElementById("update-customer");
@@ -87,14 +88,24 @@ saveButton.addEventListener("click", async (event) => {
     });
 
     if (!response.ok) {
-      alert("Cập nhật thông tin thất bại.");
+      showDialog("Cập nhật thông tin thất bại.");
     } else {
+      showDialog("Thông tin đã được cập nhật thành công!");
+     
 
-      alert("Thông tin đã được cập nhật thành công!");
-      dialog.close(); // Đóng hộp thoại
-      location.reload();
     }
   } catch (error) {
     console.error("Lỗi khi cập nhật thông tin:", error.message);
   }
 });
+
+
+window.closeDialog = closeDialog;
+export function closeDialog() {
+    const dialog = document.getElementById("successDialog");
+    if (dialog) {
+        dialog.close(); // Đóng dialog
+        location.reload();
+    }
+    
+}

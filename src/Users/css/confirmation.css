@@ -1,5 +1,8 @@
 .content {
+    width: 78%;
     height: 650px;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
@@ -8,18 +11,13 @@
     width: 60%;
     display: flex;
     margin-top: 50px;
-}
-
-
-
-.form-group1 {
-    margin-left: 80px;
+    gap: 47px;
 }
 
 
 .back {
     height: 40px;
-    width: 335px;
+    width: 246px;
     margin-bottom: 15px;
     border-radius: 5px;
     padding-left: 15px;
@@ -35,16 +33,14 @@
 
 .note {
     height: 60px;
-    width: 339px;
+    width: 248px;
     border-radius: 5px;
     border: 1px solid #ccc;
     padding-left: 12px;
     color: #999999;
 }
 
-.form-group2 {
-    margin-left: 30px;
-}
+
 
 .delivery {
     font-weight: bold;
@@ -53,7 +49,7 @@
 
 
 .pay {
-    margin: 30px 0 15px 0;
+    margin: 0 0 15px 0;
 }
 
 
@@ -66,7 +62,7 @@ input[type="radio"] {
 }
 
 label {
-    font-size: 16px;
+    font-size: 15px;
     color: rgba(81, 76, 76, 0.91);
     display: flex;
     align-items: center;
@@ -98,7 +94,7 @@ input[type="radio"]:focus {
     margin: 20px 0 20px 20px;
     padding-bottom: 20px;
     border-bottom: 2px solid #999999;
-    width: 350px;
+    width: 304px;
     font-weight: bold;
 }
 
@@ -110,7 +106,9 @@ input[type="radio"]:focus {
 
 .sub {
     display: flex;
-    height: 70px;
+    height: 50px;
+    flex-wrap: nowrap;
+    flex-direction: row;
 }
 
 .hrep {
@@ -126,7 +124,7 @@ input[type="radio"]:focus {
 .submit-btn {
     padding: 14px 20px 12px 20px;
     border: none;
-    margin: 20px 0 0 0;
+    margin: 11px 39px -16px -21px;
     background-color: #0b1aa3;
     border-radius: 5px;
     color: white;
@@ -136,6 +134,9 @@ input[type="radio"]:focus {
 
 .submit-btn:hover {
     background-color: #6ac627;
+}
+.hrep a{
+    width: 100px;
 }
 
 .orders {

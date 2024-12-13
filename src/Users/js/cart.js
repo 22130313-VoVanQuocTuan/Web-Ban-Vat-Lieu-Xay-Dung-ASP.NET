@@ -1,6 +1,6 @@
 
 let cart = []; // Khởi tạo biến cart
-let totalAmount = 0; // khởi tạo tổng tiền khi áp mã giảm giá
+
 
 
 import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
@@ -184,22 +184,19 @@ async function applyVoucher() {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
-    if (!response.ok) {
-      alert('Mã ưu đãi không hợp lệ hoặc có lỗi xảy ra.'); // Kiểm tra phản hồi từ API
-      return;
-    }
+
     const data = await response.json();
     // Kiểm tra dữ liệu trả về
     if (data.status === 200) {
-      alert('bạn được giảm:' + data.response.percent.toLocaleString() +'VNĐ')
+      showDialog("Bạn được giảm: ",data.response.percent.toLocaleString() +'VNĐ')  ;
       await fetchCartProducts(); // Lấy lại dữ liệu giỏ hàng
           getCart();
      } else {
-      alert('Mã ưu đãi không hợp lệ.'); // Thông báo nếu mã không hợp lệ
+      showDialog('Mã ưu đãi không hợp lệ.', data.message); // Thông báo nếu mã không hợp lệ
     }
   } catch (error) {
-    console.error('Có lỗi xảy ra khi kiểm tra mã ưu đãi:', error); // Ghi log lỗi nếu có
-    alert('Đã xảy ra lỗi, vui lòng thử lại sau.'); // Thông báo cho người dùng
+    showDialog('Có lỗi xảy ra khi kiểm tra mã ưu đãi:', error); // Ghi log lỗi nếu có
+   
   }
 }
 
@@ -251,4 +248,32 @@ async function getCart() {
   } catch (error) {
     console.error("Lỗi khi tải dữ liệu giỏ hàng: ", error.message);
   }
+}
+
+
+// Hàm hiển thị dialog
+ function showDialog(title, message) {
+  // Đóng tất cả các dialog hiện tại trước khi mở dialog mới
+  const existingDialog = document.querySelector('dialog[open]');
+  if (existingDialog) {
+      existingDialog.close(); // Đóng dialog hiện tại nếu có
+  }
+
+  // Lấy dialog mới và cập nhật nội dung
+  const dialog = document.getElementById("successDialog");
+
+  if (dialog) {
+      dialog.querySelector(".dialog-title").textContent = title;
+      dialog.querySelector(".dialog-message").textContent = message;
+      dialog.showModal(); // Hiển thị dialog mới
+  }
+}
+window.closeDialog = closeDialog;
+function closeDialog() {
+    const dialog = document.getElementById("successDialog");
+    if (dialog) {
+        dialog.close(); // Đóng dialog
+        location.reload();
+    }
+    
 }

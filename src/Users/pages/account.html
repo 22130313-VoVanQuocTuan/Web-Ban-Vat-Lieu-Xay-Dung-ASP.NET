@@ -160,7 +160,7 @@
           <div class="right-information">
             <h3>Thông tin khách hàng</h3>
             <div id="customer-infor" class="customer-infor">
-              <p><strong>Tên tài khoản:</strong> <span id="username"></span></p>
+              <p><strong>Tên tài khoản:</strong> <span id="username-user"></span></p>
               <p><strong>Tên:</strong> <span id="fullname"></span></p>
               <p><strong>Email:</strong> <span id="email"></span></p>
               <p><strong>SĐT:</strong> <span id="birth-year"></span></p>
@@ -203,6 +203,12 @@
           </form>
         </div>
       </div>
+    </dialog>
+       <!-- Dialog thông báo -->
+       <dialog id="successDialog">
+        <h2 class="dialog-title"></h2>
+        <p class="dialog-message"></p>
+        <button onclick="closeDialog()">Đóng</button>
     </dialog>
     <div id="section-footer">
       <div class="container-1">
