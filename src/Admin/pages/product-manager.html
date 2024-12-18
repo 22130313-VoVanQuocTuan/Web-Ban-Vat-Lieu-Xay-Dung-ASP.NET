@@ -5,8 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bảng điều khiển Quản trị viên</title>
-    <title>Bảng điều khiển Quản trị viên</title>
-    <!------------------ Kiểu dáng ------------------>
     <link rel="stylesheet" href="../css/product.css" />
   </head>
 
@@ -18,12 +16,11 @@
           <li>
             <a href="index.html">
               <span class="icon">
-                <img src="../imgs/logo.png" alt="" />
+                <img src="../imgs/logo.png" alt="Logo" />
               </span>
-              <span class="title">Bán Vật Liệu Xây Dựng </span>
+              <span class="title">Bán Vật Liệu Xây Dựng</span>
             </a>
           </li>
-
           <li>
             <a href="index.html">
               <span class="icon">
@@ -32,7 +29,6 @@
               <span class="title">Trang chủ</span>
             </a>
           </li>
-
           <li>
             <a href="user.html">
               <span class="icon">
@@ -41,7 +37,6 @@
               <span class="title">Khách Hàng</span>
             </a>
           </li>
-
           <li>
             <a href="product.html">
               <span class="icon">
@@ -50,7 +45,6 @@
               <span class="title">Sản phẩm</span>
             </a>
           </li>
-
           <li>
             <a href="voucher.html">
               <span class="icon">
@@ -75,7 +69,6 @@
               <span class="title">Quản lý đánh giá</span>
             </a>
           </li>
-
           <li>
             <a href="list-of-categories.html">
               <span class="icon">
@@ -84,7 +77,6 @@
               <span class="title">Danh mục</span>
             </a>
           </li>
-
           <li>
             <a href="javascript:void(0);" id="logoutButton">
               <span class="icon">
@@ -102,9 +94,8 @@
           <div class="toggle">
             <ion-icon name="menu-outline"></ion-icon>
           </div>
-
           <div class="user">
-            <img src="../imgs/customer01.jpg" alt="" />
+            <img src="../imgs/customer01.jpg" alt="User" />
           </div>
         </div>
 
@@ -117,9 +108,9 @@
               <a
                 href="#"
                 class="add-product-btn"
-                onclick="openAddProductModal()"
-                >Thêm sản phẩm</a
-              >
+                id="add-pro">
+                Thêm sản phẩm
+              </a>
             </div>
             <!-- Table products -->
             <table>
@@ -139,6 +130,57 @@
         </div>
       </div>
     </div>
+
+   <!-- Modal Thêm Khuyến Mãi -->
+<div id="addPromotionModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="close-modal">&times;</span>
+    <h3>Thêm khuyến mãi</h3>
+    <form id="addPromotionForm">
+      <label for="addProductId">Mã sản phẩm:</label>
+      <input type="text" id="addProductId" required />
+
+      <label for="addDiscount">Giảm giá (%):</label>
+      <input type="number" id="addDiscount" required />
+
+      <label for="addStartDate">Ngày bắt đầu:</label>
+      <input type="date" id="addStartDate" required />
+
+      <label for="addEndDate">Ngày kết thúc:</label>
+      <input type="date" id="addEndDate" required />
+
+      <button type="button" id="saveNewPromotion">Lưu</button>
+    </form>
+  </div>
+</div>
+
+
+    <!-- Modal Cập Nhật Khuyến Mãi -->
+    <div id="updatePromotionModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" id="close-">&times;</span>
+        <h3>Cập nhật khuyến mãi</h3>
+        <form id="updatePromotionForm">
+          <label for="updateProductId">Mã sản phẩm:</label>
+          <input type="text" id="updateProductId" required readonly />
+
+          <label for="updateDiscount">Giảm giá (%):</label>
+          <input type="number" id="updateDiscount" required />
+
+          <label for="updateStartDate">Ngày bắt đầu:</label>
+          <input type="date" id="updateStartDate" required />
+
+          <label for="updateEndDate">Ngày kết thúc:</label>
+          <input type="date" id="updateEndDate" required />
+
+          <button type="button" onclick="saveUpdatedPromotion()">Lưu</button>
+        </form>
+      </div>
+    </div>
+
+  
+
+      
 
     <script
       type="module"
