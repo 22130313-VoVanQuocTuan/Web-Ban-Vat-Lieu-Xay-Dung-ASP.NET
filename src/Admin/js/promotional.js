@@ -103,9 +103,6 @@ function showToast(message) {
     }, 3000); // Thông báo sẽ ẩn sau 3.5 giây
 }
 
-
-
-
 // Hiển thị hộp thoại xác nhận xóa sản phẩm
 function showDeleteConfirmationDialog(productId) {
     const dialog = document.getElementById('confirmDeleteDialog');
