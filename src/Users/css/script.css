@@ -1,34 +1,205 @@
+/* Modal */
 .modal {
-    display: none;  /* Ẩn modal */
-    position: fixed; 
-    z-index: 1; /* Đảm bảo modal hiển thị trên các phần tử khác */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0); /* Màu nền mờ */
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    border-radius: 15px;
+    transform: translate(-50%, -50%); /* Căn giữa màn hình */
+    width: 50%;  /* Chiều rộng của modal */
+    max-width: 800px;  /* Đảm bảo modal không quá rộng */
+    height: auto;
     background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    transition: opacity 0.3s ease-in-out;
+    overflow: hidden; /* Ẩn thanh scrollbar ngoài modal */
 }
 
+/* Nội dung modal */
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    background: linear-gradient(to right, #82a0c2, #15283e);
+    color: #ffff;
+    padding: 30px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 0.3s ease-in-out;
+    text-align: center;
+    overflow-y: scroll; /* Cho phép cuộn trong modal */
+    max-height: 80vh;
+    position: relative;
 }
 
-.close {
-    color: #aaa;
-    float: right;
+/* Hiệu ứng fade-in khi mở modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Ẩn thanh scrollbar nhưng vẫn có thể cuộn */
+.modal-content::-webkit-scrollbar {
+    display: none;  /* Ẩn thanh scrollbar */
+}
+
+/* Tiêu đề trong modal */
+.modal-content h2 {
     font-size: 28px;
     font-weight: bold;
+    color: #fff;
+    margin-bottom: 20px;
+    position: relative;
 }
 
+/* Gạch chân dưới tiêu đề */
+.modal-content h2::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #82a0c2;
+    margin: 10px auto 0;
+}
+
+/* Thông báo số lượng sản phẩm */
+#productCount {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/* Hiển thị kết quả tìm kiếm */
+#searchResults {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);  /* Hiển thị 3 cột đều nhau */
+    gap: 20px;  /* Khoảng cách giữa các sản phẩm */
+    justify-items: center;  /* Căn giữa các item trong lưới */
+    align-items: start;  /* Căn sản phẩm lên đầu */
+}
+/* Card sản phẩm trong lưới */
+.product-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 230px;
+    max-width: 200px;  /* Hạn chế chiều rộng của từng card sản phẩm */
+    margin: 10px;  /* Khoảng cách giữa các card */
+    width: 165px;
+}
+
+/* Hình ảnh sản phẩm */
+.product-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+.product-card img:hover{
+    transform: scale(1.1); /* Phóng to hình ảnh khi hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Thêm bóng đổ khi hover */
+}
+
+/* Tên sản phẩm */
+.product-card h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+    margin: 5px 0;
+    line-height: 1.2;
+    max-height: 36px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Giá sản phẩm */
+.product-card p {
+    font-size: 0.9rem;
+    color: rgb(238, 17, 17);
+    font-weight: bold;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+/* Nút thêm vào giỏ */
+.add-cart-search {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #82a0c2;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* Nút hover hiệu ứng */
+.add-cart-search:hover {
+    background: #2d4f75;
+    transform: scale(1.05);
+}
+
+/* Nút đóng modal */
+.close {
+    color: #aaa;
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Màu sắc khi hover trên nút đóng */
 .close:hover,
 .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+    color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .modal-content {
+        width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+    }
+
+    .product-card {
+        width: 150px;  /* Điều chỉnh chiều rộng cho nhỏ gọn hơn */
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-content {
+        width: 95%;
+    }
+
+    .product-card {
+        width: 120px;  /* Thậm chí nhỏ hơn trên màn hình nhỏ */
+        padding: 8px;
+    }
 }

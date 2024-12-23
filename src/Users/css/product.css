@@ -52,47 +52,67 @@ button:hover {
 
 /* Left sidebar */
 .conten .left-sidebar {
-   width: 25%;
+   width: 28%;
+   height: 20%;
    min-width: 280px;
    display: flex;
    flex-direction: column;
-   padding: 16px;
-   background-color: #000d33f8;
-   border-radius: 10px;
+   padding: 20px;
+   background: linear-gradient(to right, #82a0c2, #15283e);
+   border-radius: 12px;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Bóng đổ nhẹ */
+   transition: background-color 0.3s ease;
 }
 
+/* Mục trong sidebar */
 .conten .left-sidebar .item {
    display: flex;
    align-items: center;
-   gap: 10px;
+   gap: 12px;
    cursor: pointer;
-   border-radius: 5px;
-   margin: 10px 20px;
-   padding: 8px;
-   background-color: #fafafa;
-   transition: transform 0.3s ease;
+   border-radius: 8px;
+   margin: 10px 0;
+   padding: 12px 16px;
+   background-color: rgba(124, 108, 108, 0.2); /* Nền sáng vừa phải */
+   color: #a4a4a4; /* Chữ màu xám đậm để dễ đọc */
+   transition: transform 0.3s ease, background-color 0.3s ease;
+   font-weight: 500;
 }
 
+/* Hover cho mục */
 .conten .left-sidebar .item:hover {
-   transform: scale(1.05);
+   transform: scale(1.03); /* Hiệu ứng nhẹ khi hover */
+   background-color: rgba(255, 255, 255, 0.3); /* Nền sáng hơn khi hover */
 }
 
+/* Icon trong mỗi mục */
 .conten .left-sidebar .item i {
-   font-size: 20px;
-   padding: 5px;
-   border-radius: 10px;
-   transition: all 0.4s ease;
+   font-size: 22px;
+   padding: 10px;
+   border-radius: 50%;
+   background-color: #ffffff; /* Màu nền sáng cho icon */
+   transition: all 0.3s ease;
 }
 
+/* Hover trên icon */
+.conten .left-sidebar .item:hover i {
+   background-color: #80c39e; /* Nền icon khi hover */
+   color: #fff; /* Màu icon trắng khi hover */
+}
+
+/* Tiêu đề mỗi mục */
 .conten .left-sidebar .item h3 {
-   font-weight: 600;
-   font-size: 20px;
-   transition: all 0.4s ease;
+   font-size: 16px;
+   color: #f4eaea; /* Chữ màu xám đậm để dễ đọc */
+   transition: color 0.3s ease;
+   font-weight: bold;
 }
 
-.conten .left-sidebar .item.active h3 {
-   color: rgb(15, 70, 130);
+/* Thêm hiệu ứng khi sidebar được hover */
+.conten .left-sidebar:hover {
+   background: linear-gradient(to right, #82a0c2, #15283e);
 }
+
 
 /* Right content */
 .conten .right {
