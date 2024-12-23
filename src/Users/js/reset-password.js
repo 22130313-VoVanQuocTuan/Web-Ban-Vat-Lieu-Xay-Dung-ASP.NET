@@ -1,4 +1,4 @@
-import { showDialog } from "./showDidlog";
+import { showDialog } from "./showDidlog.js";
 
     const backToLoginLink = document.getElementById('back-to-login');
   
@@ -28,9 +28,11 @@ document.getElementById("reset-password-form").addEventListener("submit", async 
         if (response.ok) {
             const ok = await response.json();
             error_email.style.color = "green"
+            error_email.style.display ="block";
             error_email.innerText = ok.message;
         } else {
             const error = await response.json();
+            error_email.style.display ="block";
             error_email.innerText = error.message ;
         }
     } catch (error) {

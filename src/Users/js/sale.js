@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 const productItem = `
                     <div class="product-one-content-item">
                         <div class="img-product">
-                            <img src="${imageUrl}" alt="${product.productName}">
-                            <span class="sale-box">- ${(product.discountPercentage * 100).toFixed(0)}%</span>
+                            <a href="${`http://127.0.0.1:5500/src/Users/pages/product-detail.html?productId=${product.productId}`}"><img src="${imageUrl}" alt="${product.productName}"></a>
+                            <span class="sale-box">${(product.discountPercentage * 100).toFixed(0)}%</span>
                         </div>
                         <div class="product-title">
                             <div class="name-product"><a href="#">${product.productName}</a></div>

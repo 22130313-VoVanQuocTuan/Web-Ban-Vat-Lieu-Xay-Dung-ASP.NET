@@ -231,7 +231,7 @@ async function confirmVNPay(dialogId) {
     }
 
     const trackingNumber = dialog.getAttribute('tracking-number'); // Lấy orderId từ thuộc tính data-order-id của dialog
-    const totalprice = dialog.getAttribute('total-price') * 100;
+    const totalprice = dialog.getAttribute('total-price');
 
   
     if (!trackingNumber) {

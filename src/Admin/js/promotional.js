@@ -84,6 +84,102 @@ document.getElementById("close-modal").onclick = function () {
   document.getElementById("addPromotionModal").style.display = "none";
 };
 
+// Hàm xóa sản phẩm
+async function deleteProduct(productId) {
+  try {
+    const response = await customFetch(
+      `http://localhost:5241/api/Promotional/${productId}`,
+      {
+        method: "DELETE",
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.status !== 200) {
+      console.error("Xóa không thành công: " + data.message);
+      return;
+    }
+
+    // Hiển thị thông báo "Xóa thành công"
+    showToast("Xóa thành công!");
+    loadPromotions(); // Làm mới danh sách khuyến mãi
+  } catch (error) {
+    console.error("Error deleting product:", error);
+  }
+}
+
+// Hàm để hiển thị thông báo
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.innerText = message;
+  toast.style.display = "block";
+
+  // Sau 3 giây, ẩn thông báo
+  setTimeout(() => {
+    toast.style.display = "none";
+  }, 3000); // Thông báo sẽ ẩn sau 3.5 giây
+}
+
+// Hiển thị hộp thoại xác nhận xóa sản phẩm
+function showDeleteConfirmationDialog(productId) {
+  const dialog = document.getElementById("confirmDeleteDialog");
+  const confirmBtn = document.getElementById("confirmDeleteYes");
+  const cancelBtn = document.getElementById("confirmDeleteNo");
+
+  dialog.showModal(); // Mở hộp thoại
+
+  // Xử lý khi người dùng nhấn "Có"
+  confirmBtn.onclick = () => {
+    deleteProduct(productId); // Gọi hàm xóa
+    dialog.close(); // Đóng hộp thoại
+  };
+
+  // Xử lý khi người dùng nhấn "Không"
+  cancelBtn.onclick = () => {
+    dialog.close(); // Đóng hộp thoại khi người dùng chọn "Không"
+  };
+}
+
+// Hàm cập nhật sản phẩm
+function updateProduct(productId) {
+  // Tạo modal hoặc mở trang cập nhật sản phẩm
+  alert("Cập nhật sản phẩm với ID: " + productId);
+}
+
+// Gọi hàm loadPromotions khi trang tải
+loadPromotions();
+
+// tôi viết
+
+// Mở modal thêm sản phẩm
+
+document.getElementById("add-pro").onclick = function () {
+  document.getElementById("addPromotionModal").style.display = "block";
+};
+//Đóng model
+document.getElementById("close-modal").onclick = function () {
+  document.getElementById("addPromotionModal").style.display = "none";
+};
+
+// Mở modal cập nhật sản phẩm
+function openUpdateProductModal(product) {
+  const modal = document.getElementById("updatePromotionModal");
+  modal.style.display = "block";
+
+  // Điền thông tin sản phẩm vào form
+  document.getElementById("updateProductId").value = product.productId;
+  document.getElementById("updateProductName").value = product.productName;
+  document.getElementById("updateDiscount").value =
+    product.discountPercentage * 100;
+  document.getElementById("updateStartDate").value = product.startDate;
+  document.getElementById("updateEndDate").value = product.endDate;
+}
+
 // Lưu sản phẩm mới
 document
   .getElementById("saveNewPromotion")
