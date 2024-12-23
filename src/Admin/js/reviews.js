@@ -1,10 +1,12 @@
+import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn chính xác
+
 // Mảng chứa dữ liệu đánh giá mẫu
 const reviews = [];
 
 // Hàm lấy danh sách đánh giá
 async function fetchReviews() {
   try {
-    const response = await fetch(`http://localhost:5241/api/Review`, {
+    const response = await customFetch(`http://localhost:5241/api/Review`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -59,7 +61,7 @@ function attachEventListeners() {
 async function deleteReview(event) {
   const reviewId = event.target.getAttribute("data-review-id");
   try {
-    const response = await fetch(`http://localhost:5241/api/Review/${reviewId}`, {
+    const response = await customFetch(`http://localhost:5241/api/Review/${reviewId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
