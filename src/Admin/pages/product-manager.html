@@ -114,10 +114,7 @@
           </div>
           <div class="list-products-content">
             <div class="list-products-content-button">
-              <a
-                href="#"
-                class="add-product-btn"
-                id="add-pro">
+              <a href="#" class="add-product-btn" id="add-pro">
                 Thêm sản phẩm
               </a>
             </div>
@@ -140,47 +137,43 @@
       </div>
     </div>
     <!-- Modal Thêm Khuyến Mãi -->
-<div id="addPromotionModal" class="modal">
-  <div class="modal-content">
-    <span class="close-btn" id="close-modal">&times;</span>
-    <h3>Thêm khuyến mãi</h3>
-    <form id="addPromotionForm">
-      <label for="addProductId">Mã sản phẩm:</label>
-      <input type="text" id="addProductId" required />
+    <div id="addPromotionModal" class="modal">
+      <div class="modal-content">
+        <span class="close-btn" id="close-modal">&times;</span>
+        <h3>Thêm khuyến mãi</h3>
+        <form id="addPromotionForm">
+          <label for="addProductId">Mã sản phẩm:</label>
+          <input type="text" id="addProductId" required />
 
-      <label for="addDiscount">Giảm giá (%):</label>
-      <input type="number" id="addDiscount" required />
+          <label for="addDiscount">Giảm giá (%):</label>
+          <input type="number" id="addDiscount" required />
 
-      <label for="addStartDate">Ngày bắt đầu:</label>
-      <input type="date" id="addStartDate" required />
+          <label for="addStartDate">Ngày bắt đầu:</label>
+          <input type="date" id="addStartDate" required />
 
-      <label for="addEndDate">Ngày kết thúc:</label>
-      <input type="date" id="addEndDate" required />
+          <label for="addEndDate">Ngày kết thúc:</label>
+          <input type="date" id="addEndDate" required />
 
-      <button type="button" id="saveNewPromotion">Lưu</button>
-    </form>
-  </div>
-</div>
+          <button type="button" id="saveNewPromotion">Lưu</button>
+        </form>
+      </div>
+    </div>
 
-<!-- Modal cập nhật sản phẩm -->
-    <div id="updateProductModal" class="modalUpdate" style>
+    <!-- Modal cập nhật sản phẩm -->
+    <div id="updateProductModal" class="modalUpdate">
       <div class="modal-content">
         <span class="close-btn" onclick="closeUpdatePromotionalModal()"
           >&times;</span
         >
         <h3>Cập nhật sản phẩm</h3>
-        <form id="updateProductForm">
-          <!-- Đổi ID form này -->
-          <!-- Các trường nhập liệu cho sản phẩm -->
-          <label for="updateDiscountPercentage">Giá:</label>
+        <form id="updateProductForm" data-sale-id="">
+          <label for="updateDiscountPercentage">Giảm giá (%):</label>
           <input type="number" id="updateDiscountPercentage" required />
           <label for="updateStarDate">Ngày bắt đầu:</label>
           <input type="date" id="updateStarDate" required />
           <label for="updateEndDate">Ngày kết thúc:</label>
-          <input type="text" id="updateEndDate" required />
-          <button type="date" id="saveChangesButton">
-            Lưu thay đổi
-          </button>
+          <input type="date" id="updateEndDate" required />
+          <button type="button" id="saveChangesButton">Lưu thay đổi</button>
           <button
             type="button"
             class="exit-btn"
