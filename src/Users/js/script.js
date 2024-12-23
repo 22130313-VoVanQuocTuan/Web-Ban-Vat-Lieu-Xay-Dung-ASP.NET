@@ -61,6 +61,8 @@ async function fetchCartItemCount() {
 }
 
 // Gọi API khi trang được tải
+
+//Tìm kiếm sản phẩm
 document.addEventListener("DOMContentLoaded", () => {
   fetchCartItemCount();
 });
