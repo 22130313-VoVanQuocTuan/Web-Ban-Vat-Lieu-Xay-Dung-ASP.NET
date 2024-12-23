@@ -1,4 +1,4 @@
-import { customFetch } from '/src/apiService.js'; 
+import { customFetch } from '/src/apiService.js';
 
 // Hàm gọi API và hiển thị danh sách khuyến mãi
 async function loadPromotions() {
@@ -33,7 +33,7 @@ async function loadPromotions() {
             row.innerHTML = `
                 <td>${promotion.productId}</td>
                 <td>${promotion.discountPercentage * 100}%</td>
-                <td>${promotion.productName }</td>
+                <td>${promotion.productName}</td>
                 <td>${promotion.startDate}</td>
                 <td>${promotion.endDate}</td>
                 <td class="bt">
@@ -49,7 +49,8 @@ async function loadPromotions() {
         document.querySelectorAll('.delete-product-button').forEach(button => {
             button.addEventListener('click', function () {
                 const productId = this.getAttribute('data-product-id'); // Lấy ID sản phẩm
-                deleteProduct(productId); // Gọi hàm xóa
+                // deleteProduct(productId); // Gọi hàm xóa
+                showDeleteConfirmationDialog(productId);
             });
         });
 
@@ -65,16 +66,10 @@ async function loadPromotions() {
     }
 }
 
-
-
 // Hàm xóa sản phẩm
 async function deleteProduct(productId) {
-    if (!confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')) {
-        return;
-    }
-
     try {
-        const response = await fetch(`http://localhost:5241/api/Promotions/${productId}`, {
+        const response = await customFetch(`http://localhost:5241/api/Promotional/${productId}`, {
             method: 'DELETE',
         });
 
@@ -85,15 +80,56 @@ async function deleteProduct(productId) {
         const data = await response.json();
 
         if (data.status !== 200) {
-            alert('Xóa không thành công: ' + data.message);
+            console.error('Xóa không thành công: ' + data.message);
             return;
         }
 
-        alert('Xóa thành công!');
+        // Hiển thị thông báo "Xóa thành công"
+        showToast("Xóa thành công!");
         loadPromotions(); // Làm mới danh sách khuyến mãi
     } catch (error) {
         console.error('Error deleting product:', error);
     }
+}
+
+// Hàm để hiển thị thông báo
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.style.display = 'block';
+
+    // Sau 3 giây, ẩn thông báo
+    setTimeout(() => {
+        toast.style.display = 'none';
+    }, 3000); // Thông báo sẽ ẩn sau 3.5 giây
+}
+
+// Hiển thị hộp thoại xác nhận xóa sản phẩm
+function showDeleteConfirmationDialog(productId) {
+    const dialog = document.getElementById('confirmDeleteDialog');
+    const confirmBtn = document.getElementById('confirmDeleteYes');
+    const cancelBtn = document.getElementById('confirmDeleteNo');
+
+    dialog.showModal(); // Mở hộp thoại
+
+    // Xử lý khi người dùng nhấn "Có"
+    confirmBtn.onclick = () => {
+        deleteProduct(productId); // Gọi hàm xóa
+        dialog.close(); // Đóng hộp thoại
+    };
+
+    // Xử lý khi người dùng nhấn "Không"
+    cancelBtn.onclick = () => {
+        dialog.close(); // Đóng hộp thoại khi người dùng chọn "Không"
+    };
+}
+
+
+
+// Hàm cập nhật sản phẩm
+function updateProduct(productId) {
+    // Tạo modal hoặc mở trang cập nhật sản phẩm
+    alert('Cập nhật sản phẩm với ID: ' + productId);
 }
 
 
@@ -105,16 +141,17 @@ loadPromotions();
 
 
 
+
 // tôi viết 
 
 // Mở modal thêm sản phẩm
 
-document.getElementById('add-pro').onclick = function(){
-    document.getElementById('addPromotionModal').style.display= 'block';
+document.getElementById('add-pro').onclick = function () {
+    document.getElementById('addPromotionModal').style.display = 'block';
 }
 //Đóng model
-document.getElementById('close-modal').onclick = function(){
-    document.getElementById('addPromotionModal').style.display= 'none';
+document.getElementById('close-modal').onclick = function () {
+    document.getElementById('addPromotionModal').style.display = 'none';
 }
 
 
@@ -145,7 +182,7 @@ async function saveNewPromotion() {
 
     const newPromotion = {
         productId,
-     
+
         discountPercentage: discount,
         startDate,
         endDate,
@@ -156,7 +193,7 @@ async function saveNewPromotion() {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
-              },
+            },
             body: JSON.stringify(newPromotion)
         });
 
@@ -210,12 +247,12 @@ async function saveUpdatedPromotion() {
 
         if (data.status !== 200) {
             alert('Cập nhật sản phẩm không thành công: ' + data.message);
-           
+
             return;
         }
 
         alert('Cập nhật sản phẩm thành công!');
-        document.getElementById('addPromotionModal').style.display= 'none';
+        document.getElementById('addPromotionModal').style.display = 'none';
         loadPromotions();
     } catch (error) {
         console.error('Error updating product:', error);
