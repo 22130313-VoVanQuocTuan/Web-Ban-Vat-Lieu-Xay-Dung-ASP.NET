@@ -37,14 +37,13 @@ document.querySelector('.submit-btn').addEventListener('click', async (event) =>
 
         // Kiểm tra trạng thái phản hồi
         if (responseData.status !== 200) {
-            throw new Error('Đơn hàng không hợp lệ!');
+            showDialog('Đơn hàng không hợp lệ!');
         }
-
         // Cập nhật thông tin trong form
         updateFormData(responseData.results, paymentMethod);
     } catch (error) {
         console.error('Lỗi:', error.message);
-        alert('Có lỗi xảy ra, vui lòng thử lại sau!');
+        showDialog('Có lỗi xảy ra, vui lòng thử lại sau!',error.message );
     }
 });
 
@@ -156,14 +155,14 @@ window.confirmCOD = confirmCOD;
 async function confirmCOD(dialogId) {
     const dialog = document.getElementById(dialogId); // Lấy phần tử dialog từ id
     if (!dialog) {
-        alert("Không tìm thấy form thanh toán.");
+        showDialog("Không tìm thấy form thanh toán.");
         return;
     }
 
     const orderId = dialog.getAttribute('data-order-id'); // Lấy orderId từ thuộc tính data-order-id của dialog
 
     if (!orderId) {
-        alert("Không tìm thấy ID đơn hàng.");
+        showDialog("Không tìm thấy ID đơn hàng.");
         return;
     }
 
@@ -227,7 +226,7 @@ window.confirmVNPay = confirmVNPay;
 async function confirmVNPay(dialogId) {
     const dialog = document.getElementById(dialogId); // Lấy phần tử dialog từ id
     if (!dialog) {
-        alert("Không tìm thấy form thanh toán.");
+        showDialog("Không tìm thấy form thanh toán.");
         return;
     }
 
@@ -239,9 +238,6 @@ async function confirmVNPay(dialogId) {
         alert("Không tìm thấy mã đơn hàng.");
         return;
     }
-
-    const userId = getUserIdFromToken(); // Hàm này phải được định nghĩa và trả về đúng userId
-
     // Tạo URL cho API với các tham số cần thiết
     const apiUrl = `http://localhost:5241/api/vnpay/payment?amount=${totalprice}&infor=Thanh toán với VNPay&orderinfor=${trackingNumber}`;
 
@@ -261,7 +257,7 @@ async function confirmVNPay(dialogId) {
             // Chuyển hướng tới VNPay
             window.location.href = data.paymentUrl;
         } else {
-            throw new Error(data.message || "Lỗi xác nhận đơn hàng.");
+           showDialog(data.message || "Lỗi xác nhận đơn hàng.");
         }
     } catch (error) {
         console.error("Lỗi:", error.message);

@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Hàm lấy sản phẩm từ giỏ hàng
 async function fetchCartProducts(page = 1, limit = 2) {
   try {
-  
+
     const response = await customFetch(`http://localhost:5241/api/Cart?page=${page}&limit=${limit}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' } // Thêm header cho Content-Type
@@ -69,10 +69,10 @@ function renderCartProducts(products) {
         <td>${product.totalPrice.toLocaleString()} ₫</td> <!-- Tổng sau giảm -->
         <td><button class="remove-from-cart-button" data-product-id="${product.cartProductId}">Xóa</button></td>
       </tr>`;
-      
+
     cartContainer.insertAdjacentHTML('beforeend', productHtml);
   });
-  
+
   attachRemoveFromCartEvent(); // xóa sản phẩm
 }
 
@@ -158,17 +158,17 @@ async function updateCartQuantity(cartProductId, quantity) {
   }
 }
 
-    // Lấy userId từ token
-    function getUserIdFromToken() {
-      const token = localStorage.getItem('token');
-      if (!token) {
-        throw new Error('No token found');
-      }
+// Lấy userId từ token
+function getUserIdFromToken() {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    throw new Error('No token found');
+  }
 
-      // Gỉa mã JWT để lấy UserId từ token
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload.UserId; // Đảm bảo tên thuộc tính đúng với cấu trúc của token
-    }
+  // Gỉa mã JWT để lấy UserId từ token
+  const payload = JSON.parse(atob(token.split('.')[1]));
+  return payload.UserId; // Đảm bảo tên thuộc tính đúng với cấu trúc của token
+}
 // Gán sự kiện cho nút áp dụng mã voucher
 document.querySelector('.apply-btn').addEventListener('click', applyVoucher);
 // Hàm áp dụng mã giảm giá
@@ -188,15 +188,15 @@ async function applyVoucher() {
     const data = await response.json();
     // Kiểm tra dữ liệu trả về
     if (data.status === 200) {
-      showDialog("Bạn được giảm: ",data.response.percent.toLocaleString() +'VNĐ')  ;
+      showDialog("Bạn được giảm: ", data.response.percent.toLocaleString() + 'VNĐ');
       await fetchCartProducts(); // Lấy lại dữ liệu giỏ hàng
-          getCart();
-     } else {
+      getCart();
+    } else {
       showDialog('Mã ưu đãi không hợp lệ.', data.message); // Thông báo nếu mã không hợp lệ
     }
   } catch (error) {
     showDialog('Có lỗi xảy ra khi kiểm tra mã ưu đãi:', error); // Ghi log lỗi nếu có
-   
+
   }
 }
 
@@ -236,8 +236,8 @@ async function getCart() {
 
     // Kiểm tra dữ liệu trả về từ API
     if (data.status === 200) {
-      const {price, totalPrice, DiscountAmount, shippingFee } = data.results;
-      
+      const { price, totalPrice, DiscountAmount, shippingFee } = data.results;
+
       // Cập nhật giao diện
       document.getElementById("subtotal").innerText = `${price.toLocaleString()}₫`;
       document.getElementById("vat").innerText = `${shippingFee.toLocaleString()}₫`;
@@ -252,28 +252,28 @@ async function getCart() {
 
 
 // Hàm hiển thị dialog
- function showDialog(title, message) {
+function showDialog(title, message) {
   // Đóng tất cả các dialog hiện tại trước khi mở dialog mới
   const existingDialog = document.querySelector('dialog[open]');
   if (existingDialog) {
-      existingDialog.close(); // Đóng dialog hiện tại nếu có
+    existingDialog.close(); // Đóng dialog hiện tại nếu có
   }
 
   // Lấy dialog mới và cập nhật nội dung
   const dialog = document.getElementById("successDialog");
 
   if (dialog) {
-      dialog.querySelector(".dialog-title").textContent = title;
-      dialog.querySelector(".dialog-message").textContent = message;
-      dialog.showModal(); // Hiển thị dialog mới
+    dialog.querySelector(".dialog-title").textContent = title;
+    dialog.querySelector(".dialog-message").textContent = message;
+    dialog.showModal(); // Hiển thị dialog mới
   }
 }
 window.closeDialog = closeDialog;
 function closeDialog() {
-    const dialog = document.getElementById("successDialog");
-    if (dialog) {
-        dialog.close(); // Đóng dialog
-        location.reload();
-    }
-    
+  const dialog = document.getElementById("successDialog");
+  if (dialog) {
+    dialog.close(); // Đóng dialog
+    location.reload();
+  }
+
 }

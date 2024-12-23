@@ -117,9 +117,9 @@
               <a
                 href="#"
                 class="add-product-btn"
-                onclick="openAddProductModal()"
-                >Thêm sản phẩm</a
-              >
+                id="add-pro">
+                Thêm sản phẩm
+              </a>
             </div>
             <!-- Table products -->
             <table>
@@ -137,6 +137,58 @@
             </table>
           </div>
         </div>
+      </div>
+    </div>
+    <!-- Modal Thêm Khuyến Mãi -->
+<div id="addPromotionModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="close-modal">&times;</span>
+    <h3>Thêm khuyến mãi</h3>
+    <form id="addPromotionForm">
+      <label for="addProductId">Mã sản phẩm:</label>
+      <input type="text" id="addProductId" required />
+
+      <label for="addDiscount">Giảm giá (%):</label>
+      <input type="number" id="addDiscount" required />
+
+      <label for="addStartDate">Ngày bắt đầu:</label>
+      <input type="date" id="addStartDate" required />
+
+      <label for="addEndDate">Ngày kết thúc:</label>
+      <input type="date" id="addEndDate" required />
+
+      <button type="button" id="saveNewPromotion">Lưu</button>
+    </form>
+  </div>
+</div>
+
+<!-- Modal cập nhật sản phẩm -->
+    <div id="updateProductModal" class="modalUpdate" style>
+      <div class="modal-content">
+        <span class="close-btn" onclick="closeUpdatePromotionalModal()"
+          >&times;</span
+        >
+        <h3>Cập nhật sản phẩm</h3>
+        <form id="updateProductForm">
+          <!-- Đổi ID form này -->
+          <!-- Các trường nhập liệu cho sản phẩm -->
+          <label for="updateDiscountPercentage">Giá:</label>
+          <input type="number" id="updateDiscountPercentage" required />
+          <label for="updateStarDate">Ngày bắt đầu:</label>
+          <input type="date" id="updateStarDate" required />
+          <label for="updateEndDate">Ngày kết thúc:</label>
+          <input type="text" id="updateEndDate" required />
+          <button type="date" id="saveChangesButton">
+            Lưu thay đổi
+          </button>
+          <button
+            type="button"
+            class="exit-btn"
+            onclick="closeUpdatePromotionalModal()"
+          >
+            Thoát
+          </button>
+        </form>
       </div>
     </div>
 

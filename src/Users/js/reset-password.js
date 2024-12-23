@@ -1,11 +1,7 @@
+import { showDialog } from "./showDidlog";
 
     const backToLoginLink = document.getElementById('back-to-login');
-
-
-    
-
-    
-
+  
     // Khi người dùng muốn trở lại trang đăng nhập
     backToLoginLink.addEventListener('click', function() {
         window.location.href = "/src/Users/pages/account/login-signup.html"; // Địa chỉ trang đăng nhập
@@ -32,14 +28,14 @@ document.getElementById("reset-password-form").addEventListener("submit", async 
         if (response.ok) {
             const ok = await response.json();
             error_email.style.color = "green"
-            error_email.innerText = ok.message || "Đã xảy ra lỗi. Vui lòng thử lại.";
+            error_email.innerText = ok.message;
         } else {
             const error = await response.json();
-            error_email.innerText = error.message || "Đã xảy ra lỗi. Vui lòng thử lại.";
+            error_email.innerText = error.message ;
         }
     } catch (error) {
         error_email.innerText = "Không thể kết nối đến server. Vui lòng kiểm tra mạng.";
-        console.error("Error:", error);
+      
     }
 });
 
@@ -76,7 +72,7 @@ document.getElementById("new-password-form").addEventListener("submit", async (e
     const token = decodeURIComponent(urlParams.get("token")); // Giải mã token từ URL
 
     if (!token) {
-        alert("Token không hợp lệ hoặc đã hết hạn.");
+        showDialog("Lỗi token","Token không hợp lệ hoặc đã hết hạn.");
         return;
     }
 
@@ -97,18 +93,29 @@ document.getElementById("new-password-form").addEventListener("submit", async (e
         console.log(text); // Xem phản hồi từ server
 
         if (response.ok) {
-            alert("Mật khẩu của bạn đã được đặt lại thành công.");
+            s("Mật khẩu của bạn đã được đặt lại thành công.");
             window.location.href = "/src/Users/pages/account/login-signup.html"; // Chuyển hướng đến trang đăng nhập
         } else {
             try {
                 const error = JSON.parse(text); // Chỉ phân tích JSON nếu có thể
-                alert(`Lỗi: ${error.message || "Không thể đặt lại mật khẩu."}`);
+                showDialog(`Lỗi: ${error.message || "Không thể đặt lại mật khẩu."}`);
             } catch (e) {
-                alert("Lỗi không xác định: " + text); // Nếu không thể phân tích JSON
+                showDialog("Lỗi không xác định: " , text); // Nếu không thể phân tích JSON
             }
         }
     } catch (error) {
         console.error("Có lỗi xảy ra:", error);
-        alert("Đã xảy ra lỗi khi đặt lại mật khẩu.");
+        showDialog("Có lỗi xảy ra","Đã xảy ra lỗi khi đặt lại mật khẩu.");
     }
 });
+
+// đóng dialog
+window.closeDialog = closeDialog;
+export function closeDialog() {
+    const dialog = document.getElementById("successDialog");
+    if (dialog) {
+        dialog.close(); // Đóng dialog
+
+    }
+
+}

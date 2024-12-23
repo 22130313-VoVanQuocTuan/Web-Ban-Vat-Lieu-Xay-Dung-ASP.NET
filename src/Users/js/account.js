@@ -1,10 +1,9 @@
 import { showDialog } from "./showDidlog.js";
 import { getUserIdFromToken } from "./UserId.js";
-import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
+import { customFetch } from "/src/apiService.js"; // Đảm bảo đường dẫn đúng
 
 const userId = getUserIdFromToken();
 const apiUrl = "http://localhost:5241/api/User"; // Không cần dấu '/' ở cuối
-
 
 async function fetchUserData() {
   try {
@@ -12,8 +11,7 @@ async function fetchUserData() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-  
-      }
+      },
     });
 
     if (!response.ok) {
@@ -82,7 +80,6 @@ saveButton.addEventListener("click", async (event) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-
       },
       body: JSON.stringify(updatedData),
     });
@@ -91,21 +88,17 @@ saveButton.addEventListener("click", async (event) => {
       showDialog("Cập nhật thông tin thất bại.");
     } else {
       showDialog("Thông tin đã được cập nhật thành công!");
-     
-
     }
   } catch (error) {
     console.error("Lỗi khi cập nhật thông tin:", error.message);
   }
 });
 
-
 window.closeDialog = closeDialog;
 export function closeDialog() {
-    const dialog = document.getElementById("successDialog");
-    if (dialog) {
-        dialog.close(); // Đóng dialog
-        location.reload();
-    }
-    
+  const dialog = document.getElementById("successDialog");
+  if (dialog) {
+    dialog.close(); // Đóng dialog
+    location.reload();
+  }
 }

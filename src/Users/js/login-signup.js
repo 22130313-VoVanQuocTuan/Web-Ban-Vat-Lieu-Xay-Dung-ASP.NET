@@ -9,9 +9,6 @@ const home = document.getElementById('home');
 const HOME = document.getElementById('HOME');
 
 
-
-
-
 registerBtn.addEventListener('click', () => {
     container.classList.add("active");
 });
@@ -19,12 +16,12 @@ registerBtn.addEventListener('click', () => {
 loginBtn.addEventListener('click', () => {
     container.classList.remove("active");
 });
-home.addEventListener('click',() => {
-    window.location.href= '../home.html';
+home.addEventListener('click', () => {
+    window.location.href = '../home.html';
 
 });
-HOME.addEventListener('click',() => {
-    window.location.href= '../home.html';
+HOME.addEventListener('click', () => {
+    window.location.href = '../home.html';
 
 });
 
@@ -33,7 +30,6 @@ HOME.addEventListener('click',() => {
 const registerForm = document.getElementById('register-form');
 const loginForm = document.getElementById('login-form'); // Bạn cần thêm id cho form login trong HTML
 
-// Xử lý đăng ký
 registerForm.addEventListener('submit', async (event) => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form
 
@@ -48,7 +44,7 @@ registerForm.addEventListener('submit', async (event) => {
     };
 
     try {
-        const response = await fetch('http://localhost:5241/api/User/create', { // Thay đổi địa chỉ API phù hợp
+        const response = await fetch('http://localhost:5241/api/User/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -58,32 +54,23 @@ registerForm.addEventListener('submit', async (event) => {
 
         const data = await response.json();
         if (response.ok) {
-            // Xử lý thành công, ví dụ hiển thị thông báo
-           
-           
-            const isSuccess = true; // Thay thế bằng điều kiện thực tế của bạn
-
-            if (isSuccess) {
-                // Hiện form xác thực email
-                document.getElementById('verify-code-container').style.display = 'block';
-                
-                // Ngăn chặn tương tác với các form đăng nhập/đăng ký
-                overlay.style.display = 'block'; // Hiển thị nền mờ
-                document.querySelector('.form-container.sign-in').classList.add('disabled');
-                document.querySelector('.form-container.sign-up').classList.add('disabled');
-            }
+            // Hiện form xác thực email
             document.getElementById('verify-code-container').style.display = 'block';
+
+            // Ngăn chặn tương tác với các form đăng nhập/đăng ký
+            overlay.style.display = 'block';
+            document.querySelector('.form-container.sign-in').classList.add('disabled');
+            document.querySelector('.form-container.sign-up').classList.add('disabled');
         } else {
-            // Xử lý lỗi
-            showDialog("Đăng kí thất bại", data.message); // Hiển thị dialog thông báo
+            showDialog("Đăng kí thất bại", data.error || "Mật khẩu và tài khoản không nhỏ hơn 3 kí tự và lớn hơn 20 kí tự");
         }
-    } catch (error) {
+    }
+    catch (error) {
         console.error('Error:', error);
-        showDialog("Có lỗi xảy ra", error.message); // Hiển thị dialog thông báo
+        showDialog("Có lỗi xảy ra", error.message); // Hiển thị thông báo lỗi chung
     }
 });
 
-    
 
 
 // Xử lý đăng nhập
@@ -108,17 +95,17 @@ loginForm.addEventListener('submit', async (event) => {
         });
 
         const data = await response.json();
-        
+
         if (response.ok) {
-            
+
             // Lưu token và refresh token
             localStorage.setItem('token', data.result.token);
             localStorage.setItem('refreshToken', data.result.refreshToken);
-            if(data.result.role === "ADMIN"){
+            if (data.result.role === "ADMIN") {
                 window.location.href = '/src/Admin/pages/index.html';
-            }else{
-        
-    
+            } else {
+
+
                 window.location.href = '../home.html'; // Chuyển hướng đến trang chính
             }
         } else {
@@ -136,8 +123,6 @@ document.getElementById('verify-button').addEventListener('click', async () => {
     const email = document.getElementById('register-email').value; // Lấy email từ form đăng ký
     const verificationCodeInputs = Array.from(document.getElementsByClassName('verification-code'));
     const verificationCode = verificationCodeInputs.map(input => input.value).join('');
-
-
 
     const requestData = {
         email: email,
@@ -161,16 +146,16 @@ document.getElementById('verify-button').addEventListener('click', async () => {
         }
 
         const data = await response.json();
-        if (data.status === 200 ) {
+        if (data.status === 200) {
             document.getElementById('verify-code-container').style.display = 'none';
             showDialog("Tài khoản đã được tạo thành công, vui lòng đăng nhập!")
-     
+
             // Khôi phục trạng thái ban đầu của các form
             document.querySelector('.form-container.sign-in').classList.remove('disabled');
             document.querySelector('.form-container.sign-up').classList.remove('disabled');
 
         } else {
-           alert("Xác thực không thành công", errorData.message); // Hiển thị dialog thông báo
+            showDialog("Xác thực không thành công", errorData.message); // Hiển thị dialog thông báo
         }
     } catch (error) {
         console.error('Lỗi:', error);
@@ -182,17 +167,18 @@ document.getElementById('verify-button').addEventListener('click', async () => {
 document.getElementById('close-button').addEventListener('click', () => {
     document.getElementById('verify-code-container').style.display = 'none';
     document.getElementById('overlay').style.display = 'none';
-  
+
 });
 
+// đóng dialog
 window.closeDialog = closeDialog;
 export function closeDialog() {
     const dialog = document.getElementById("successDialog");
     if (dialog) {
         dialog.close(); // Đóng dialog
-        location.reload();
+
     }
-    
+
 }
 
 
