@@ -151,8 +151,8 @@
                   <label for="discountPercentage">Giá trị:</label>
                   <input type="number" id="discountPercentage" required />
 
-                  <label for="starDate">Ngày bắt đầu:</label>
-                  <input type="date" id="starDate" required />
+                  <label for="startDate">Ngày bắt đầu:</label>
+                  <input type="date" id="startDate" required />
 
                   <label for="endDate">Ngày kết thúc:</label>
                   <input type="date" id="endDate" required />
@@ -172,7 +172,7 @@
             </div>
 
             <!-- Modal cập nhật sản phẩm -->
-            <div id="updateProductModal" class="modalUpdate" style>
+            <div id="updateProductModal" class="modalUpdate">
               <div class="modal-content">
                 <span class="close-btn" onclick="closeUpdatePromotionalModal()"
                   >&times;</span
@@ -181,15 +181,23 @@
                 <form id="updateProductForm">
                   <!-- Đổi ID form này -->
                   <!-- Các trường nhập liệu cho sản phẩm -->
-                  <label for="updateDiscountPercentage">Giá:</label>
-                  <input type="number" id="updateDiscountPercentage" required />
+                  <label for="updateDiscountPercentage"
+                    >Phần trăm giảm giá:</label
+                  >
+                  <input
+                    id="updateDiscountPercentage"
+                    type="number"
+                    min="0"
+                    max="100"
+                  />
 
-                  <label for="updateStarDate">Ngày bắt đầu:</label>
-                  <input type="date" id="updateStarDate" required />
+                  <label for="updateStartDate">Ngày bắt đầu:</label>
+                  <input id="updateStartDate" type="date" />
 
                   <label for="updateEndDate">Ngày kết thúc:</label>
-                  <input type="text" id="updateEndDate" required />
-                  <button type="date" id="saveChangesButton">
+                  <input id="updateEndDate" type="date" />
+
+                  <button type="button" id="saveChangesButton">
                     Lưu thay đổi
                   </button>
                   <button
