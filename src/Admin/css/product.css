@@ -18,8 +18,6 @@ body {
   --black2: #999;
 }
 
-
-
 .container {
   position: relative;
   width: 100%;
@@ -116,7 +114,6 @@ body {
   left: 4%;
 }
 
-
 /* ------------------ Main ------------------ */
 .main {
   position: absolute;
@@ -130,9 +127,7 @@ body {
 .topbar {
   width: 100%;
   height: 40%;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 0 10px;
   margin-top: 10px;
 }
@@ -197,54 +192,53 @@ body {
 }
 /* ------------------------List product----------------- */
 .list-products {
-    border: 2px gray solid;
-    border-radius: 10px 10px 0 0;
-    margin-left: 5px;
-    min-height: 1200px;
-    margin-top: 15px;
+  border: 2px gray solid;
+  border-radius: 10px 10px 0 0;
+  margin-left: 5px;
+  min-height: 1200px;
+  margin-top: 15px;
 }
 
 .list-products-title {
   background: linear-gradient(to right, #82a0c2, #15283e);
-   height: 50px;
+  height: 50px;
 }
 
 .list-products-title h2 {
-    padding-top: 15px;
-    padding-left: 15px;
-    color: var(--white);
+  padding-top: 15px;
+  padding-left: 15px;
+  color: var(--white);
 }
 .list-products-content-button {
   background-color: #ccc;
 }
 .list-products-content-button a {
-    padding: 10px;
-    font-size: 15px;
-    float: right;
-    margin: 15px;
-    border-radius: 5px;
-    background-color: #999;
-    text-decoration: none;
-    color:var(--gray);
-    font-weight: bold;
+  padding: 10px;
+  font-size: 15px;
+  float: right;
+  margin: 15px;
+  border-radius: 5px;
+  background-color: #999;
+  text-decoration: none;
+  color: var(--gray);
+  font-weight: bold;
 }
-.list-products-content-button a:hover{
+.list-products-content-button a:hover {
   background: linear-gradient(to right, #82a0c2, #15283e);
   color: var(--white);
 }
 
 /* table products */
 table {
-    width: 100%;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 table,
 th,
 td {
-    border: 1px solid #ccc;
-    text-align: center;
- 
+  border: 1px solid #ccc;
+  text-align: center;
 }
 
 th {
@@ -254,25 +248,26 @@ th {
 }
 
 td a {
-    text-decoration: none;
-    color: #222;
+  text-decoration: none;
+  color: #222;
 }
 
 td a:hover {
-    color: #2a2185;
-    font-weight: bold;
-    transition: 0.3s all ease;
+  color: #2a2185;
+  font-weight: bold;
+  transition: 0.3s all ease;
 }
 
 /* Action Links */
 .action-links a {
-    margin: 0 5px;
-    text-decoration: none;
-    color: #007bff;
+  margin: 0 5px;
+  text-decoration: none;
+  color: #007bff;
 }
 
 /* Modal Styling */
-.modalUpdate, .modalAdd {
+.modalUpdate,
+.modalAdd {
   display: none;
   position: fixed;
   top: 0;
@@ -296,7 +291,6 @@ td a:hover {
   height: 500px;
   display: block; /* Đảm bảo modal có thể hiển thị */
   margin-left: 40%;
-
 }
 
 .modal {
@@ -328,33 +322,31 @@ td a:hover {
 
 /* Button close */
 
-
-
 h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #333;
-    text-align: center;
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
 }
 
 label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-    color: #555;
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+  color: #555;
 }
 
 input,
 textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 14px;
-    background-color: #f9f9f9;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #f9f9f9;
 }
-#productStatus{
+#productStatus {
   height: 30px;
   width: 150px;
   margin-bottom: 15px;
@@ -362,30 +354,30 @@ textarea {
 }
 
 button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    text-align: center;
-    padding: 5px
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
 }
 
 .exit-btn {
-    background-color: #dc3545;
-    margin-top: 10px;
-    font-size: 14px;
+  background-color: #dc3545;
+  margin-top: 10px;
+  font-size: 14px;
 }
-.modal-content .close-btn{
+.modal-content .close-btn {
   font-size: 40px;
 }
-.bt{
+.bt {
   display: flex;
   justify-content: center;
   height: 100px;
 }
-.bt button{
+.bt button {
   margin: 2px;
   width: 40px;
   height: 50px;
