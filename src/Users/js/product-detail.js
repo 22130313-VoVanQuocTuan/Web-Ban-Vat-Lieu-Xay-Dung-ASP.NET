@@ -1,3 +1,4 @@
+import { showDialog } from "./showDidlog.js";
 import { getUserIdFromToken } from "./UserId.js";
 import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
 
@@ -72,15 +73,19 @@ document.getElementById('commentform').addEventListener('submit', async (event) 
     event.preventDefault(); // Ngăn form tải lại trang
 
     const comment = document.getElementById('review-comment').value.trim();
-    const userId = getUserIdFromToken(); // Lấy userId từ token
-    if (!userId) {
-        alert("Vui lòng đăng nhập để đánh giá sản phẩm!");
-        window.location.href = "/src/Users/pages/account/login-signup.html";
+
+    let userId;
+    try {
+        userId = getUserIdFromToken(); // Lấy userId từ token
+    } catch (error) {
+        console.error(error.message);
+        showDialog("Vui lòng đăng nhập để đánh giá sản phẩm!");
+       
         return;
     }
 
     if (!comment) {
-        alert("Vui lòng nhập ý kiến đánh giá!");
+        showDialog("Vui lòng nhập ý kiến đánh giá!");
         return;
     }
 
@@ -95,15 +100,14 @@ document.getElementById('commentform').addEventListener('submit', async (event) 
         });
 
         if (response.ok) {
-            alert('Đánh giá của bạn đã được gửi thành công!');
+            showDialog('Đánh giá của bạn đã được gửi thành công!');
             document.getElementById('commentform').reset(); // Xóa nội dung trong form
         } else {
             const result = await response.json();
-            alert(`Không thể gửi đánh giá: ${result.message || 'Đã xảy ra lỗi.'}`);
+            showDialog(`Không thể gửi đánh giá: ${result.message || 'Đã xảy ra lỗi.'}`);
         }
     } catch (error) {
         console.error('Lỗi khi gửi đánh giá:', error);
-        alert('Đã xảy ra lỗi khi gửi đánh giá.');
+        showDialog('Đã xảy ra lỗi khi gửi đánh giá.');
     }
 });
-

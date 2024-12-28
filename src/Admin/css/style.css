@@ -90,7 +90,6 @@ body {
   display: block;
   min-width: 3.5rem;
   height: auto;
-  line-height: 70px;
   text-align: center;
   margin-top: 2%;
 }
@@ -104,7 +103,7 @@ body {
   display: block;
   padding: 0 10px;
   height: 60px;
-  line-height: 60px;
+  line-height: 35px;
   text-align: start;
   white-space: nowrap;
 }
@@ -258,7 +257,6 @@ body {
 
 .details .recentOrders {
   position: relative;
-  display: grid;
   min-height: 500px;
   background: var(--white);
   padding: 20px;
