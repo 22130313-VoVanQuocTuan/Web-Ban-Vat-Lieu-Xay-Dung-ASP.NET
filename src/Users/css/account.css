@@ -42,6 +42,9 @@
 
 .left-information,
 .right-information {
+  max-height: 400px; /* Điều chỉnh chiều cao của phần chứa bảng */
+  overflow-y: auto;  /* Thêm thanh cuộn dọc khi nội dung vượt quá chiều cao */
+  border: 1px solid #ddd;  /* Tạo đường viền để dễ nhìn */
   flex: 1;
   background-color: white;
   padding: 25px;

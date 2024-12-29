@@ -94,6 +94,50 @@ saveButton.addEventListener("click", async (event) => {
   }
 });
 
+// Lấy danh sách đơn hàng của user
+async function fetchOrderData() {
+  const userId = getUserIdFromToken();
+  const response = await customFetch(`http://localhost:5241/api/Order/order-user/${userId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  });
+
+  // Kiểm tra phản hồi từ API
+  if (!response.ok) {
+    console.error('Không thể lấy đơn hàng');
+    return;
+  }
+
+  const data = await response.json();
+
+  // Hiển thị thông tin đơn hàng
+  const orderInformationElement = document.getElementById('order-information');
+  orderInformationElement.innerHTML = ''; // Clear previous content
+
+  if (data.message && data.message.length === 0) {
+    orderInformationElement.innerHTML = `<tr><td colspan="5">Không có đơn hàng nào.</td></tr>`;
+    return;
+  }
+
+  data.message.forEach((order) => {
+    const orderRow = document.createElement('tr');
+    orderRow.innerHTML = `
+      <td>${order.orderId}</td>
+      <td>${new Date(order.orderDate).toLocaleDateString('vi-VN')}</td>
+      <td>${order.address}</td>
+      <td>${order.price} VND</td>
+      <td>${order.orderStatus}</td>
+      <td>${order.paymentStatus}</td>
+    `;
+    orderInformationElement.appendChild(orderRow);
+  });
+}
+
+// Gọi hàm fetch khi trang tải
+fetchOrderData();
+
 window.closeDialog = closeDialog;
 export function closeDialog() {
   const dialog = document.getElementById("successDialog");
