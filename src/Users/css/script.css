@@ -7,7 +7,7 @@
     top: 50%;
     border-radius: 15px;
     transform: translate(-50%, -50%); /* Căn giữa màn hình */
-    width: 50%;  /* Chiều rộng của modal */
+    
     max-width: 800px;  /* Đảm bảo modal không quá rộng */
     height: auto;
     background-color: rgba(0, 0, 0, 0.4);

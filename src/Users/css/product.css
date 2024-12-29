@@ -1,7 +1,7 @@
 
 /* General content styles */
 .conten {
-   width: 77%;
+   width: 78%;
    height: auto;
    display: flex;
    margin: 50px auto;
@@ -73,7 +73,7 @@ button:hover {
    border-radius: 8px;
    margin: 10px 0;
    padding: 12px 16px;
-   background-color: rgba(124, 108, 108, 0.2); /* Nền sáng vừa phải */
+   background-color: rgb(66 87 111);
    color: #a4a4a4; /* Chữ màu xám đậm để dễ đọc */
    transition: transform 0.3s ease, background-color 0.3s ease;
    font-weight: 500;

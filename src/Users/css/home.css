@@ -303,7 +303,7 @@ p {
 
 /* -------------------section-slider-------------------------- */
 #section-slider {
-  height: 760px;
+  height: 590px;
   background-color: #f2f2f2;
   position: relative;
   overflow: hidden;
@@ -363,12 +363,12 @@ p {
 
 /* ---------------------List Product ---------------- */
 .product-one-content {
-  width: 99%;
+  width: 100%;
   background: linear-gradient(to right, #82a0c2, #15283e);
-  padding: 10px;
-  border-radius: 5px;
+  padding: 10px 0;
+
   margin-bottom: 55px;
-  margin-top: 232px;
+  margin-top: 55px;
 }
 
 .product-one-content .title {
@@ -617,4 +617,41 @@ p {
   border-radius: 10px;
   padding: 5px;
 
+}
+
+.discount-container {
+  display: flex;
+  flex-wrap: wrap; /* Đảm bảo xuống dòng nếu vượt quá 5 phần tử */
+  justify-content: space-between; /* Tách đều các phần tử trong hàng */
+  max-width: calc(5 * 220px + 40px); /* Tối đa 5 phần tử trong một hàng */
+  margin: 0 auto;
+}
+
+.discount-item {
+  width: 200px; /* Chiều rộng cố định cho mỗi mã giảm giá */
+  height: 40px; /* Chiều cao cố định */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background: #ff6f3e;
+  overflow: hidden; /* Ẩn nội dung vượt khung */
+  white-space: nowrap; /* Không cho nội dung xuống dòng */
+  position: relative;
+}
+
+.discount-item p {
+  display: inline-block; /* Đảm bảo văn bản có thể cuộn */
+  position: relative;
+  animation: scroll-left 5s linear infinite; /* Văn bản chạy từ phải qua trái */
+  color: #ffffff;
+}
+
+/* Hiệu ứng cuộn từ phải qua trái */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%); /* Bắt đầu từ bên phải */
+  }
+  100% {
+    transform: translateX(-100%); /* Kết thúc bên trái */
+  }
 }
