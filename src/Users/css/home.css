@@ -404,7 +404,7 @@ p {
   /* Chỉnh sửa để đảm bảo sản phẩm được căn trái */
   gap: 8px;
   margin-bottom: 25px;
-  margin-left: 75px;
+  margin-left: 82px;
   flex-wrap: wrap;
   /* Cho phép các thẻ con gói lại trong trường hợp không đủ chỗ */
 }

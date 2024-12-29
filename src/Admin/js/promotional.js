@@ -112,7 +112,7 @@ const saveNewPromotion = async () => {
       return;
     }
 
-    alert("Thêm sản phẩm thành công!");
+    showToast("Thêm sản phẩm thành công!");
     closeAddProductModal();
     loadPromotions();
   } catch (error) {
@@ -188,11 +188,11 @@ const saveChanges = async () => {
     const result = await response.json();
 
     if (response.ok) {
-      alert("Cập nhật thành công!");
+      showToast("Cập nhật thành công!");
       closeUpdatePromotionalModal();
       loadPromotions();
     } else {
-      alert(`Lỗi: ${result.message}`);
+      showToast(`Lỗi: ${result.message}`);
     }
   } catch (error) {
     console.error("Có lỗi xảy ra:", error);
@@ -224,8 +224,11 @@ window.onclick = (event) => {
 // Gắn sự kiện khi tải trang
 document.getElementById("add-pro").onclick = openAddProductModal;
 document.getElementById("close-modal").onclick = closeAddProductModal;
+document.getElementById("close-modals").onclick = closeUpdatePromotionalModal;
+document.getElementById("exit").onclick = closeUpdatePromotionalModal;
 document.getElementById("saveNewPromotion").onclick = saveNewPromotion;
 document.getElementById("saveChangesButton").onclick = saveChanges;
+
 
 // Tải danh sách khuyến mãi khi trang tải
 loadPromotions();

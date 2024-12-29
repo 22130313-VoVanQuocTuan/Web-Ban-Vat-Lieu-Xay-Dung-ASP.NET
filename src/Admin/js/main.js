@@ -13,6 +13,7 @@ toggle.onclick = function () {
 };
 
 
+
 // Hàm gọi API để đăng xuất
 async function logoutUser() {
   const token = localStorage.getItem('token'); // Lấy token từ localStorage
@@ -44,6 +45,7 @@ async function logoutUser() {
       alert("Đã xảy ra lỗi khi đăng xuất.");
   }
 }
+
 
 // Lắng nghe sự kiện nhấn vào nút đăng xuất
 document.querySelector('#logoutButton').addEventListener('click', logoutUser);

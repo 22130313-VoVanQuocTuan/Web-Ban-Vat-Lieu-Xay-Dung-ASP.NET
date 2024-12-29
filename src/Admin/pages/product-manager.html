@@ -303,22 +303,22 @@
     <!-- Modal cập nhật sản phẩm -->
     <div id="updateProductModal" class="modalUpdate">
       <div class="modal-content">
-        <span class="close-btn" onclick="closeUpdatePromotionalModal()"
+        <span class="close-btn" id="close-modals"
           >&times;</span
         >
         <h3>Cập nhật sản phẩm</h3>
-        <form id="updateProductForm" data-sale-id="">
+        <form id="updateProductForm" >
           <label for="updateDiscountPercentage">Giảm giá (%):</label>
           <input type="number" id="updateDiscountPercentage" required />
-          <label for="updateStarDate">Ngày bắt đầu:</label>
-          <input type="date" id="updateStarDate" required />
+          <label for="updateStartDate">Ngày bắt đầu:</label>
+          <input type="date" id="updateStartDate" required />
           <label for="updateEndDate">Ngày kết thúc:</label>
           <input type="date" id="updateEndDate" required />
           <button type="button" id="saveChangesButton">Lưu thay đổi</button>
           <button
             type="button"
             class="exit-btn"
-            onclick="closeUpdatePromotionalModal()"
+            id="exit"
           >
             Thoát
           </button>
@@ -345,7 +345,7 @@
         <button type="date" id="saveChangesButton">
           Lưu thay đổi
         </button>
-        <button type="button" class="exit-btn" onclick="closeUpdatePromotionalModal()">
+        <button type="button" class="exit-btn">
           Thoát
         </button>
       </form>
