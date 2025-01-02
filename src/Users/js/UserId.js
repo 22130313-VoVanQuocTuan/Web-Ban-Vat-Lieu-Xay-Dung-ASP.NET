@@ -2,7 +2,7 @@
  export function getUserIdFromToken() {
     const token = localStorage.getItem('token');
     if (!token) {
-      throw new Error('No token found');
+        window.location.href = "/src/Users/pages/account/login-signup.html"
     }
 
     // Gỉa mã JWT để lấy UserId từ token

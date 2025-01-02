@@ -44,8 +44,7 @@ document.addEventListener('click', async (event) => {
 
         const productId = parseInt(event.target.getAttribute('data-product-id'));
         const userId = getUserIdFromToken();
-
-        try {
+         try {
             const response = await customFetch('http://localhost:5241/api/Cart', {
                 method: 'POST',
                 headers: {

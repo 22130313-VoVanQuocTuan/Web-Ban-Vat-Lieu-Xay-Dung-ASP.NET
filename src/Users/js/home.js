@@ -71,7 +71,7 @@ async function fetchDiscounts() {
           div.classList.add('discount-item');
           div.innerHTML = `
               <p><strong >Mã giảm giá:</strong> ${discount.code}</p>
-              <p><strong>Giảm giá::</strong> ${discount.percent.toLocaleString()}đ</p>
+              <p><strong>Giảm giá:</strong> ${discount.percent.toLocaleString()}đ</p>
           `;
           container.appendChild(div);
       });
