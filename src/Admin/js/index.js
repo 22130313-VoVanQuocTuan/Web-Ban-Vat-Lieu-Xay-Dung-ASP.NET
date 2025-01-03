@@ -3,63 +3,104 @@ async function loadOrders() {
     try {
         // Gọi API để lấy danh sách tất cả đơn hàng
         const response = await fetch('http://localhost:5241/api/Order/order-new');
+        if (!response.ok) {
+            throw new Error('Lỗi khi tải danh sách đơn hàng');
+        }
         const data = await response.json();
 
-        // Kiểm tra xem 'message' có phải là mảng không
+        // Kiểm tra dữ liệu trả về
         if (!Array.isArray(data.message)) {
-            console.error('Dữ liệu trả về không phải là mảng:', data);
-            return; // Dừng lại nếu không phải mảng
+            console.error('Dữ liệu trả về không đúng:', data);
+            return;
         }
 
-        // Lấy mảng đơn hàng từ 'message'
-        const orders = data.message;
+        // Lưu tất cả đơn hàng
+        window.allOrders = data.message;
 
-        // Lấy bảng để hiển thị dữ liệu
-        const tbody = document.getElementById('orderTableBody');
-        tbody.innerHTML = ''; // Xóa dữ liệu cũ nếu có
-       
         // Hiển thị chỉ 10 đơn hàng đầu tiên
-        const ordersToShow = orders.slice(0, 10);
-
-        ordersToShow.forEach(order => {
-             // Kiểm tra và chuyển đổi giá nếu cần
-             const price = parseFloat(order.price) || 0; // Nếu không phải số thì gán 0
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${order.orderId}</td>
-                <td>${price.toLocaleString()} ₫</td>
-                <td>${order.paymentStatus}</td>
-                <td><span class="status ${order.orderStatus.toLowerCase()}">${order.orderStatus}</span></td>
-            `;
-            tbody.appendChild(row);
-        });
-
-        // Lưu lại toàn bộ đơn hàng để hiển thị sau khi nhấn "Xem Tất Cả"
-        window.allOrders = orders;
+        renderOrders(data.message.slice(0, 10));
     } catch (error) {
         console.error('Error loading orders:', error);
+        alert('Không thể tải danh sách đơn hàng!');
     }
+}
+
+function renderOrders(orders) {
+    const tbody = document.getElementById('orderTableBody');
+    tbody.innerHTML = ''; // Xóa dữ liệu cũ
+
+    orders.forEach(order => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${order.orderId}</td>
+            <td>${parseFloat(order.price).toLocaleString()}₫</td>
+            <td class="payment-status">${order.paymentStatus}</td>
+            <td><span class="status ${order.orderStatus.toLowerCase()}">${order.orderStatus}</span></td>
+            <td>
+                <button class="update-order-status" data-order-id="${order.orderId}">Cập nhật trạng thái đơn hàng</button>
+                <button class="update-payment-status" data-order-id="${order.orderId}">Cập nhật trạng thái thanh toán</button>
+            </td>
+        `;
+
+        // Gắn sự kiện cho các nút
+        row.querySelector('.update-order-status').addEventListener('click', () => {
+            updateStatus(order.orderId, 'order');
+        });
+        row.querySelector('.update-payment-status').addEventListener('click', () => {
+            updateStatus(order.orderId, 'payment');
+        });
+
+        tbody.appendChild(row);
+    });
+    // Ẩn nút "Xem Tất Cả" nếu không cần thiết
+    document.getElementById('viewAllBtn').style.display = 'none';
+
+}
+
+async function updateStatus(orderId, type) {
+    const status = prompt(`Nhập trạng thái mới cho ${type === 'order' ? 'đơn hàng' : 'thanh toán'}:`);
+
+    if (!status) return; // Hủy nếu không nhập trạng thái
+
+    const endpoint = type === 'order' 
+        ? `http://localhost:5241/api/Order/${orderId}/status` 
+        : `http://localhost:5241/api/Order/${orderId}/payment-status`;
+
+    try {
+        const response = await fetch(endpoint, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            showToast("Cập nhật thành công");
+            loadOrders();
+
+       } else {
+        showToast(result.message || 'Cập nhật thất bại!');
+        loadOrders();
+       }
+   } catch (error) {
+       console.error('Error updating status:', error);
+       alert('Có lỗi xảy ra khi cập nhật trạng thái!');
+   }
 }
 
 // Hiển thị tất cả đơn hàng khi nhấn "Xem Tất Cả"
 document.getElementById('viewAllBtn').addEventListener('click', () => {
-    const tbody = document.getElementById('orderTableBody');
-    tbody.innerHTML = ''; // Xóa các đơn hàng hiện tại
-
-    window.allOrders.forEach(order => {
-        const row = document.createElement('tr');
-        row.innerHTML = ` 
-            <td>${order.orderId}</td>
-            <td>${order.price.toLocaleString()}₫</td>
-            <td>${order.paymentStatus}</td>
-            <td><span class="status ${order.orderStatus.toLowerCase()}">${order.orderStatus}</span></td>
-        `;
-        tbody.appendChild(row);
-    });
-
-    // Ẩn nút "Xem Tất Cả" nếu không cần thiết
-    document.getElementById('viewAllBtn').style.display = 'none';
+    renderOrders(window.allOrders);
 });
+
+
+    
+
+
+
+
+
 
 // Hàm gọi API và hiển thị dữ liệu khách hàng
 async function loadCustomers() {
@@ -157,3 +198,14 @@ window.onload = () => {
     loadCustomers(); // Tải khách hàng gần đây
     loadDashboardData();
 };
+
+// Hiển thị thông báo
+const showToast = (message) => {
+    const toast = document.getElementById("toast");
+    toast.innerText = message;
+    toast.style.display = "block";
+    setTimeout(() => {
+      toast.style.display = "none";
+    }, 3000);
+  };
+  

@@ -1,11 +1,15 @@
 const products = [];
 let currentPage = 1;
 const pageSize = 10;
+let isLoading = false; // Kiểm tra xem có đang tải dữ liệu không
 
 import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn chính xác
 
 // Hàm lấy danh sách sản phẩm với phân trang
 async function fetchProducts(page = 1) {
+    if (isLoading) return;  // Ngừng yêu cầu nếu đã có yêu cầu đang xử lý
+    isLoading = true; // Đánh dấu đang tải dữ liệu
+
     try {
         const response = await fetch(`http://localhost:5241/api/Product?page=${page}&size=${pageSize}`, {
             method: 'GET',
@@ -16,9 +20,15 @@ async function fetchProducts(page = 1) {
 
         if (response.ok) {
             const data = await response.json();
-            products.length = 0; // Xóa dữ liệu cũ
-            products.push(...data.results.products); // Thêm dữ liệu mới
-            displayProducts(); // Hiển thị danh sách sản phẩm
+            if (data.results && data.results.products) {
+                // Nếu có sản phẩm, thêm vào mảng `products`
+                // Chỉ thêm sản phẩm mới vào để tránh trùng lặp
+                products.push(...data.results.products);
+                displayProducts(); // Hiển thị danh sách sản phẩm
+                currentPage++; // Tăng số trang để có thể gọi lại API
+            } else {
+                console.log("No more products available.");
+            }
         } else {
             console.error("Error: ", response.statusText);
             alert("Failed to fetch products.");
@@ -26,13 +36,15 @@ async function fetchProducts(page = 1) {
     } catch (error) {
         console.error("Error:", error);
         alert("An error occurred while fetching products.");
+    } finally {
+        isLoading = false; // Kết thúc quá trình tải
     }
 }
 
 // Hiển thị danh sách sản phẩm trong bảng
 function displayProducts() {
     const productList = document.getElementById('productList');
-    productList.innerHTML = ''; // Xóa nội dung cũ
+    productList.innerHTML = ''; // Xóa nội dung cũ để không bị trùng
 
     products.forEach((product) => {
         const productRow = document.createElement('tr');
@@ -41,25 +53,28 @@ function displayProducts() {
             <td>${product.productId}</td>
             <td><img src="${imageUrl}" alt="Product Image" width="50" height="50"></td>
             <td>${product.name}</td>
-            <td>${product.price.toLocaleString() } VNĐ</td>
+            <td>${product.price.toLocaleString()} VNĐ</td>
             <td>${product.stockQuantity}</td>
             <td>${new Date(product.createdAt).toLocaleDateString()}</td>
             <td>${product.status}</td>
-             <td>${product.categoryId}</td>
+            <td>${product.categoryId}</td>
             <td class="bt">
-                 <button class="view-description-button" data-product-id="${product.productId}">Mô tả</button>
-                 
-                 <button class="update-product-button" data-product-id="${product.productId}">Cập nhật</button>
+                <button class="view-description-button" data-product-id="${product.productId}">Mô tả</button>
+                <button class="update-product-button" data-product-id="${product.productId}">Cập nhật</button>
                 <button class="delete-product-button" data-product-id="${product.productId}">Xóa</button>
             </td>
         `;
         productList.appendChild(productRow);
     });
-
-    attachEventListeners();
-
- 
 }
+
+// Lắng nghe sự kiện cuộn (scroll) để tải thêm khi cuộn tới đáy
+window.addEventListener('scroll', () => {
+    // Kiểm tra nếu người dùng đã cuộn đến đáy trang
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
+        fetchProducts(currentPage); // Gọi hàm lấy thêm sản phẩm
+    }
+});
 
 
 //Xem mô tả

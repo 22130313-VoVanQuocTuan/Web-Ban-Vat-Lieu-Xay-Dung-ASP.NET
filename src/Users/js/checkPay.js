@@ -221,47 +221,62 @@ function closeDialog() {
     
 }
 
-//Thanh toán bằng ngân hàng VNPAY
 window.confirmVNPay = confirmVNPay;
+
 async function confirmVNPay(dialogId) {
-    const dialog = document.getElementById(dialogId); // Lấy phần tử dialog từ id
+    const dialog = document.getElementById(dialogId);
     if (!dialog) {
         showDialog("Không tìm thấy form thanh toán.");
         return;
     }
 
-    const trackingNumber = dialog.getAttribute('tracking-number'); // Lấy orderId từ thuộc tính data-order-id của dialog
+    const trackingNumber = dialog.getAttribute('tracking-number');
     const totalprice = dialog.getAttribute('total-price');
-
   
     if (!trackingNumber) {
         alert("Không tìm thấy mã đơn hàng.");
         return;
     }
-    // Tạo URL cho API với các tham số cần thiết
-    const apiUrl = `http://localhost:5241/api/vnpay/payment?amount=${totalprice}&infor=Thanh toán với VNPay&orderinfor=${trackingNumber}`;
+
+    const apiUrl = `http://localhost:5241/api/vnpay/payment`;
 
     try {
-        // Gửi yêu cầu GET tới API
+        // Gửi yêu cầu POST tới API với body JSON
         const response = await customFetch(apiUrl, {
-            method: "POST", // Sử dụng GET thay vì POST
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
-            }
+            },
+            body: JSON.stringify({
+                amount: parseFloat(totalprice),
+                infor: 'Thanh toán với VNPay',
+                orderinfor: trackingNumber
+            })
         });
 
-        // Xử lý phản hồi từ API
-        const data = await response.json();
+        // Kiểm tra phản hồi thô từ server trước khi chuyển đổi thành JSON
+        const responseText = await response.text();
+        console.log("Phản hồi từ server:", responseText);
+
+        // Kiểm tra phản hồi trước khi chuyển đổi thành JSON
+        let data;
+        try {
+            data = JSON.parse(responseText);
+        } catch (error) {
+            console.error("Không thể phân tích phản hồi JSON:", error.message);
+            showDialog("Phản hồi từ server không hợp lệ.");
+            return;
+        }
 
         if (response.ok && data.paymentUrl) {
-            // Chuyển hướng tới VNPay
             window.location.href = data.paymentUrl;
         } else {
-           showDialog(data.message || "Lỗi xác nhận đơn hàng.");
+            showDialog(data.message || "Lỗi xác nhận đơn hàng.");
         }
     } catch (error) {
         console.error("Lỗi:", error.message);
-        showDialog("Đặt hàng thất bại", error.message); // Hiển thị dialog lỗi
+        showDialog("Đặt hàng thất bại", error.message);
     }
 }
+
 

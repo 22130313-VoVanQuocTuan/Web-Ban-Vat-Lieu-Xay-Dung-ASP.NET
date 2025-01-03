@@ -488,5 +488,29 @@ td {
   }
 }
 
+.toast {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #4CAF50;
+  padding: 20px 40px;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  z-index: 1001;
+  /* Đảm bảo thông báo luôn trên các phần tử khác */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  animation: showToast 0.5s ease-in-out, hideToast 3s ease-in-out 2.5s;
+  /* Hiệu ứng hiển thị và ẩn */
+  max-width: 90%;
+  word-wrap: break-word;
+  /* Đảm bảo dòng chữ không bị tràn */
+}
+
 
  
