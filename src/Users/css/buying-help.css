@@ -1,0 +1,116 @@
+html {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif; /* Font hiện đại hơn */
+    font-size: 16px;
+    scroll-behavior: smooth;
+    background-color: #f3f4f6; /* Thêm nền xám nhẹ cho toàn trang */
+}
+
+#section-content-1 {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 10px; /* Tăng độ bo góc */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); /* Bóng lớn hơn một chút */
+}
+
+#section-content-1 .guide-container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 40px 50px;
+    margin: 0 auto;
+    gap: 20px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease-in-out; /* Hiệu ứng hover */
+}
+
+#section-content-1 .guide-container:hover {
+    transform: translateY(-5px); /* Nâng nhẹ khi hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.guide-container h2 {
+    color: #2a2a2a;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.guide-container h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #82a0c2;
+    margin: 10px auto 0;
+    border-radius: 3px;
+}
+
+.guide-container h3 {
+    color: #333333;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    border-left: 5px solid #82a0c2;
+    padding-left: 15px;
+    position: relative;
+}
+
+.guide-container h3::before {
+    content: '✔';
+    color: #82a0c2;
+    position: absolute;
+    left: -25px;
+    font-size: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.guide-container p {
+    color: #555555;
+    line-height: 1.9;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: justify; /* Căn chỉnh đẹp hơn */
+    text-indent: 20px; /* Thụt đầu dòng */
+    word-spacing: 1px;
+}
+
+/* Hiệu ứng link nếu cần */
+.guide-container a {
+    color: #82a0c2;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.guide-container a:hover {
+    color: #5680a6;
+    border-bottom: 2px solid #82a0c2;
+}
+
+/* Responsive cải thiện */
+@media screen and (max-width: 768px) {
+    #section-content-1 .guide-container {
+        padding: 20px 15px;
+    }
+
+    .guide-container h2 {
+        font-size: 1.8rem;
+    }
+
+    .guide-container h3 {
+        font-size: 1.3rem;
+    }
+
+    .guide-container p {
+        font-size: 1rem;
+    }
+}

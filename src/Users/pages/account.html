@@ -46,21 +46,21 @@
             <img src="../img/logo.png" alt="Logo" />
           </div>
 
-            <!-- Thanh tìm kiếm ở giữa -->
-            <div class="search-bar">
-              <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
-              <button id="searchButton"><i class="fa fa-fw fa-search"></i></button>
+          <!-- Thanh tìm kiếm ở giữa -->
+          <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Tìm kiếm sản phẩm...">
+            <button id="searchButton"><i class="fa fa-fw fa-search"></i></button>
           </div>
 
           <!-- Modal chứa kết quả tìm kiếm -->
           <div id="searchModal" class="modal">
-              <div class="modal-content">
-                  <span id="closeModal" class="close">&times;</span>
-                  <h2>Kết quả tìm kiếm</h2>
-                  <div id="searchResults">
-                      <!-- Kết quả tìm kiếm sẽ hiển thị tại đây -->
-                  </div>
+            <div class="modal-content">
+              <span id="closeModal" class="close">&times;</span>
+              <h2>Kết quả tìm kiếm</h2>
+              <div id="searchResults">
+                <!-- Kết quả tìm kiếm sẽ hiển thị tại đây -->
               </div>
+            </div>
           </div>
 
 
@@ -90,9 +90,11 @@
               MỤC SẢN
               PHẨM</span>
             <ul class="items">
-              <li> <a href="product-list.html">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH BLOCK
+              <li> <a href="product-list.html">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH
+                  BLOCK
                   XI MĂNG</a></li>
-              <li><a href="product-list.html">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH TRANG
+              <li><a href="product-list.html">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;GẠCH
+                  TRANG
                   TRÍ</a></li>
               <li><a href="product-list.html">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;NGÓI LỢP
                   NHÀ</a> </li>
@@ -119,17 +121,17 @@
           <li class="propClone">
             <span class="none-a"> <i class="fa-solid fa-book"></i> &nbsp;&nbsp; HƯỚNG DẪN </span>
             <ul class="items">
-              <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;HƯỚNG DẪN
-                  MUA HÀNG</a>
+              <li><a href="buying-help.html">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;HƯỚNG DẪN
+                      MUA HÀNG</a>
               </li>
-              <li><a href="#">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;HƯỚNG DẪN
-                  THANH TOÁN</a>
+              <li><a href="payment-help.html">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;HƯỚNG DẪN
+                      THANH TOÁN</a>
               </li>
-              <li><a href="term_and_services.html">&nbsp;&nbsp;<i class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;ĐIỀU
-                  KHOẢN
-                  VÀ DỊCH VỤ</a>
+              <li><a href="term_and_services.html">&nbsp;&nbsp;<i
+                          class="fa-solid fa-chevron-right"></i>&nbsp;&nbsp;ĐIỀU KHOẢN
+                      VÀ DỊCH VỤ</a>
               </li>
-            </ul>
+          </ul>
           </li>
         </ul>
       </div>
@@ -156,7 +158,7 @@
               </thead>
               <tbody id="order-information" class="order-information"></tbody>
               <!-- Thông tin đơn hàng -->
-               
+
             </table>
           </div>
           <div class="right-information">
@@ -206,11 +208,11 @@
         </div>
       </div>
     </dialog>
-       <!-- Dialog thông báo -->
-       <dialog id="successDialog">
-        <h2 class="dialog-title"></h2>
-        <p class="dialog-message"></p>
-        <button onclick="closeDialog()">Đóng</button>
+    <!-- Dialog thông báo -->
+    <dialog id="successDialog">
+      <h2 class="dialog-title"></h2>
+      <p class="dialog-message"></p>
+      <button onclick="closeDialog()">Đóng</button>
     </dialog>
     <div id="section-footer">
       <div class="container-1">

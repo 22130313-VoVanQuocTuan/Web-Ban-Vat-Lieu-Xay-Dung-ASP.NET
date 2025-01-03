@@ -1,0 +1,97 @@
+html {
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #f9f9f9, #ffffff);
+    color: #333333;
+}
+
+#section-content-1 {
+    padding: 50px 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 1000px;
+}
+
+.guide-container {
+    width: 90%;
+    margin: 0 auto;
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #ddd;
+}
+
+.guide-container h2 {
+    color: #15283e;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    position: relative;
+}
+
+.guide-container h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #82a0c2, #15283e);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.guide-container h3 {
+    color: #1a1a1a;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 30px;
+    position: relative;
+    padding-left: 20px;
+    border-left: 5px solid #82a0c2;
+}
+
+.guide-container ul {
+    margin-top: 10px;
+    margin-left: 20px;
+    padding-left: 20px;
+    list-style: disc;
+    color: #555555;
+}
+
+.guide-container ul li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.guide-container p {
+    color: #555555;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.guide-container p:last-child {
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 768px) {
+    .guide-container {
+        padding: 20px;
+    }
+
+    .guide-container h2 {
+        font-size: 1.8rem;
+    }
+
+    .guide-container h3 {
+        font-size: 1.3rem;
+    }
+
+    .guide-container p, .guide-container ul li {
+        font-size: 1rem;
+    }
+}
