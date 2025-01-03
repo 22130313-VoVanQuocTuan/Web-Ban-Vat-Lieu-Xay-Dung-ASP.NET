@@ -1,10 +1,11 @@
 import { showDialog } from "./showDidlog.js";
 import { getUserIdFromToken } from "./UserId.js";
-import { customFetch } from "/src/apiService.js"; // Đảm bảo đường dẫn đúng
+import { customFetch } from "/src/apiService.js"; 
 
 const userId = getUserIdFromToken();
-const apiUrl = "http://localhost:5241/api/User"; // Không cần dấu '/' ở cuối
+const apiUrl = "http://localhost:5241/api/User"; 
 
+// Lấy thông tin người dùng
 async function fetchUserData() {
   try {
     const response = await customFetch(`${apiUrl}/${userId}`, {
@@ -28,6 +29,8 @@ async function fetchUserData() {
   }
 }
 
+
+// hiển thị thông tin lên
 function displayUserData(user) {
   document.getElementById("username-hello").textContent = user.userName;
   document.getElementById("username-user").textContent = user.userName;
@@ -52,7 +55,7 @@ function populateForm(userData) {
   addressInput.value = userData.address || "";
 }
 
-//  Cập nhật th tin tài khoản
+//  Cập nhật thông tin tài khoản
 const saveButton = document.getElementById("save-button");
 const dialog = document.getElementById("edit-dialog");
 const updateAccount = document.getElementById("update-customer");

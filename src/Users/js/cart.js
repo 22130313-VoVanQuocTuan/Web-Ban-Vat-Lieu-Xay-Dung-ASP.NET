@@ -1,20 +1,18 @@
 
+
+import { getUserIdFromToken } from './UserId.js';
+import { customFetch } from '/src/apiService.js'; 
+
 let cart = []; // Khởi tạo biến cart
-
-
-
-import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
-
 document.addEventListener('DOMContentLoaded', () => {
   fetchCartProducts();
   getCart();
 });
-
 // Hàm lấy sản phẩm từ giỏ hàng
-async function fetchCartProducts(page = 1, limit = 2) {
+async function fetchCartProducts() {
   try {
 
-    const response = await customFetch(`http://localhost:5241/api/Cart?page=${page}&limit=${limit}`, {
+    const response = await customFetch(`http://localhost:5241/api/Cart`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' } // Thêm header cho Content-Type
 
@@ -40,11 +38,8 @@ function renderCartProducts(products) {
   const cartContainer = document.getElementById('cart-items-container');
   cartContainer.innerHTML = ''; // Xóa nội dung cũ
 
-
-
   products.forEach((product, index) => {
     const imageUrl = product.urlImage.startsWith('http') ? product.urlImage : `http://localhost:5241/${product.urlImage}`;
-
 
     // HTML cho sản phẩm
     const productHtml = `
@@ -88,7 +83,6 @@ function attachRemoveFromCartEvent() {
         const response = await customFetch(`http://localhost:5241/api/Cart/${cartProductId}`, {
           method: 'DELETE',
           headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`,
             'Content-Type': 'application/json',
           },
         });
@@ -134,11 +128,10 @@ window.updateQuantity = updateQuantity;
 async function updateCartQuantity(cartProductId, quantity) {
   try {
     const token = localStorage.getItem('token');
-    const response = await fetch(`http://localhost:5241/api/Cart`, {
+    const response = await customFetch(`http://localhost:5241/api/Cart`, {
       method: 'PUT',
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         cartProductId: cartProductId,
@@ -158,17 +151,6 @@ async function updateCartQuantity(cartProductId, quantity) {
   }
 }
 
-// Lấy userId từ token
-function getUserIdFromToken() {
-  const token = localStorage.getItem('token');
-  if (!token) {
-    throw new Error('No token found');
-  }
-
-  // Gỉa mã JWT để lấy UserId từ token
-  const payload = JSON.parse(atob(token.split('.')[1]));
-  return payload.UserId; // Đảm bảo tên thuộc tính đúng với cấu trúc của token
-}
 // Gán sự kiện cho nút áp dụng mã voucher
 document.querySelector('.apply-btn').addEventListener('click', applyVoucher);
 // Hàm áp dụng mã giảm giá
@@ -201,7 +183,7 @@ async function applyVoucher() {
 }
 
 
-
+// LẤY THÔNG TIN GIỎ HÀNG
 async function getCart() {
   try {
     // Lấy token từ Local Storage
@@ -224,10 +206,8 @@ async function getCart() {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
+        },
     });
-
     if (!response.ok) {
       throw new Error(`API trả về lỗi: ${response.status}`);
     }

@@ -1,5 +1,6 @@
 // Cấu hình mặc định
 
+import { getUserIdFromToken } from './UserId.js';
 import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn đúng
 let currentCategoryId = 0; // 0 nghĩa là lấy toàn bộ
 let currentPage = 1;
@@ -153,18 +154,6 @@ async function loadProducts() {
 })();
 
 
-// Lấy userId từ token
-function getUserIdFromToken() {
-    const token = localStorage.getItem('token');
-    if (!token) {
-        alert("Hết phiên làm việc, vui lòng đăng nhập lại!")
-        window.location.href = "/src/Users/pages/account/login-signup.html"
-    }
-
-    // Gỉa mã JWT để lấy UserId từ token
-    const payload = JSON.parse(atob(token.split('.')[1]));
-    return payload.UserId; // Đảm bảo tên thuộc tính đúng với cấu trúc của token
-}
 
 // Xử lý gọi API cho nút thêm sản phẩm
 document.addEventListener('click', async (event) => {

@@ -1,5 +1,6 @@
 import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn chính xác
 
+// lấy danh sách voucher
 async function getDiscount() {
     try {
         const response = await customFetch('http://localhost:5241/api/Discount', {
@@ -78,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-
+// Thêm voucher
 document.getElementById("addVoucher").addEventListener("click", async function(event) {
     event.preventDefault(); // Ngừng hành động mặc định của form, tránh reload trang
 

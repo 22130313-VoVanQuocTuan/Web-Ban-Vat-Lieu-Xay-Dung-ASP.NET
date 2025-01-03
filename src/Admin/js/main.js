@@ -23,7 +23,7 @@ async function logoutUser() {
   }
 
   try {
-      const response = await customFetch('http://localhost:5241/api/Authenticate/logout-user', {
+      const response = await fetch('http://localhost:5241/api/Authenticate/logout-user', {
           method: 'DELETE', // Sử dụng phương thức DELETE cho logout
           headers: {
               'Content-Type': 'application/json'

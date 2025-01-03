@@ -3,6 +3,8 @@ import { getUserIdFromToken } from "./UserId.js";
 document.addEventListener('DOMContentLoaded', () => {
      getCart();
   });
+
+  // LẤY THÔNG TIN GIỎ HÀNG
 async function getCart() {
     try {
       // Lấy token từ Local Storage

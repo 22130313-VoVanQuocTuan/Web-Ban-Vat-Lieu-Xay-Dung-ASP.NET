@@ -1,4 +1,4 @@
-import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn chính xác
+import { customFetch } from '/src/apiService.js'; 
 
 // Mảng chứa dữ liệu đánh giá mẫu
 const reviews = [];

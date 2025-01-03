@@ -28,7 +28,7 @@ HOME.addEventListener('click', () => {
 
 // Lấy các phần tử DOM cần thiết
 const registerForm = document.getElementById('register-form');
-const loginForm = document.getElementById('login-form'); // Bạn cần thêm id cho form login trong HTML
+const loginForm = document.getElementById('login-form'); /
 
 registerForm.addEventListener('submit', async (event) => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form

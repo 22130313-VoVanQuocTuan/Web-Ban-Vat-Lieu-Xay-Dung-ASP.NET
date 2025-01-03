@@ -65,6 +65,9 @@ async function fetchCartItemCount() {
 document.addEventListener("DOMContentLoaded", () => {
   fetchCartItemCount();
 });
+
+
+// Tìm kiếm sản phẩm
 document.getElementById('searchButton').addEventListener('click', async () => {
   const keyword = document.getElementById('searchInput').value.trim();
 
@@ -152,6 +155,8 @@ function attachImageClickEvents() {
     });
   });
 }
+
+
 // Xử lý gọi API cho nút thêm sản phẩm
 document.addEventListener('click', async (event) => {
   if (event.target.classList.contains('add-cart-search')) {
