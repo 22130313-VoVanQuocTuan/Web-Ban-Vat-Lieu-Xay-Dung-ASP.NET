@@ -1,15 +1,9 @@
 const products = [];
 let currentPage = 1;
-const pageSize = 10;
-let isLoading = false; // Kiểm tra xem có đang tải dữ liệu không
-
+const pageSize = 1000;
 import { customFetch } from '/src/apiService.js'; // Đảm bảo đường dẫn chính xác
-
 // Hàm lấy danh sách sản phẩm với phân trang
 async function fetchProducts(page = 1) {
-    if (isLoading) return;  // Ngừng yêu cầu nếu đã có yêu cầu đang xử lý
-    isLoading = true; // Đánh dấu đang tải dữ liệu
-
     try {
         const response = await fetch(`http://localhost:5241/api/Product?page=${page}&size=${pageSize}`, {
             method: 'GET',
@@ -17,18 +11,11 @@ async function fetchProducts(page = 1) {
                    "Content-Type": "application/json"
             }
         });
-
         if (response.ok) {
             const data = await response.json();
-            if (data.results && data.results.products) {
-                // Nếu có sản phẩm, thêm vào mảng `products`
-                // Chỉ thêm sản phẩm mới vào để tránh trùng lặp
-                products.push(...data.results.products);
-                displayProducts(); // Hiển thị danh sách sản phẩm
-                currentPage++; // Tăng số trang để có thể gọi lại API
-            } else {
-                console.log("No more products available.");
-            }
+            products.length = 0; // Xóa dữ liệu cũ
+            products.push(...data.results.products); // Thêm dữ liệu mới
+            displayProducts(); // Hiển thị danh sách sản phẩm
         } else {
             console.error("Error: ", response.statusText);
             alert("Failed to fetch products.");
@@ -36,16 +23,12 @@ async function fetchProducts(page = 1) {
     } catch (error) {
         console.error("Error:", error);
         alert("An error occurred while fetching products.");
-    } finally {
-        isLoading = false; // Kết thúc quá trình tải
     }
 }
-
 // Hiển thị danh sách sản phẩm trong bảng
 function displayProducts() {
     const productList = document.getElementById('productList');
-    productList.innerHTML = ''; // Xóa nội dung cũ để không bị trùng
-
+    productList.innerHTML = ''; // Xóa nội dung cũ
     products.forEach((product) => {
         const productRow = document.createElement('tr');
         const imageUrl = product.urlImage.startsWith('http') ? product.urlImage : `http://localhost:5241${product.urlImage}`;
@@ -53,34 +36,26 @@ function displayProducts() {
             <td>${product.productId}</td>
             <td><img src="${imageUrl}" alt="Product Image" width="50" height="50"></td>
             <td>${product.name}</td>
-            <td>${product.price.toLocaleString()} VNĐ</td>
+            <td>${product.price.toLocaleString() } VNĐ</td>
             <td>${product.stockQuantity}</td>
             <td>${new Date(product.createdAt).toLocaleDateString()}</td>
             <td>${product.status}</td>
-            <td>${product.categoryId}</td>
+             <td>${product.categoryId}</td>
             <td class="bt">
-                <button class="view-description-button" data-product-id="${product.productId}">Mô tả</button>
-                <button class="update-product-button" data-product-id="${product.productId}">Cập nhật</button>
+                 <button class="view-description-button" data-product-id="${product.productId}">Mô tả</button>
+                 
+                 <button class="update-product-button" data-product-id="${product.productId}">Cập nhật</button>
                 <button class="delete-product-button" data-product-id="${product.productId}">Xóa</button>
             </td>
         `;
         productList.appendChild(productRow);
     });
+    attachEventListeners();
+ 
 }
-
-// Lắng nghe sự kiện cuộn (scroll) để tải thêm khi cuộn tới đáy
-window.addEventListener('scroll', () => {
-    // Kiểm tra nếu người dùng đã cuộn đến đáy trang
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) {
-        fetchProducts(currentPage); // Gọi hàm lấy thêm sản phẩm
-    }
-});
-
-
 //Xem mô tả
 async function getDescription(event) {
     const productId = event.target.getAttribute("data-product-id");
-
     // Gọi API để lấy mô tả sản phẩm
     const response = await fetch(`http://localhost:5241/api/Product/description/${productId}`, {
         method: "GET",
@@ -88,19 +63,15 @@ async function getDescription(event) {
             "Content-Type": "application/json"
         }
     });
-
     // Kiểm tra nếu API trả về dữ liệu
     const data = await response.json(); // Chuyển dữ liệu từ JSON
     if (data.status === 200) {
         const description = data.results.description; // Lấy mô tả từ kết quả API
-
         // Giải mã HTML nếu cần
         const parser = new DOMParser();
         const decodedDescription = parser.parseFromString(description, 'text/html').body.innerHTML;
-
         // Hiển thị mô tả vào modal
         document.getElementById("productDescriptionDetails").innerHTML = decodedDescription;
-
         // Mở modal
         document.getElementById("viewDescriptionModal").style.display = "block";
     } else {
@@ -108,13 +79,11 @@ async function getDescription(event) {
         console.error('Có lỗi xảy ra khi gọi API');
     }
 }
-
 // Hàm đóng modal khi người dùng nhấn vào nút đóng
 function closeViewDescriptionModal() {
     const modal = document.getElementById('viewDescriptionModal');
     modal.style.display = 'none'; // Ẩn modal
 }
-
 // Khi người dùng nhấn vào vùng ngoài modal, modal sẽ đóng
 window.onclick = function(event) {
     const modal = document.getElementById('viewDescriptionModal');
@@ -122,8 +91,6 @@ window.onclick = function(event) {
         closeViewDescriptionModal();
     }
 };
-
-
 // Gán sự kiện cho các nút xóa và cập nhật được thêm động
 function attachEventListeners() {
     document.querySelectorAll('.delete-product-button').forEach(button => {
@@ -135,39 +102,25 @@ function attachEventListeners() {
     document.querySelectorAll('.view-description-button').forEach(button => {
         button.addEventListener('click', getDescription);
     });
-
 }
-
 // Định nghĩa các hàm toàn cục để có thể truy cập từ HTML
 window.openAddProductModal = openAddProductModal;
 window.addProduct = addProduct;
 window.closeUpdateProductModal = closeUpdateProductModal;
 window.closeAddProductModal = closeAddProductModal;
 window.closeViewDescriptionModal = closeViewDescriptionModal;
-
 // Hàm mở modal thêm sản phẩm
 function openAddProductModal() {
     document.getElementById("addProductModal").style.display = "block";
 }
-
 // Hàm đóng modal thêm sản phẩm
 function closeAddProductModal() {
     document.getElementById("addProductModal").style.display = "none"; // Ẩn modal khi nhấn "Thoát"
 }
-
 // Hàm đóng modal cập nhật sản phẩm
 function closeUpdateProductModal() {
    document.getElementById("updateProductModal").style.display = "none";
 }
-
-
-
-
-
-
-
-
-
 CKEDITOR.replace('productDescriptions');
 // Đăng ký sự kiện cho nút thêm sản phẩm
 document.getElementById("addProductButton").addEventListener("click", addProduct);
@@ -175,7 +128,6 @@ document.getElementById("addProductButton").addEventListener("click", addProduct
 async function addProduct() {
     const productStatusElement = document.getElementById("productStatus");
     const productStatusText = productStatusElement.options[productStatusElement.selectedIndex].textContent;
-
     const formData = new FormData();
     formData.append("Name", document.getElementById("productName").value);
     formData.append("Price", parseFloat(document.getElementById("productPrice").value));
@@ -184,17 +136,14 @@ async function addProduct() {
    // Lấy mô tả từ CKEditor (bao gồm HTML)
     formData.append("Description", CKEDITOR.instances.productDescriptions.getData());
     formData.append("Status", productStatusText);
-
     const productImage = document.getElementById("productImage").files[0];
     if (productImage) formData.append("UrlImage", productImage);
-
     try {
         const response = await fetch("http://localhost:5241/api/Product/product", {
             method: "POST",
             body: formData,
           
         });
-
         if (response.ok) {
             closeAddProductModal();
             fetchProducts(currentPage);
@@ -207,7 +156,6 @@ async function addProduct() {
         alert("Error adding product.");
     }
 }
-
 // Hàm xóa sản phẩm
 async function deleteProduct(event) {
     const productId = event.target.getAttribute('data-product-id');
@@ -216,7 +164,6 @@ async function deleteProduct(event) {
             method: 'DELETE',
             headers: { 'Content-Type': 'application/json' }
         });
-
         if (response.ok) {
             fetchProducts(currentPage);
              
@@ -227,10 +174,6 @@ async function deleteProduct(event) {
         console.error("Error:", error);
     }
 }
-
-
-
-
 async function handleEditProduct(event) {
     const productId = event.target.getAttribute("data-product-id");
     const product = products.find(p => p.productId == productId);
@@ -238,7 +181,6 @@ async function handleEditProduct(event) {
     
     const descriptions = document.getElementById("updateProductModal");
     descriptions.style.display = "block";
-
     document.getElementById('updateProductName').value = product.name;
     document.getElementById('updateProductPrice').value = product.price;
     document.getElementById('updateProductCategory').value = product.categoryId;
@@ -261,14 +203,11 @@ async function handleEditProduct(event) {
     
     const imageElement = document.getElementById('currentProductImage');
     imageElement.src = imageUrl || '';
-
     document.getElementById('saveChangesButton').setAttribute('data-product-id', productId);
 }
-
 CKEDITOR.replace('updateProductDescription');
 async function saveProductChanges(event) {
     const productId = event.target.getAttribute('data-product-id');
-
     // Tạo FormData để gửi dữ liệu
     const formData = new FormData();
     
@@ -279,19 +218,16 @@ async function saveProductChanges(event) {
     formData.append('stockQuantity', parseInt(document.getElementById('updateProductStock').value));
     formData.append('description', CKEDITOR.instances.updateProductDescription.getData());
     formData.append('status', document.getElementById('updateProductStatus').value);
-
     // Lấy tệp hình ảnh từ input và thêm vào FormData
     const urlImage = document.getElementById('updateProductImage').files[0];
     if (urlImage) {
         formData.append('urlImage', urlImage);  // Thêm tệp vào FormData
     }
-
     try {
         const response = await fetch(`http://localhost:5241/api/Product/${productId}`, {
             method: 'PUT',
             body: formData  // Gửi FormData thay vì JSON
         });
-
         if (response.ok) {
             alert('Cập nhật sản phẩm thành công!');
             closeUpdateProductModal();
