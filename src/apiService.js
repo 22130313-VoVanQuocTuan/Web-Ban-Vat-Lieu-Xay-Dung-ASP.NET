@@ -1,5 +1,3 @@
-import { showDialog } from "./Users/js/showDidlog.js";
-
 async function refreshToken() {
     const refreshToken = localStorage.getItem('refreshToken');
     if (!refreshToken) {
@@ -60,8 +58,7 @@ export async function customFetch(url, options = {}) {
             // Xóa token và refresh token khỏi localStorage
             localStorage.removeItem('token');
             localStorage.removeItem('refreshToken');
-            showDialog("Hết phiên làm việc. Vui lòng đăng nhập lại.");
-            window.location.href = "/src/Users/pages/account/login-signup.html"; // Chuyển hướng đến trang đăng nhập
+             window.location.href = "/src/Users/pages/account/login-signup.html"; // Chuyển hướng đến trang đăng nhập
             return; // Kết thúc hàm
         }
     }

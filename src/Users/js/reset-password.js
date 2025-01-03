@@ -95,7 +95,7 @@ document.getElementById("new-password-form").addEventListener("submit", async (e
         console.log(text); // Xem phản hồi từ server
 
         if (response.ok) {
-            s("Mật khẩu của bạn đã được đặt lại thành công.");
+            alert("Mật khẩu của bạn đã được đặt lại thành công.", );
             window.location.href = "/src/Users/pages/account/login-signup.html"; // Chuyển hướng đến trang đăng nhập
         } else {
             try {
@@ -117,6 +117,7 @@ export function closeDialog() {
     const dialog = document.getElementById("successDialog");
     if (dialog) {
         dialog.close(); // Đóng dialog
+     
 
     }
 

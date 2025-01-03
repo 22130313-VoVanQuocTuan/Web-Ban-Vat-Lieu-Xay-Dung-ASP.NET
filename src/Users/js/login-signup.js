@@ -28,7 +28,7 @@ HOME.addEventListener('click', () => {
 
 // Lấy các phần tử DOM cần thiết
 const registerForm = document.getElementById('register-form');
-const loginForm = document.getElementById('login-form'); /
+const loginForm = document.getElementById('login-form'); 
 
 registerForm.addEventListener('submit', async (event) => {
     event.preventDefault(); // Ngăn chặn hành vi mặc định của form
@@ -176,7 +176,7 @@ export function closeDialog() {
     const dialog = document.getElementById("successDialog");
     if (dialog) {
         dialog.close(); // Đóng dialog
-
+        window.location.reload(); // Tải lại trang
     }
 
 }
